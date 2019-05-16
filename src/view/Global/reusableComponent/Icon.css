@@ -1,0 +1,23 @@
+img.Icon {
+
+    height: 42px;
+    width: 42px;
+
+}
+
+img.Icon.animated {
+    animation: 1.5s ease-in-out infinite iconAnimation;
+    /*animation: 1.5s cubic-bezier(0, 1, 1, 0) infinite iconAnimation;*/
+}
+
+@keyframes iconAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

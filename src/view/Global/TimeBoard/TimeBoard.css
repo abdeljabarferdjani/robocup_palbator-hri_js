@@ -1,0 +1,21 @@
+div.TimeBoard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.TimeBoard > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+h1.componentTitle {
+    margin-bottom: 3rem;
+}
+div.App div.TimeBoard {
+    height: 93vh;
+
+}

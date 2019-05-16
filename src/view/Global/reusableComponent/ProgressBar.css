@@ -1,0 +1,12 @@
+div div.ProgressBar {
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: green;
+    transition: all linear 1000ms;
+
+}
+

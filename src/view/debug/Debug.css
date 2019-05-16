@@ -1,0 +1,22 @@
+button, select {
+    margin-left: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+
+div.Debug > div {
+    background-color: #626262;
+}
+
+div.Debug h2, div.Debug h3 {
+    text-align: center;
+    color: whitesmoke;
+}
+
+div.Debug > div > div {
+    margin: 1rem;
+    padding: 0.5rem;
+    background-color: #333333;
+    border: #333333 1px solid;
+    border-radius: 1rem;
+}

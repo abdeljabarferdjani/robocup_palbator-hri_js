@@ -1,0 +1,44 @@
+{
+	"name": "react-pepper",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"bootstrap": "^4.3.1",
+		"core-js": "3",
+		"normalize.css": "^8.0.1",
+		"prop-types": "^15.7.2",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"react-redux": "^7.0.3",
+		"react-scripts": "3.0.0",
+		"reactstrap": "^8.0.0",
+		"redux": "^4.0.1",
+		"redux-logger": "^3.0.6"
+	},
+	"homepage": "./",
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"build:win32": "rmdir /S /Q build",
+		"build:linux": "rm -rf build",
+		"build-to-deploy:linux": "yarn run build && node deploy.js",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"resetDependency": "rm -rf ./node_modules && yarn install"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			"chrome 35"
+		],
+		"development": [
+			"chrome 35"
+		]
+	},
+	"devDependencies": {
+		"redux-devtools-extension": "^2.13.8",
+		"run-script-os": "^1.0.5"
+	}
+}

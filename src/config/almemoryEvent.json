@@ -1,0 +1,108 @@
+{
+	"AL_VALUE" : {
+		"drinks" : "R2019/Receptionist/Drinks",
+		"names": "R2019/Receptionist/Names",
+		"scenario": "R2019/Global/Scenarios"
+	},
+
+	"localManager": {
+		"jsons": {
+			"drinks": "json/drinks.json",
+			"names": "json/people.json",
+			"scenario": "json/scenario.json"
+		}
+	},
+
+	"gmStatus": {
+		"ALMemory": "R2019/Receptionist/GmStatus",
+		"reduxKey": "GM_STATUS",
+		"moveTo": {
+			"human": "MOVE_TO_HUMAN",
+			"place": "MOVE_TO_PLACE"
+		}
+	},
+
+	"changeCurrentScenario": {
+		"ALMemory": "R2019/Global/ChangeCurrentScenario",
+		"reduxKey": "CHANGE_CURRENT_SCENARIO",
+		"scenario": "SCENARIO"
+	},
+
+	"changeToolbar": {
+		"ALMemory": "R2019/Global/ChangeToolbar",
+		"reduxKey": "CHANGE_TOOLBAR",
+		"state": {
+			"ok": "OK",
+			"error": "ERROR"
+		},
+		"system": {
+			"internet": "INTERNET",
+			"pcConnection": "PC_CONNECTION",
+			"micro": "MICRO",
+			"canMove": "CAN_MOVE"
+		}
+	},
+
+	"changeView": {
+		"ALMemory": "R2019/Receptionist/ChangeView",
+		"reduxKey": "CHANGE_VIEW",
+		"step": "STEP"
+	},
+
+	"changeCurrentStep": {
+		"ALMemory": "R2019/Receptionist/ChangeCurrentStep",
+		"reduxKey": "PASS_TO_STEP",
+		"step": "STEP"
+	},
+
+	"setStepSkipped": {
+		"ALMemory": "R2019/Receptionist/SetStepSkipped",
+		"reduxKey": "SET_STATE_SKIPPED",
+		"step": "STEP"
+	},
+
+	"setStepCompleted": {
+		"ALMemory": "R2019/Receptionist/SetStepComplete",
+		"reduxKey": "SET_STEP_COMPLETED",
+		"step": "STEP"
+	},
+
+	"setStepRecieved": {
+		"ALMemory": "R2019/Receptionist/SetStepRecieved",
+		"reduxKey": "TASK_RECIEVED"
+	},
+
+	"heartbeats": {
+		"ALMemory": "R2019/Receptionist/JsHearBeat",
+		"reduxKey": "HEART_BEAT",
+		"payload": "timestamp"
+	},
+
+	"sendDataJs": {
+		"ALMemory": "R2019/Receptionist/SendDataJs",
+		"reduxKey": "SendData",
+		"dataType": {
+			"name": "DATA/NAME",
+			"drink": "DATA/DRINK"
+		}
+	},
+
+	"sendDataPython": {
+		"ALMemory": "R2019/Receptionist/SendDataPython",
+		"reduxKey": "SendData",
+		"dataType": {
+			"name": "DATA/NAME",
+			"drink": "DATA/DRINK"
+		}
+	},
+
+	"toggleTimer": {
+		"generalManager": "R2019/Receptionist/ToggleTimer",
+		"reduxKey": "TOGGLE_TIMER",
+		"ALMemory": "R2019/Receptionist/ToggleTimer",
+		"mode": {
+			"start": "TOGGLE_TIMER/START",
+			"stop": "TOGGLE_TIMER/STOP"
+		}
+	}
+}

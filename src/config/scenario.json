@@ -1,0 +1,85 @@
+{
+	"servingDrinks": {
+		"name": "Serving Drinks",
+		"steps": [
+			{
+				"eta": 15.0,
+				"name": "Open door",
+				"order": 0
+			},
+			{
+				"eta": 30.0,
+				"name": "Go to bar",
+				"order": 1
+			},
+			{
+				"eta": 30.0,
+				"name": "Get available drinks",
+				"order": 2
+			},
+			{
+				"eta": 30.0,
+				"name": "Go to party",
+				"order": 3
+			},
+			{
+				"eta": 15.0,
+				"name": "Find who want drinks",
+				"order": 4
+			},
+			{
+				"eta": 25.0,
+				"name": "Take order 1",
+				"order": 5
+			},
+			{
+				"eta": 25.0,
+				"name": "Take order 2",
+				"order": 6
+			},
+			{
+				"eta": 25.0,
+				"name": "Take order 3",
+				"order": 7
+			},
+			{
+				"eta": 30.0,
+				"name": "Go to bar to detail commands",
+				"order": 8
+			},
+			{
+				"eta": 30.0,
+				"name": "Detail commands to bartender",
+				"order": 9
+			},
+			{
+				"eta": 45.0,
+				"name": "Serve drinks with bartender",
+				"order": 10
+			}
+		]
+	},
+	"receptionist": {
+		"name": "Receptionist",
+		"steps": [
+			{
+				"name": "A PLACEHOLDER",
+				"eta": 1000,
+				"order": 0
+			},
+			{
+				"name": "B PLACEHOLDER",
+				"eta": 2000,
+				"order": 1
+			},
+			{
+				"name": "C PLACEHOLDER",
+				"eta": 3000,
+				"order": 2
+			}
+		]
+	},
+	"mainMenu": {
+		"name": "MainMenu"
+	}
+}
