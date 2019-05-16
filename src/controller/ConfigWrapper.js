@@ -27,7 +27,10 @@ export default class ConfigWrapper
 	
 	static #_AlMemoryEvent;
 	
+
+	
 	static logger = new Logger(true, "ConfigWrapper");
+	
 	// static #_AlMemoryEvent ;
 	
 	static async setConfigFromALMemory() {

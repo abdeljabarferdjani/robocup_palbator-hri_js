@@ -1,6 +1,6 @@
 {
-	"AL_VALUE" : {
-		"drinks" : "R2019/Receptionist/Drinks",
+	"AL_VALUE": {
+		"drinks": "R2019/Receptionist/Drinks",
 		"names": "R2019/Receptionist/Names",
 		"scenario": "R2019/Global/Scenarios"
 	},
@@ -9,7 +9,20 @@
 		"jsons": {
 			"drinks": "json/drinks.json",
 			"names": "json/people.json",
-			"scenario": "json/scenario.json"
+			"scenario":"json/scenario.json"
+		}
+	},
+
+	"localManagerLogger": {
+		"ALMemory": "R2019/Global/LmLogger",
+		"message": "string",
+		"application": "string",
+		"level": {
+			"DEBUG": 0,
+			"INFO": 1,
+			"WARNING": 2,
+			"ERROR": 3,
+			"CRITIAL": 4
 		}
 	},
 
@@ -46,36 +59,41 @@
 	"changeView": {
 		"ALMemory": "R2019/Receptionist/ChangeView",
 		"reduxKey": "CHANGE_VIEW",
-		"step": "STEP"
+		"step": "__STEP"
 	},
 
 	"changeCurrentStep": {
 		"ALMemory": "R2019/Receptionist/ChangeCurrentStep",
 		"reduxKey": "PASS_TO_STEP",
-		"step": "STEP"
+		"step": "__STEP"
 	},
 
 	"setStepSkipped": {
 		"ALMemory": "R2019/Receptionist/SetStepSkipped",
 		"reduxKey": "SET_STATE_SKIPPED",
-		"step": "STEP"
+		"step": "__STEP"
 	},
 
 	"setStepCompleted": {
 		"ALMemory": "R2019/Receptionist/SetStepComplete",
 		"reduxKey": "SET_STEP_COMPLETED",
-		"step": "STEP"
+		"step": "__STEP"
 	},
 
 	"setStepRecieved": {
 		"ALMemory": "R2019/Receptionist/SetStepRecieved",
-		"reduxKey": "TASK_RECIEVED"
+		"reduxKey": "__TASK_RECIEVED"
 	},
 
-	"heartbeats": {
-		"ALMemory": "R2019/Receptionist/JsHearBeat",
+	"sendHeartbeat": {
+		"ALMemory": "R2019/Global/JsHearbeat",
 		"reduxKey": "HEART_BEAT",
-		"payload": "timestamp"
+		"payload": "__timestamp"
+	},
+
+	"sendTabletOperational": {
+		"ALMemory": "R2019/Global/SendTabletOperational",
+		"time": "__timestamp"
 	},
 
 	"sendDataJs": {
@@ -83,8 +101,10 @@
 		"reduxKey": "SendData",
 		"dataType": {
 			"name": "DATA/NAME",
-			"drink": "DATA/DRINK"
-		}
+			"drink": "DATA/DRINK",
+			"age": "DATA/AGE"
+		},
+		"data": "__DATA"
 	},
 
 	"sendDataPython": {
@@ -93,7 +113,8 @@
 		"dataType": {
 			"name": "DATA/NAME",
 			"drink": "DATA/DRINK"
-		}
+		},
+		"data":"__DATA"
 	},
 
 	"toggleTimer": {

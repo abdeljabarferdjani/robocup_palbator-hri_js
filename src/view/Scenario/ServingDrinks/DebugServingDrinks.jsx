@@ -45,6 +45,11 @@ function mapDispatchToProps(dispatch) {
 			// })
 			
 		},
+		
+		changeCurrentView : (view) => {
+		
+		}
+		
 	}
 }
 
@@ -73,26 +78,26 @@ class DebugServingDrinks extends Component {
 			stepOptions.push(<option key={i} value={i}>{steps[i].name}</option>)
 		}
 		
+		const servingDrinks = viewAction.changeView.views.servingDrinks;
+		
 		
 		return (
 			<div>
 				<div id="changeView">
 					<h3>View</h3>
 					<h4>changeView</h4>
-					<Button color={"info"}
-					        onClick={() => this.props.changeView(viewAction.view.moving)}>Moving</Button>
-					<Button color={"info"} onClick={() => this.props.changeView(viewAction.view.askDrink)}>Ask
+					<Button color={"info"} onClick={() => this.props.changeView(servingDrinks.askDrink)}>Ask
 						Drink</Button>
-					<Button color={"info"} onClick={() => this.props.changeView(viewAction.view.askName)}>Ask
+					<Button color={"info"} onClick={() => this.props.changeView(servingDrinks.askName)}>Ask
 						Name</Button>
-					<Button color={"info"} onClick={() => this.props.changeView(viewAction.view.findDrinks)}>Find
+					<Button color={"info"} onClick={() => this.props.changeView(servingDrinks.findDrinks)}>Find
 						Drinks</Button>
-					<Button color={"info"} onClick={() => this.props.changeView(viewAction.view.deliverDrink)}>Deliver
+					<Button color={"info"} onClick={() => this.props.changeView(servingDrinks.deliverDrink)}>Deliver
 						Drinks
 					</Button>
-					<Button color={"info"} onClick={() => this.props.changeView(viewAction.view.detailDrink)}>Detail
+					<Button color={"info"} onClick={() => this.props.changeView(servingDrinks.detailDrink)}>Detail
 						Drinks</Button>
-					<Button color={"info"} onClick={() => this.props.changeView(viewAction.view.idle)}>None</Button>
+					<Button color={"info"} onClick={() => this.props.changeView(servingDrinks.idle)}>None</Button>
 					
 					<h4>Component visibility</h4>
 					

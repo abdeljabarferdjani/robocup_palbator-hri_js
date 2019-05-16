@@ -5,7 +5,8 @@
 			{
 				"eta": 15.0,
 				"name": "Open door",
-				"order": 0
+				"order": 0,
+				"views": []
 			},
 			{
 				"eta": 30.0,
@@ -57,7 +58,8 @@
 				"name": "Serve drinks with bartender",
 				"order": 10
 			}
-		]
+		],
+		"views": []
 	},
 	"receptionist": {
 		"name": "Receptionist",

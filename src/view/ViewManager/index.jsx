@@ -101,30 +101,30 @@ class ViewManager extends Component {
 				console.log("Je vois un scénario de servingDrinks");
 				
 				switch (this.state.currentView) {
-					case viewAction.changeView.view.idle:
+					case global.idle:
 						comp = <div id={"idle"} className={"view"}>None</div>;
 						break;
 					
-					case viewAction.changeView.view.askDrink:
+					case servingDrinks.askDrink:
 						comp = <AskDrink/>;
 						break;
 					
-					case viewAction.changeView.view.askName:
+					case servingDrinks.askName:
 						comp = <AskName/>;
 						
 						break;
 					
-					case viewAction.changeView.view.findDrinks:
+					case servingDrinks.findDrinks:
 						comp = <FindDrinks/>;
 						
 						break;
 					
-					case viewAction.changeView.view.deliverDrink:
+					case servingDrinks.deliverDrink:
 						comp = <DeliverDrinks/>;
 						
 						break;
 					
-					case viewAction.changeView.view.detailDrink:
+					case servingDrinks.detailDrink:
 						comp = <DetailDrinks/>;
 						
 						break;
