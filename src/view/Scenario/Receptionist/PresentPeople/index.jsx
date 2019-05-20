@@ -7,7 +7,7 @@ function mapStateToProps(state) {
 	return {};
 }
 
-class PresentPeople extends Component {
+export class PresentPeople extends Component {
 	
 	static propTypes = {
 		human1 : PropTypes.instanceOf(Guest),

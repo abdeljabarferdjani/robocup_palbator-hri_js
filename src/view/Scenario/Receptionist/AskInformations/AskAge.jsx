@@ -5,7 +5,7 @@ class AskAge extends Component {
 	
 	
 	static propTypes = {
-		confirm : PropTypes.bool.isRequired
+		needConfirm : PropTypes.bool
 	};
 	
 	static defaultProps = {

@@ -150,6 +150,19 @@ export default class ALMemoryBridge {
 			}),
 			
 			
+			QiWrapper.listen(ALMemoryEvent.changeCurrentView.ALMemory, data => {
+				
+				if(data.view !== undefined || data.data !== undefined) {
+					dispatch({
+						type: viewAction.changeView.type,
+						view : data.view,
+						data : data.data
+					})
+				}
+				
+				
+			})
+			
 		]).then(() => QiWrapper.raise(ALMemoryEvent.sendTabletOperational.ALMemory, {time: Date.now()}))
 			.then(() => {
 				setInterval(() => {

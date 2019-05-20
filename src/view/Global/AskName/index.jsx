@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-class AskName extends Component {
+ class AskName extends Component {
 	
 	static propTypes = {
 		confirm : PropTypes.bool.isRequired
@@ -41,5 +41,7 @@ class AskName extends Component {
 		);
 	}
 }
+
+
 
 export default connect(mapDispatchToProps)(AskName);

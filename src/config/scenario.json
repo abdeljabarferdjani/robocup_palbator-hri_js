@@ -1,12 +1,10 @@
 {
 	"servingDrinks": {
-		"name": "Serving Drinks",
 		"steps": [
 			{
 				"eta": 15.0,
 				"name": "Open door",
-				"order": 0,
-				"views": []
+				"order": 0
 			},
 			{
 				"eta": 30.0,
@@ -59,29 +57,85 @@
 				"order": 10
 			}
 		],
-		"views": []
+		"name": "Serving Drinks"
 	},
 	"receptionist": {
-		"name": "Receptionist",
 		"steps": [
 			{
-				"name": "A PLACEHOLDER",
-				"eta": 1000,
-				"order": 0
+				"eta": 10.0,
+				"name": "Find first guest",
+				"order": 1.0
 			},
 			{
-				"name": "B PLACEHOLDER",
-				"eta": 2000,
-				"order": 1
+				"eta": 40.0,
+				"name": "Ask infos about first guest",
+				"order": 2.0
 			},
 			{
-				"name": "C PLACEHOLDER",
-				"eta": 3000,
-				"order": 2
+				"eta": 20.0,
+				"name": "Go to living room",
+				"order": 3.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Introduce first guest to John",
+				"order": 4.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Introduce John to first guest",
+				"order": 5.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Seat first guest",
+				"order": 6.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Go to door",
+				"order": 7.0
+			},
+			{
+				"eta": 10.0,
+				"name": "Find second guest",
+				"order": 8.0
+			},
+			{
+				"eta": 40.0,
+				"name": "Ask infos about second guest",
+				"order": 9.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Go to living room",
+				"order": 10.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Introduce second guest to seated guests",
+				"order": 11.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Introduce John to second guest",
+				"order": 12.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Introduce first guest to second guest",
+				"order": 13.0
+			},
+			{
+				"eta": 20.0,
+				"name": "Seat second guest",
+				"order": 14.0
 			}
-		]
+		],
+		"name": "Receptionist"
 	},
 	"mainMenu": {
+		"steps": [],
 		"name": "MainMenu"
 	}
 }

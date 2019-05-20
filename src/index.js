@@ -4,7 +4,7 @@ import 'core-js/es/map'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import Debug from "./view/debug/Debug";
+// import Debug from "./view/Debug/Debug";
 import QiWrapper from "./model/QiWrapper";
 // import ALMemoryBridge from "./controller/ALMemoryBridge";
 import ConfigWrapper from "./controller/ConfigWrapper";
@@ -26,7 +26,7 @@ async function initApp() {
 	const App = require("./App").default;
 	const Provider = require("react-redux").Provider;
 	const getStore = require("./redux/Store").default;
-	const Debug = require("./view/debug/Debug").default;
+	const Debug = require("./view/Debug/Debug").default;
 
 
 //
@@ -40,7 +40,7 @@ async function initApp() {
 }
 
 initApp().catch(e => {
-	console.error("An error occured in Index.js", e);
+	console.error("An error occured in DetailDrinks.js", e);
 }).then(() => {
 	console.log("App Loaded")
 });

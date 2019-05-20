@@ -139,27 +139,29 @@ class QiWrapper {
 	 */
 	listen(event, cb) {
 		return new Promise(resolve =>
-		this.#AlMemory.subscriber(event).then(subscriber => {
-			subscriber.signal.connect(state => {
-				try {
+			this.#AlMemory.subscriber(event).then(subscriber => {
+				subscriber.signal.connect(state => {
+					// try {
+					//
+					//
+					// 	try {
+					// 	} catch (e) {
+					// 		console.error("Error Callback on " + event, {e, state})
+					//
+					// 	}
+					//
+					// } catch (e) {
+					// 	console.error("Error parsing JSON on " + event, {e, state})
+					// }
 					
 					const dataParsed = JSON.parse(state);
+					cb(dataParsed);
 					
-					try {
-						cb(dataParsed);
-					} catch (e) {
-						console.error("Error Callback on " + event, {e, state})
-						
-					}
 					
-				} catch (e) {
-					console.error("Error parsing JSON on " + event, {e, state})
-				}
+				});
+				resolve(QiWrapper.logger.log("Listen at", event));
 				
-			});
-			resolve(QiWrapper.logger.log("Listen at", event));
-			
-		}));
+			}));
 	}
 	
 	/**
@@ -197,7 +199,7 @@ class QiWrapper {
 		
 		value = QiWrapper.toJson(value);
 		
-		if(!event.includes("R2019/Global/LmLogger"))
+		if (!event.includes("R2019/Global/LmLogger"))
 			QiWrapper.logger.log(`Send on ${event}`, value, false);
 		
 		return this.#AlMemory['raiseEvent'](event, value);
@@ -210,7 +212,8 @@ class FalseQiWrapper {
 		QiWrapper.instance = this;
 	}
 	
-	static warningMessage = () => QiWrapper.logger.warn("FalseRaise", "Naoqi is not present in global.config, check if it's not wanted");
+	// static warningMessage = () => QiWrapper.logger.warn("FalseRaise", "Naoqi is not present in global.config, check if it's not wanted");
+	static warningMessage() {}
 	
 	raise(x, y) {
 		FalseQiWrapper.warningMessage()

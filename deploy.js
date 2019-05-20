@@ -4,7 +4,7 @@ const os = require("os");
 const exec = require('child_process').exec;
 
 const user = "nao";
-const ip = "192.168.1.189";
+const ip = "192.168.42.19";
 const appName = "R2019";
 const naoqiIsPresent = true;
 

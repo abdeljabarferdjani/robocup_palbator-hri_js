@@ -31,7 +31,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 				 *      type : almemoryEvent.setStepRecieved.alMemory,
 				 *  }
 				 */
-				wrapper.raise(ALMemoryEvent.setStepRecieved.alMemory, null);
+				wrapper.raise(ALMemoryEvent.setStepRecieved.ALMemory, null);
 				break;
 			
 			case comAction.setStepCompleted.type:
@@ -41,7 +41,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 				 *      step : STEP
 				 *  }
 				 */
-				wrapper.raise(ALMemoryEvent.setStepCompleted.alMemory, {step : action.step});
+				wrapper.raise(ALMemoryEvent.setStepCompleted.ALMemory, {step : action.step});
 				break;
 			
 			case comAction.heartbeats.type:
@@ -50,7 +50,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 				 *      type : almemoryEvent.heartbeats.alMemory,
 				 *  }
 				 */
-				wrapper.setALValue(ALMemoryEvent.heartbeats.alMemory, Date.now());
+				wrapper.setALValue(ALMemoryEvent.heartbeats.ALMemory, Date.now());
 				break;
 			
 			case comAction.sendData.type:

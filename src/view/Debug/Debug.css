@@ -4,7 +4,7 @@ button, select {
 }
 
 
-div.Debug > div {
+div.Debug {
     background-color: #626262;
 }
 
@@ -19,4 +19,8 @@ div.Debug > div > div {
     background-color: #333333;
     border: #333333 1px solid;
     border-radius: 1rem;
+}
+
+div.Debug * {
+    color : white
 }

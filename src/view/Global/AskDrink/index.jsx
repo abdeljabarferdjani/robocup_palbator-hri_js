@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 }
 
 
-class AskDrink extends Component {
+ class AskDrink extends Component {
 	static propTypes = {
 		confirm : PropTypes.bool.isRequired
 	};

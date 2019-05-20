@@ -1,0 +1,16 @@
+{
+	"askName": "ASK_NAME",
+	"askDrink": "ASK_DRINK",
+	"askAge": "ASK_AGE",
+	"confirm": "CONFIRM",
+	"detailDrinks": "DETAIL_PERSON",
+	"presentPerson": "PRESENT_PERSON",
+	"goTo": "GO_TO",
+	"findAvailableDrinks": "FIND_AVAILABLE_DRINKS",
+	"openDoor": "OPEN_DOOR",
+	"findWhoWantsDrinks": "FIND_WHO_WANTS_DRINKS",
+	"serveDrinks": "SERVE_DRINK",
+	"findGuest": "FIND_GUEST",
+	"seatGuest": "SEAT_GUEST",
+	"askToFollow": "ASK_TO_FOLLOW"
+}

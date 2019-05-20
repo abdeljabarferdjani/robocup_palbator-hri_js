@@ -33,6 +33,13 @@ function mapDispatchToProps(dispatch) {
 				type: viewAction.changeView.type,
 				view: view,
 			})
+			
+			
+			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view : view})
+			
+			// todo pass by ALMemory
+			
+			
 		},
 		toggleTimeBoardVisibilty(state) {
 			
@@ -124,7 +131,7 @@ class Debug extends Component {
 			
 			
 			case scenario.receptionist.name:
-				scenarioDebug = <DebugReceptionist steps={scenario.receptionist.steps}/>;
+				scenarioDebug = <DebugReceptionist steps={scenario.receptionist.steps} changeView={this.props.changeView}/>;
 				steps.length = 0;
 				steps.push(scenario.receptionist.steps);
 				break;

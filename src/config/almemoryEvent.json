@@ -2,17 +2,20 @@
 	"AL_VALUE": {
 		"drinks": "R2019/Receptionist/Drinks",
 		"names": "R2019/Receptionist/Names",
-		"scenario": "R2019/Global/Scenarios"
+		"scenario": "R2019/Global/Scenarios",
+		"views": "R2019/Global/Views"
 	},
-
 	"localManager": {
 		"jsons": {
 			"drinks": "json/drinks.json",
 			"names": "json/people.json",
-			"scenario":"json/scenario.json"
+			"scenario": "json/scenario.json",
+			"views": "json/views.json"
+		},
+		"tops": {
+			"ask_name": "tops/ask_name.top"
 		}
 	},
-
 	"localManagerLogger": {
 		"ALMemory": "R2019/Global/LmLogger",
 		"message": "string",
@@ -25,7 +28,6 @@
 			"CRITIAL": 4
 		}
 	},
-
 	"gmStatus": {
 		"ALMemory": "R2019/Receptionist/GmStatus",
 		"reduxKey": "GM_STATUS",
@@ -34,13 +36,11 @@
 			"place": "MOVE_TO_PLACE"
 		}
 	},
-
 	"changeCurrentScenario": {
 		"ALMemory": "R2019/Global/ChangeCurrentScenario",
 		"reduxKey": "CHANGE_CURRENT_SCENARIO",
 		"scenario": "SCENARIO"
 	},
-
 	"changeToolbar": {
 		"ALMemory": "R2019/Global/ChangeToolbar",
 		"reduxKey": "CHANGE_TOOLBAR",
@@ -55,47 +55,44 @@
 			"canMove": "CAN_MOVE"
 		}
 	},
-
 	"changeView": {
 		"ALMemory": "R2019/Receptionist/ChangeView",
 		"reduxKey": "CHANGE_VIEW",
 		"step": "__STEP"
 	},
-
 	"changeCurrentStep": {
 		"ALMemory": "R2019/Receptionist/ChangeCurrentStep",
 		"reduxKey": "PASS_TO_STEP",
 		"step": "__STEP"
 	},
-
+	"changeCurrentView": {
+		"ALMemory": "R2019/Global/ChangeCurrentView",
+		"reduxKey": "CHANGe_CURRENT_VIEW",
+		"subStep": "___VIEW"
+	},
 	"setStepSkipped": {
 		"ALMemory": "R2019/Receptionist/SetStepSkipped",
 		"reduxKey": "SET_STATE_SKIPPED",
 		"step": "__STEP"
 	},
-
 	"setStepCompleted": {
 		"ALMemory": "R2019/Receptionist/SetStepComplete",
 		"reduxKey": "SET_STEP_COMPLETED",
 		"step": "__STEP"
 	},
-
 	"setStepRecieved": {
 		"ALMemory": "R2019/Receptionist/SetStepRecieved",
 		"reduxKey": "__TASK_RECIEVED"
 	},
-
 	"sendHeartbeat": {
 		"ALMemory": "R2019/Global/JsHearbeat",
 		"reduxKey": "HEART_BEAT",
 		"payload": "__timestamp"
 	},
-
 	"sendTabletOperational": {
 		"ALMemory": "R2019/Global/SendTabletOperational",
 		"time": "__timestamp"
 	},
-
 	"sendDataJs": {
 		"ALMemory": "R2019/Receptionist/SendDataJs",
 		"reduxKey": "SendData",
@@ -106,7 +103,6 @@
 		},
 		"data": "__DATA"
 	},
-
 	"sendDataPython": {
 		"ALMemory": "R2019/Receptionist/SendDataPython",
 		"reduxKey": "SendData",
@@ -114,9 +110,8 @@
 			"name": "DATA/NAME",
 			"drink": "DATA/DRINK"
 		},
-		"data":"__DATA"
+		"data": "__DATA"
 	},
-
 	"toggleTimer": {
 		"generalManager": "R2019/Receptionist/ToggleTimer",
 		"reduxKey": "TOGGLE_TIMER",

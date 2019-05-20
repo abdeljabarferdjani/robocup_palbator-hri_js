@@ -9,7 +9,7 @@ import drinks from '../config/drinks';
 import names from '../config/people'
 import scenario from '../config/scenario'
 import Logger from "../dev/Logger";
-
+import views from '../config/views'
 /**
  * @description the almemory where is place the json with all informations about which Almemory is used by the App
  * @type {string}
@@ -27,7 +27,7 @@ export default class ConfigWrapper
 	
 	static #_AlMemoryEvent;
 	
-
+	static #_views;
 	
 	static logger = new Logger(true, "ConfigWrapper");
 	
@@ -44,6 +44,7 @@ export default class ConfigWrapper
 			ConfigWrapper.#_drinks = JSON.parse(await QiWrapper.getALValue(ConfigWrapper.#_AlMemoryEvent.AL_VALUE.drinks));
 			ConfigWrapper.#_names = JSON.parse(await QiWrapper.getALValue(ConfigWrapper.#_AlMemoryEvent.AL_VALUE.names));
 			ConfigWrapper.#_scenario = JSON.parse(await QiWrapper.getALValue(ConfigWrapper.#_AlMemoryEvent.AL_VALUE.scenario));
+			ConfigWrapper.#_views = JSON.parse(await  QiWrapper.getALValue(ConfigWrapper.#_AlMemoryEvent.AL_VALUE.views))
 		} else {
 			
 			ConfigWrapper.logger.log("ConfigWrapper logged from src");
@@ -52,6 +53,7 @@ export default class ConfigWrapper
 			ConfigWrapper.#_names = names;
 			ConfigWrapper.#_drinks = drinks;
 			ConfigWrapper.#_scenario = scenario;
+			ConfigWrapper.#_views = views;
 			
 		}
 		
@@ -61,7 +63,7 @@ export default class ConfigWrapper
 	
 	/**
 	 *
-	 * @return {{ALMemoryEvent, names, scenario, drinks}}
+	 * @return {{ALMemoryEvent, names, scenario, drinks, views}}
 	 */
 	static get() {
 		
@@ -70,7 +72,8 @@ export default class ConfigWrapper
 			drinks: ConfigWrapper.#_drinks,
 			names: ConfigWrapper.#_names,
 			ALMemoryEvent: ConfigWrapper.#_AlMemoryEvent,
-			scenario: ConfigWrapper.#_scenario
+			scenario: ConfigWrapper.#_scenario,
+			views : ConfigWrapper.#_views
 		}
 	}
 	
