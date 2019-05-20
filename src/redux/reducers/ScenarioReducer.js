@@ -5,7 +5,7 @@ const {scenario} = ConfigWrapper.get();
 
 
 const INITIAL_STATE = {
-	current: scenario.mainMenu
+	current: scenario["mainMenu"]
 };
 
 

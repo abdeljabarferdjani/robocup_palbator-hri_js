@@ -42,12 +42,12 @@ class MainMenu extends Component {
 		return (
 			<div>
 				<Button color={"info"}
-				        onClick={() => this.props.changeCurrentScenario(scenario.servingDrinks)}
+				        onClick={() => this.props.changeCurrentScenario("servingDrinks")}
 				        size={"lg"}>
 					Serving Drinks
 				</Button>
 				<Button color={"info"}
-				        onClick={() => this.props.changeCurrentScenario(scenario.receptionist)}
+				        onClick={() => this.props.changeCurrentScenario("receptionist")}
 				        size={"lg"}>
 					Receptionist
 				</Button>

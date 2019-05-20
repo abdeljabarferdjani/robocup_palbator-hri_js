@@ -33,23 +33,6 @@ export default class ALMemoryBridge {
 		
 		Promise.all([
 			
-			
-			QiWrapper.listen(ALMemoryEvent.changeView.ALMemory, (data) => {
-				if (data.type === viewAction.changeView.type) {
-					const keys = Object.keys(viewAction.changeView.view);
-					for (let i = 0; i < keys.length; i++) {
-						if (viewAction.changeView.view[keys[i]] === data.view) {
-							
-							dispatch({
-								type: viewAction.type,
-								view: data.view
-							})
-						}
-					}
-				}
-			}),
-			
-			
 			QiWrapper.listen(changeToolbar.ALMemory, data => {
 				
 				const possibleState = [changeToolbar.state.ok, changeToolbar.state.error];
@@ -126,43 +109,39 @@ export default class ALMemoryBridge {
 			
 			QiWrapper.listen(ALMemoryEvent.changeCurrentScenario.ALMemory, (data) => {
 				
-				const possibleScenario = [];
-				
-				Object.keys(scenario).forEach(key => {
-					possibleScenario.push(scenario[key])
-				});
 				
 				
-				if (possibleScenario.findIndex(scenar => scenar.name === data.scenario.name) > -1)
-				{
+				if (Object.keys(scenario).includes(data.scenario)) {
+					const newSenar = scenario[data.scenario];
+					
 					dispatch({
 						type: scenarioAction.changeCurrentScenario.type,
-						scenario: data.scenario
+						scenario: newSenar
 					});
 					
 					dispatch({
 						type: timeAction.replaceAllSteps.type,
-						steps: data.scenario.steps
+						steps: newSenar.steps
 					})
-					
 				}
+			
 				
 			}),
 			
 			
 			QiWrapper.listen(ALMemoryEvent.changeCurrentView.ALMemory, data => {
 				
-				if(data.view !== undefined || data.data !== undefined) {
+				if (data.view !== undefined || data.data !== undefined) {
 					dispatch({
 						type: viewAction.changeView.type,
-						view : data.view,
-						data : data.data
+						view: data.view,
+						data: data.data
 					})
 				}
 				
 				
 			})
-			
+		
 		]).then(() => QiWrapper.raise(ALMemoryEvent.sendTabletOperational.ALMemory, {time: Date.now()}))
 			.then(() => {
 				setInterval(() => {

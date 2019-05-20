@@ -89,7 +89,9 @@ function mapDispatchToProps(dispatch) {
 		
 		gotoMainMenu : function () {
 			// TODO fix dont change step /  current middle app
-			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: scenario.mainMenu})
+			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: "mainMenu"})
+			
+			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view : "mainMenu"})
 		}
 		
 		
@@ -146,6 +148,17 @@ class Debug extends Component {
 				
 				<div id="redux">
 					<h2>REDUX</h2>
+					
+					<div id="changeView">
+						<h3>View</h3>
+						<h4>changeView</h4>
+						
+						<h4>Component visibility</h4>
+						
+						<Button
+							onClick={() => this.props.toggleTimeBoardVisibilty(this.props.view.componentVisibility.timeBoard)}
+							color={"info"}>Toggle timeBoard Visibility</Button>
+					</div>
 					
 					<div id="toolbar">
 						<h3>Toolbar</h3>

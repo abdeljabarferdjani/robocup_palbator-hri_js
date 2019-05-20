@@ -4,7 +4,7 @@ class Goto extends Component {
 	render() {
 		return (
 			<div>
-				
+				Go to X
 			</div>
 		);
 	}

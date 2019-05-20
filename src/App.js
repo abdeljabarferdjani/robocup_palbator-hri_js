@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ViewManager from "./view/ViewManager";
 import TimeBoard from "./view/Global/TimeBoard";
-import './App.css';
+// import './App.css';
+import './AppDark.css';
 import Toolbar from "./view/Global/Toolbar/Toolbar";
 import logConfig from './config/log'
 import Logger from "./dev/Logger";

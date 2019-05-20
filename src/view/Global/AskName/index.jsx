@@ -4,7 +4,7 @@ import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-
+import './AskName.css'
 const {names} = ConfigWrapper.get();
 
 
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 			<div>
 				<h2>What is your name ?</h2>
 				<div className="names">
-					{names.map(name => <SpeakableButton onClick={() => this.props.sendName(name)}>{name}</SpeakableButton>)}
+					{names.map(name => <SpeakableButton color={"info"} onClick={() => this.props.sendName(name)}>{name}</SpeakableButton>)}
 				</div>
 			</div>
 		);

@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+p, h1, h2, h3, h4, h5, h6, span {
+    z-index: 100000;
+    /*font-size: large;*/
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', monospace;
+    color: white
+}
+
+
+/*Prevent selection*/
+* {
+    user-select: none;
+}
+
+html, body, div#root, div.App {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+
+}
+
+/*// voir  / bouger */
+
+
+div.hidden {
+    display: none;
+}
+
+div.component {
+    margin: 1rem;
+    background-color: #1E1E1E;
+    border-radius: 0.2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,.16),0 2px 4px rgba(0,0,0,.23);
+
+}
+
+div.component.scenarioTitle {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1rem;
+}
+
+
+div.App {
+    background-color: #121212
+
+;
+    display: flex;
+    flex-direction: row;
+}
+
+
+div.App button {
+    background: #51ff95;
+    color: #1E1E1E;
+}
+
+
+div.App > div#rightPart {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    padding-right: 3rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+
+}
+
+div.App > div#rightPart > div {
+    margin: 0;
+
+}
+
+div#rightPart > div#header {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+
+div.component > div {
+    padding: 1rem;
+}
+
+
+
+
+
+div.App div.Toolbar {
+    height: 10vh;
+}
+
+div.App div.Debug {
+
+}
+

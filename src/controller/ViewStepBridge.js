@@ -13,11 +13,11 @@ import FindGuest from "../view/Scenario/Receptionist/FindGuest";
 import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
 import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
-
+import MainMenu from '../view/Scenario/MainMenu/'
 const {views} = ConfigWrapper.get();
 
 const getClassFromView = (view) => {
-	return viewClassMap[view];
+	return viewClassMap[view] ;
 };
 
 
@@ -36,6 +36,7 @@ const viewClassMap = {
 	[views.findGuest]: FindGuest,
 	[views.seatGuest]: SeatGuest,
 	[views.askToFollow]: AskToFollow,
+	[views.mainMenu]: MainMenu
 	
 	
 };

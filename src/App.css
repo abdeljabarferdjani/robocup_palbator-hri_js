@@ -49,7 +49,9 @@ div.component.scenarioTitle {
 
 
 div.App {
-    background-color: #afb6bb;
+    background-color: #808e95
+
+;
     display: flex;
     flex-direction: row;
 }

@@ -21,6 +21,6 @@ div.Debug > div > div {
     border-radius: 1rem;
 }
 
-div.Debug * {
+div.Debug h1, div.Debug h2, div.Debug h3, div.Debug div  {
     color : white
 }

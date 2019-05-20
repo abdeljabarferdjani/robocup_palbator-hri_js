@@ -20,9 +20,9 @@ class SpeakableButton extends Component {
 	
 	render() {
 		return (
-			<div>
+			<button className={`btn btn-${this.props.color}`} >
 				"{this.props.children}"
-			</div>
+			</button>
 		);
 	}
 }
