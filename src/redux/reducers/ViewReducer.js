@@ -10,7 +10,8 @@ const {} = ConfigWrapper.get().scenario;
 const INITIAL_STATE = {
 	currentView: null,
 	currentData: {
-		textToShow : null
+		textToShow : null,
+		choice : []
 	},
 	componentVisibility: {
 		timeBoard: viewAction.setComponentVisibility.state.visible

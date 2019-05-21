@@ -1,35 +1,20 @@
 import React, {Component} from 'react';
 import ViewManager from "./view/ViewManager";
 import TimeBoard from "./view/Global/TimeBoard";
-// import './App.css';
-import './AppDark.css';
+import './App.css';
+// import './AppDark.css';
 import Toolbar from "./view/Global/Toolbar/Toolbar";
 import logConfig from './config/log'
 import Logger from "./dev/Logger";
-
-
-import ConfigWrapper from "./controller/ConfigWrapper";
 import {connect} from "react-redux";
-import {timeAction} from "./redux/actions/TimeAction";
 
-const {steps} = ConfigWrapper.get();
 
 const mapStateToProps = (state) => {
 	return {
-		scenario : state.scenario
+		scenario: state.scenario
 	}
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		replaceAllSteps : (newSteps) => {
-			dispatch({
-				type: timeAction.replaceAllSteps.type,
-				steps: ConfigWrapper.get().steps
-			})
-		}
-	}
-};
 
 class App extends Component {
 	
@@ -53,19 +38,13 @@ class App extends Component {
 		return null;
 	}
 	
-	
-	componentDidMount() {
-	
-		
-	}
-	
 	render() {
 		
 		console.log(this.props, this.state);
 		
 		return (
 			<div className={"App"}>
-				<div className="component">
+				<div className="component leftPart">
 					<TimeBoard/>
 				</div>
 				

@@ -153,6 +153,9 @@ class TimeBoard extends Component {
 		
 		const steps = [];
 		
+		
+		
+		
 		this.state.sortedSteps.forEach(((step, index) => {
 			steps.push(<Step step={step} key={index}/>);
 		}));
@@ -161,7 +164,9 @@ class TimeBoard extends Component {
 			return (
 				<div className={className}>
 					<h1 className={"componentTitle"}>Steps</h1>
-					{steps}
+					<div id="steps">
+						{steps}
+					</div>
 				</div>
 			);
 		}

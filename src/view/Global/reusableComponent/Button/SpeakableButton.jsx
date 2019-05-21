@@ -6,21 +6,23 @@ function mapStateToProps(state) {
 	return {};
 }
 
-function mapDispatchToProps(dispatch) {
-	return {};
-}
 
-class SpeakableButton extends Component {
+export class SpeakableButton extends Component {
 	
 	static propTypes = {
 		onClick : PropTypes.func.isRequired,
-		color: PropTypes.oneOf("info", "danger", "warning", "success")
+		color: PropTypes.oneOf(["info", "danger", "warning", "success", "ok", "no"])
 		
 	};
 	
+	
+	
 	render() {
+		
+		const color = this.props.color || "classic";
+		
 		return (
-			<button className={`btn btn-${this.props.color}`} >
+			<button onClick={this.props.onClick} className={`btn btn-${color}`} >
 				"{this.props.children}"
 			</button>
 		);

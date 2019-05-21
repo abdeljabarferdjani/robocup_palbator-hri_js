@@ -1,0 +1,15 @@
+
+div.AutoValidationButton  canvas {
+    position: absolute;
+    left: -2%;
+    top: -12%;
+    width: 105%;
+    height: 124%;
+    z-index: -1;
+    border-radius: 5rem;
+}
+
+
+div.AutoValidationButton button {
+    position: relative;
+}

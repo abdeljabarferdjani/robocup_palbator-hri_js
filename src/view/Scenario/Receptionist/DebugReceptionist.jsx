@@ -9,7 +9,7 @@ class DebugReceptionist extends Component {
 	
 	static propTypes = {
 		changeView : PropTypes.func.isRequired
-	}
+	};
 	
 	render() {
 		return (

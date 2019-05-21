@@ -1,0 +1,19 @@
+
+
+div.drinks > button {
+    width: calc(100% / 4 - 1rem);
+    height: calc(100% / 4 - 3rem);
+    font-size: calc(1vw + 0.75rem)
+}
+
+button.actionBtn {
+    background-color: gray(50%);
+}
+
+div.drinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}

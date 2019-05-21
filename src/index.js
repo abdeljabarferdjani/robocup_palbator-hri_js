@@ -4,14 +4,9 @@ import 'core-js/es/map'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import Debug from "./view/Debug/Debug";
 import QiWrapper from "./model/QiWrapper";
-// import ALMemoryBridge from "./controller/ALMemoryBridge";
 import ConfigWrapper from "./controller/ConfigWrapper";
-// import App from './App';
-// import * as serviceWorker from './serviceWorker';
-// import {Provider} from "react-redux";
-// import getStore from "./redux/store";
+
 
 async function initApp() {
 	const qi = await QiWrapper.createInstance();

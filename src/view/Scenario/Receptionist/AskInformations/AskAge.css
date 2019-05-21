@@ -1,0 +1,29 @@
+div#ages {
+    height: 100%;
+}
+
+
+div#ages p.value {
+    font-size: calc(2rem + 5%);
+    text-align: center;
+    margin: 1rem;
+}
+
+div#digits {
+    display: flex;
+    height: 80%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+
+}
+
+div#digits > button.btn {
+    margin: 1rem;
+    width: calc(100% / 3.5 - 1rem);
+    height: calc(30% - 3rem);
+    font-size: calc(1vw + 0.75rem);
+
+
+}

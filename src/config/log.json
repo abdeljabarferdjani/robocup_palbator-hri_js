@@ -4,7 +4,7 @@
 	"reduxKey": false,
 	"reducer": {
 		"time": false,
-		"com": false,
+		"com": true,
 		"view": false
 	},
 	"TimeBoard": false,

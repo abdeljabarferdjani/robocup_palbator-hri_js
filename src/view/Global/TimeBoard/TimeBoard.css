@@ -2,20 +2,26 @@ div.TimeBoard {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-}
-
-div.TimeBoard > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /*align-items: center;*/
+    height: 89vh;
+    width: initial;
+    padding: 0 !important;
 
 }
+
+
+div.TimeBoard div#steps {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    overflow-y: scroll;
+
+}
+
 
 h1.componentTitle {
     margin-bottom: 3rem;
-}
-div.App div.TimeBoard {
-    height: 93vh;
-
+    margin-top: 1rem;
+    text-align: center;
 }

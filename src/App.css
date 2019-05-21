@@ -27,31 +27,58 @@ html, body, div#root, div.App {
 /*// voir  / bouger */
 
 
+button {
+    background: #626262;
+    color: #f5f5f5;
+
+}
+
+
 div.hidden {
     display: none;
 }
 
 div.component {
     margin: 1rem;
-    background-color: #E1E2E1;
-    border-radius: 0.2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,.16),0 2px 4px rgba(0,0,0,.23);
+    background-color: #E0E0E0;
+    border-radius: 0.8rem;
+    /*box-shadow: 0 2px 4px rgba(0,0,0,.16),0 2px 4px rgba(0,0,0,.23);*/
+    box-shadow: 10px 10px 8px -6px rgba(194,194,194,1);
+    z-index: 3;
 
 }
 
+div.component.leftPart {
+    width: initial;
+
+}
+
+button.ok, button.btn-ok {
+    background: green;
+    color: white
+}
+
+button.no, button.btn-no{
+    background: #BE0B0B;
+    color : white
+}
+
+button.warn {
+    background: #b49124;
+    color : white
+}
+
 div.component.scenarioTitle {
-    margin-left: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5em 1rem;
+    padding: 2rem 1rem;
 }
 
 
 div.App {
-    background-color: #808e95
-
-;
+    background-color: #EFF0F1;
     display: flex;
     flex-direction: row;
 }
@@ -60,40 +87,27 @@ div.App {
 div.App > div#rightPart {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    padding-right: 3rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
 
 }
 
-div.App > div#rightPart > div {
-    margin: 0;
 
+div#rightPart > div.component {
+    height: 100%;
 }
 
 div#rightPart > div#header {
     display: flex;
     flex-direction: row;
-    margin: 0;
+    align-items: center;
     padding: 0;
+    height: initial;
+    margin: 1rem;
 }
 
 
 div.component > div {
     padding: 1rem;
-}
-
-
-
-
-
-div.App div.Toolbar {
-    height: 10vh;
-}
-
-div.App div.Debug {
-
 }
 

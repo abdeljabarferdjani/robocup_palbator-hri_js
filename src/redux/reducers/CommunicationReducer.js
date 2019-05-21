@@ -55,7 +55,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 			
 			case comAction.sendData.type:
 				
-				const {dataType, alMemory} = ALMemoryEvent.sendDataJs;
+				const {dataType, ALMemory} = ALMemoryEvent.sendDataJs;
 				/**
 				 *  action : {
 				 *      type : almemoryEvent.sendata.type
@@ -64,13 +64,13 @@ const comReducer = (state = INITIAL_STATE, action) => {
 				 *  }
 				 */
 				
-				// Check if the data to pass the name or the drink to LocalMaanager
+				// Check if the data to pass the name, the drink or the age of guest to LocalManager
 				if ([dataType.drink, dataType.name, dataType.age].includes(action.dataType))
 				{
 					if (action.data !== undefined)
 					{
 						logger.log("sendData : send : ", action);
-						wrapper.raise(alMemory, {
+						wrapper.raise(ALMemory, {
 							dataType : action.dataType,
 							data : action.data
 						});

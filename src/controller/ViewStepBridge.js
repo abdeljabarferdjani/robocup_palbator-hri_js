@@ -1,6 +1,6 @@
 import ConfigWrapper from "./ConfigWrapper";
 import AskName from "../view/Global/AskName";
-import AskAge from "../view/Scenario/Receptionist/AskInformations/AskAge";
+import AskAge from "../view/Scenario/Receptionist/AskInformations";
 import AskDrink from "../view/Global/AskDrink";
 import {PresentPeople} from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";

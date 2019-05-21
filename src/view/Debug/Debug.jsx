@@ -29,15 +29,9 @@ function mapDispatchToProps(dispatch) {
 	
 	return {
 		changeView: function (view) {
-			dispatch({
-				type: viewAction.changeView.type,
-				view: view,
-			})
-			
 			
 			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view : view})
 			
-			// todo pass by ALMemory
 			
 			
 		},
@@ -88,8 +82,7 @@ function mapDispatchToProps(dispatch) {
 		},
 		
 		gotoMainMenu : function () {
-			// TODO fix dont change step /  current middle app
-			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: "mainMenu"})
+			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: "mainMenu"});
 			
 			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view : "mainMenu"})
 		}
@@ -136,6 +129,8 @@ class Debug extends Component {
 				scenarioDebug = <DebugReceptionist steps={scenario.receptionist.steps} changeView={this.props.changeView}/>;
 				steps.length = 0;
 				steps.push(scenario.receptionist.steps);
+				break;
+			default:
 				break;
 			
 		}
