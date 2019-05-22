@@ -7,7 +7,6 @@ import logConfig from '../../config/log'
 import './index.css'
 import {getClassFromView} from "../../controller/ViewStepBridge";
 import MainMenu from "../Scenario/MainMenu";
-import UserFrontComponent from "../Global/reusableComponent/UserFrontComponent";
 
 
 function mapStateToProps(state) {
@@ -44,7 +43,7 @@ class ViewManager extends Component {
 		if (nextProps.view.currentView !== prevState.currentView) {
 			return {
 				currentView: nextProps.view.currentView,
-				currentData: nextProps.view.currentData || {textToShow: "", choice: []}
+				currentData: nextProps.view.currentData || {textToShow: "", choices: []}
 			}
 		}
 		if (nextProps.scenario.current !== prevState.currentScenario) {
@@ -65,11 +64,18 @@ class ViewManager extends Component {
 		if (this.state.currentView === null) {
 			comp = <MainMenu/>
 		} else {
-			comp = <UserFrontComponent
-				textToShow={this.state.currentData.textToShow || ""}
-				choice={this.state.currentData.choice || []}
-				component={getClassFromView(this.state.currentView)}
-			/>
+			
+			comp = React.createElement(getClassFromView(this.state.currentView), {
+				textToShow: this.state.currentData.textToShow || "",
+				choice: this.state.currentData.choices || [],
+				other : this.state.currentData.other
+			})
+			//
+			// comp = <UserFrontComponent
+			// 	textToShow={this.state.currentData.textToShow || ""}
+			// 	choices={this.state.currentData.choices || []}
+			// 	component={getClassFromView(this.state.currentView)}
+			// />
 			
 		}
 		

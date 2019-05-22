@@ -1,9 +1,11 @@
 
 
 div.drinks > button {
-    width: calc(100% / 4 - 1rem);
+    width: calc(100% / 4 - 2rem);
     height: calc(100% / 4 - 3rem);
-    font-size: calc(1vw + 0.75rem)
+    font-size: calc(1vw + 0.75rem);
+    margin-right: 1rem;
+
 }
 
 button.actionBtn {
@@ -13,7 +15,12 @@ button.actionBtn {
 div.drinks {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     align-items: center;
+    height: 70vh;
+}
+
+div#AskDrink {
+    position: relative;
     height: 100%;
 }

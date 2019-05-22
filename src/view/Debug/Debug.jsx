@@ -9,7 +9,6 @@ import ConfigWrapper from "../../controller/ConfigWrapper";
 import QiWrapper from "../../model/QiWrapper";
 import DebugServingDrinks from "../Scenario/ServingDrinks/DebugServingDrinks";
 import DebugReceptionist from "../Scenario/Receptionist/DebugReceptionist";
-import {timeAction} from "../../redux/actions/TimeAction";
 
 const steps = [];
 
@@ -30,8 +29,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		changeView: function (view) {
 			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view : view})
-			
+			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view: view})
 			
 			
 		},
@@ -76,27 +74,67 @@ function mapDispatchToProps(dispatch) {
 		
 		
 		timeToggleTimer: function (mode) {
-
+			
 			QiWrapper.raise(ALMemoryEvent.toggleTimer.ALMemory, {mode: mode});
 			
 		},
 		
-		gotoMainMenu : function () {
+		gotoMainMenu: function () {
 			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: "mainMenu"});
 			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view : "mainMenu"})
-		}
+			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view: "mainMenu"})
+		},
 		
+		timeStepComplete: function (steps, taskId) {
+			
+			QiWrapper.raise(ALMemoryEvent.setStepCompleted.ALMemory, {step: null})
+		},
+		
+		
+		timeStepSkipped: function (steps, taskId) {
+			
+			const step = steps[taskId];
+			
+			QiWrapper.raise(ALMemoryEvent.setStepSkipped.ALMemory, {
+				step: step
+			})
+			
+		},
+		
+		timeStepChangeCurrent: function (steps, taskId) {
+			
+			const step = steps[taskId];
+			
+			QiWrapper.raise(ALMemoryEvent.changeCurrentStep.ALMemory, {
+				step: step
+			});
+			//
+			// dispatch({
+			// 	type: timeAction.changeCurrentStep.type,
+			// 	step: step
+			// })
+			
+		},
 		
 	}
 }
 
 class Debug extends Component {
 	
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if(prevState.currentScenario !== nextProps.currentScenario) {
+			return {
+				currentScenario : nextProps.currentScenario
+			}
+		}
+		return null;
+	}
+	
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentStep: null
+			currentStep: null,
+			currentScenario : this.props.scenario.current
 		}
 	}
 	
@@ -106,29 +144,28 @@ class Debug extends Component {
 		let className = "Debug";
 		
 		
-		
-		
 		let scenarioDebug = null;
 		
 		const scenario = ConfigWrapper.get().scenario;
 		switch (this.props.scenario.current.name) {
 			case scenario.mainMenu.name:
 				steps.length = 0;
-				steps.push(scenario.mainMenu.steps);
+				steps.push(...scenario.mainMenu.steps);
 				break;
 			
 			
 			case scenario.servingDrinks.name:
 				scenarioDebug = <DebugServingDrinks steps={scenario.servingDrinks.steps}/>;
 				steps.length = 0;
-				steps.push(scenario.servingDrinks.steps);
+				steps.push(...scenario.servingDrinks.steps);
 				break;
 			
 			
 			case scenario.receptionist.name:
-				scenarioDebug = <DebugReceptionist steps={scenario.receptionist.steps} changeView={this.props.changeView}/>;
+				scenarioDebug =
+					<DebugReceptionist steps={scenario.receptionist.steps} changeView={this.props.changeView}/>;
 				steps.length = 0;
-				steps.push(scenario.receptionist.steps);
+				steps.push(...scenario.receptionist.steps);
 				break;
 			default:
 				break;
@@ -137,6 +174,19 @@ class Debug extends Component {
 		
 		
 		const toolbarState = toolbarAction.changeToolbar.state;
+		
+		
+		const stepOptions = [];
+		
+		console.log("I m here, ", steps);
+		
+		steps.forEach((step, index) => {
+			console.log(step, index);
+			stepOptions.push(
+				<option value={index}>{step.name}</option>
+			)
+		})
+		
 		return (
 			<div className={className}>
 				<h1>Debug</h1>
@@ -204,6 +254,29 @@ class Debug extends Component {
 					
 					</div>
 				</div>
+				
+				
+				<div id="steps">
+					<select onChange={evt => {
+						evt.persist();
+						this.setState(prev => {
+							return {
+								...prev,
+								currentStep: evt.target.value
+							}
+						})
+					}}>{stepOptions}</select>
+					<Button color={"info"} onClick={() => this.props.timeStepSkipped(steps, this.state.currentStep)}>Pass
+						step</Button>
+					<Button color={"info"} onClick={() => this.props.timeStepComplete(this.state.currentStep)}>Complete
+						Step</Button>
+					<Button color={"info"}
+					        onClick={() => this.props.timeStepChangeCurrent(steps, this.state.currentStep)}>Change
+						current
+						step
+					</Button>
+				</div>
+				
 				
 				<Button color={"info"} onClick={this.props.gotoMainMenu}>Go to Main Menu</Button>
 				

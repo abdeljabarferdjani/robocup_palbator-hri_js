@@ -81,11 +81,18 @@ class Toolbar extends Component {
 		}
 		
 		
-		return (
-			<div className={className}>
-				<div id={"icons"}>{icons}</div>
-			</div>
-		);
+		if (icons.length > 0) {
+			
+			return (
+				<div className={className}>
+					<div id={"icons"}>{icons}</div>
+				</div>
+			);
+		} else {
+			return null;
+		}
+		
+		
 	}
 }
 

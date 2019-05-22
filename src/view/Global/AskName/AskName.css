@@ -1,14 +1,17 @@
 div.names {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     height: 70vh;
+
 }
 
 div.names > button {
-    width: calc(100% / 4 - 1rem);
-    height: calc(100% / 4 - 3rem);
-    font-size: calc(1vw + 0.75rem)
+    width: calc(100% / 4 - 2rem);
+    height: calc(100% / 5 - 2rem);
+    font-size: calc(1vw + 0.75rem);
+    margin: 0 1rem;
+
 }
 

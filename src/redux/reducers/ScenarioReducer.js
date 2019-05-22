@@ -11,18 +11,12 @@ const INITIAL_STATE = {
 
 export const scenarioReducer = (state = INITIAL_STATE, action) => {
 	
-	switch (action.type) {
-		case scenarioAction.changeCurrentScenario.type:
-			
-			
-			state = {
-				...state,
-				current: action.scenario
-			};
-			break;
-		default:
-			break;
-		
+	if (action.type === scenarioAction.changeCurrentScenario.type) {
+		state = {
+			...state,
+			current: action.scenario
+		};
+	} else {
 	}
 	
 	return state;

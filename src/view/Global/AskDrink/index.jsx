@@ -28,10 +28,10 @@ class AskName extends Component {
 		
 		const textToShow = this.props.textToShow || "Hello X, what is your prefered drinks ?";
 		
-		const names = (this.props.choice.length > 0) ? this.props.choice : offlineDrinks;
+		const names = (this.props.choices.length > 0) ? this.props.choices : offlineDrinks;
 		
 		return (
-			<div>
+			<div id={"AskDrink"}>
 				<h2 className={"viewTitle"}>{textToShow}</h2>
 				<div className="drinks">
 					{names.map(name => <SpeakableButton  onClick={() => this.props.sendAge(this.props.dispatch, name)}>{name}</SpeakableButton>)}

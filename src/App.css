@@ -54,12 +54,12 @@ div.component.leftPart {
 }
 
 button.ok, button.btn-ok {
-    background: green;
+    background: rgb(81, 156, 81);
     color: white
 }
 
 button.no, button.btn-no{
-    background: #BE0B0B;
+    background: #B67373;
     color : white
 }
 

@@ -4,6 +4,7 @@ import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import './AskName.css'
+import {UserComponentPropTypes} from "../../../dev/types";
 const {names : offlineName} = ConfigWrapper.get();
 
 
@@ -23,12 +24,16 @@ const mapDispatchToProps = (dispatch) => {
 
  class AskName extends Component {
 	
+ 	static propTypes = {
+ 		...UserComponentPropTypes
+    };
+ 	
 	
 	render() {
 		
 		const textToShow = this.props.textToShow || "Hello, what is your name ?";
 		
-		const names = (this.props.choice.length > 0) ? this.props.choice : offlineName;
+		const names = (this.props.choices.length > 0) ? this.props.choices : offlineName;
 		
 		return (
 			<div>

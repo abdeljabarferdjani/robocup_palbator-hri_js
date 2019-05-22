@@ -21,6 +21,8 @@ export class SpeakableButton extends Component {
 		
 		const color = this.props.color || "classic";
 		
+		
+		
 		return (
 			<button onClick={this.props.onClick} className={`btn btn-${color}`} >
 				"{this.props.children}"

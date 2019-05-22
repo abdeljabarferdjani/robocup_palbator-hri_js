@@ -24,3 +24,8 @@ div.Debug > div > div {
 div.Debug h1, div.Debug h2, div.Debug h3, div.Debug div  {
     color : white
 }
+
+div.Debug select {
+    height: 3rem;
+    font-size: 1.5rem;
+}

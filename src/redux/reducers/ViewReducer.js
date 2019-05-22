@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 	currentView: null,
 	currentData: {
 		textToShow : null,
-		choice : []
+		choices : []
 	},
 	componentVisibility: {
 		timeBoard: viewAction.setComponentVisibility.state.visible
@@ -47,18 +47,15 @@ const viewReducer = (state = INITIAL_STATE, action) => {
 				const {hidden, visible} = viewAction.setComponentVisibility.state;
 				if ([hidden, visible].includes(action.state)) {
 					
-					switch (action.component) {
-						case timeBoard:
-							state = {
-								...state,
-								componentVisibility: {
-									...state.componentVisibility,
-									timeBoard: action.state
-								}
-							};
-							break;
-						default:
-							break;
+					if (action.component === timeBoard) {
+						state = {
+							...state,
+							componentVisibility: {
+								...state.componentVisibility,
+								timeBoard: action.state
+							}
+						};
+					} else {
 					}
 					
 				} else {

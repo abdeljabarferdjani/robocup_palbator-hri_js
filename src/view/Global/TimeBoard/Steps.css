@@ -7,7 +7,7 @@ div.Step {
     border-bottom: solid 2px #333333;
     /*border-left: solid 2px #333333;*/
     /*border-right: solid 2px #333333;*/
-
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between !important;
@@ -48,7 +48,7 @@ div.Step  p {
 }
 
 div.Step span {
-    width: 2rem;
+    width: 3rem;
     padding-right: 1rem;
 }
 

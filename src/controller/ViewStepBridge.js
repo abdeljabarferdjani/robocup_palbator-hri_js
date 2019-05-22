@@ -1,6 +1,6 @@
 import ConfigWrapper from "./ConfigWrapper";
 import AskName from "../view/Global/AskName";
-import AskAge from "../view/Scenario/Receptionist/AskInformations";
+import AskAge from "../view/Scenario/Receptionist/AskInformations/AskAge";
 import AskDrink from "../view/Global/AskDrink";
 import {PresentPeople} from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";
@@ -20,7 +20,11 @@ const getClassFromView = (view) => {
 	return viewClassMap[view] ;
 };
 
-
+/**
+ *
+ * @description Map that resolve a name of a view (in views.json) to React component
+ * If you want to **add new views** you have to modify this object
+ */
 const viewClassMap = {
 	[views.askName]: AskName,
 	[views.askDrink]: AskDrink,

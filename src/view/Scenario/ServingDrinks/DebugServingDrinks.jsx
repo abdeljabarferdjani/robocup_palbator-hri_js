@@ -14,36 +14,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		timeStepComplete: function (steps, taskId) {
-			
-			QiWrapper.raise(ALMemoryEvent.setStepCompleted.ALMemory, {step: null})
-		},
-		
-		
-		timeStepSkipped: function (steps, taskId) {
-			
-			const step = steps[taskId];
-			
-			QiWrapper.raise(ALMemoryEvent.setStepSkipped.ALMemory, {
-				step: step
-			})
-			
-		},
-		
-		timeStepChangeCurrent: function (steps, taskId) {
-			
-			const step = steps[taskId];
-			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentStep.ALMemory, {
-				step: step
-			});
-			//
-			// dispatch({
-			// 	type: timeAction.changeCurrentStep.type,
-			// 	step: step
-			// })
-			
-		},
+
 		
 		changeCurrentView: (view) => {
 		
@@ -81,27 +52,7 @@ class DebugServingDrinks extends Component {
 		return (
 			<div>
 
-				
-				<div id="steps">
-					<select onChange={evt => {
-						evt.persist();
-						this.setState(prev => {
-							return {
-								...prev,
-								currentStep: evt.target.value
-							}
-						})
-					}}>{stepOptions}</select>
-					<Button color={"info"} onClick={() => this.props.timeStepSkipped(steps, this.state.currentStep)}>Pass
-						step</Button>
-					<Button color={"info"} onClick={() => this.props.timeStepComplete(this.state.currentStep)}>Complete
-						Step</Button>
-					<Button color={"info"}
-					        onClick={() => this.props.timeStepChangeCurrent(steps, this.state.currentStep)}>Change
-						current
-						step
-					</Button>
-				</div>
+
 			
 			
 			</div>
