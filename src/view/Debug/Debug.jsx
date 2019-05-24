@@ -12,7 +12,7 @@ import DebugReceptionist from "../Scenario/Receptionist/DebugReceptionist";
 
 const steps = [];
 
-const {ALMemoryEvent, scenario} = ConfigWrapper.get();
+const {apis : {common : apiCommon, tabletLM : apiTabletLM, generalManagerHRI: apiGeneralManagerHRI}, scenario} = ConfigWrapper.get();
 
 function mapStateToProps(state) {
 	return {
@@ -29,7 +29,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		changeView: function (view) {
 			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view: view})
+			QiWrapper.raise(apiTabletLM.currentView.ALMemory, {view: view})
 			
 			
 		},
@@ -45,24 +45,24 @@ function mapDispatchToProps(dispatch) {
 				component: componentVisibility.component.timeBoard
 			})
 		},
-		changeToolbar: function (tool, state) {
+		toolbarState: function (tool, state) {
 			
 			
-			QiWrapper.raise(ALMemoryEvent.changeToolbar.ALMemory, {
+			QiWrapper.raise(apiCommon.toolbarState.ALMemory, {
 				system: tool,
 				state: state
 			})
 			
 		},
-		heartbeats: function () {
+		jsHeartBeat: function () {
 			dispatch({
-				type: comAction.heartbeats.type,
+				type: comAction.jsHeartBeat.type,
 			});
 		},
-		setStepCompleted: function () {
+		stepCompleted: function () {
 			
 			
-			QiWrapper.raise(ALMemoryEvent.setStepCompleted.ALMemory, {step: null})
+			QiWrapper.raise(apiGeneralManagerHRI.stepCompleted.ALMemory, {step: null})
 			
 		},
 		setStepRecieved: function () {
@@ -73,47 +73,38 @@ function mapDispatchToProps(dispatch) {
 		},
 		
 		
-		timeToggleTimer: function (mode) {
+		timeToggleTimer: function (state) {
 			
-			QiWrapper.raise(ALMemoryEvent.toggleTimer.ALMemory, {mode: mode});
+			QiWrapper.raise(apiGeneralManagerHRI.timerState.ALMemory, {state: state});
 			
 		},
 		
 		gotoMainMenu: function () {
-			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: "mainMenu"});
+			QiWrapper.raise(apiGeneralManagerHRI.currentScenario.ALMemory, {scenario: "mainMenu"});
 			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentView.ALMemory, {view: "mainMenu"})
+			QiWrapper.raise(apiTabletLM.changeCurrentView.ALMemory, {view: "mainMenu"})
 		},
 		
 		timeStepComplete: function (steps, taskId) {
 			
-			QiWrapper.raise(ALMemoryEvent.setStepCompleted.ALMemory, {step: null})
+			QiWrapper.raise(apiGeneralManagerHRI.stepCompleted.ALMemory, {step: null})
 		},
 		
 		
-		timeStepSkipped: function (steps, taskId) {
+		timeStepSkipped: function (stepId) {
 			
-			const step = steps[taskId];
 			
-			QiWrapper.raise(ALMemoryEvent.setStepSkipped.ALMemory, {
-				step: step
+			QiWrapper.raise(apiGeneralManagerHRI.stepSkipped.ALMemory, {
+				stepId: stepId
 			})
 			
 		},
 		
-		timeStepChangeCurrent: function (steps, taskId) {
+		timeStepChangeCurrent: function (stepId) {
 			
-			const step = steps[taskId];
-			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentStep.ALMemory, {
-				step: step
+			QiWrapper.raise(apiGeneralManagerHRI.currentStep.ALMemory, {
+				stepId: stepId
 			});
-			//
-			// dispatch({
-			// 	type: timeAction.changeCurrentStep.type,
-			// 	step: step
-			// })
-			
 		},
 		
 	}
@@ -146,7 +137,6 @@ class Debug extends Component {
 		
 		let scenarioDebug = null;
 		
-		const scenario = ConfigWrapper.get().scenario;
 		switch (this.props.scenario.current.name) {
 			case scenario.mainMenu.name:
 				steps.length = 0;
@@ -173,19 +163,18 @@ class Debug extends Component {
 		}
 		
 		
-		const toolbarState = toolbarAction.changeToolbar.state;
+		const toolbarState = toolbarAction.toolbarState.state;
 		
 		
 		const stepOptions = [];
 		
 		console.log("I m here, ", steps);
 		
-		steps.forEach((step, index) => {
-			console.log(step, index);
+		steps.forEach((step) => {
 			stepOptions.push(
-				<option value={index}>{step.name}</option>
+				<option value={step.id}>{step.name}</option>
 			)
-		})
+		});
 		
 		return (
 			<div className={className}>
@@ -208,29 +197,29 @@ class Debug extends Component {
 					<div id="toolbar">
 						<h3>Toolbar</h3>
 						<Button color={"info"}
-						        onClick={() => this.props.changeToolbar(toolbarAction.changeToolbar.payload.canMove,
+						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.canMove,
 							        this.props.toolbar.canMove === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Can Move
 						</Button>
 						<Button color={"info"}
-						        onClick={() => this.props.changeToolbar(toolbarAction.changeToolbar.payload.micro,
+						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.micro,
 							        this.props.toolbar.micro === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Micro
 						</Button>
 						<Button color={"info"}
-						        onClick={() => this.props.changeToolbar(toolbarAction.changeToolbar.payload.internet,
+						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.internet,
 							        this.props.toolbar.internet === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Internet
 						</Button>
 						<Button color={"info"}
-						        onClick={() => this.props.changeToolbar(toolbarAction.changeToolbar.payload.pcConnection,
+						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.pcConnection,
 							        this.props.toolbar.pcConnection === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Pc Connection
 						</Button>
 					</div>
 					<div id="communication">
 						<h3>Communication</h3>
-						<Button color={"info"} onClick={() => this.props.heartbeats()}>Heartbeats</Button>
+						<Button color={"info"} onClick={() => this.props.jsHeartBeat()}>Heartbeats</Button>
 						
 						<div id="taskRecieved">
 							<Button color={"info"} onClick={() => {
@@ -246,10 +235,10 @@ class Debug extends Component {
 						
 						
 						<Button color={"danger"}
-						        onClick={() => this.props.timeToggleTimer(ALMemoryEvent.toggleTimer.mode.start)}>Start
+						        onClick={() => this.props.timeToggleTimer(apiGeneralManagerHRI.timerState.state.on)}>Start
 							timer</Button>
 						<Button color={"danger"}
-						        onClick={() => this.props.timeToggleTimer(ALMemoryEvent.toggleTimer.mode.stop)}>Stop
+						        onClick={() => this.props.timeToggleTimer(apiGeneralManagerHRI.timerState.state.off)}>Stop
 							timer</Button>
 					
 					</div>
@@ -262,16 +251,16 @@ class Debug extends Component {
 						this.setState(prev => {
 							return {
 								...prev,
-								currentStep: evt.target.value
+								currentStep: Number.parseInt(evt.target.value)
 							}
 						})
 					}}>{stepOptions}</select>
-					<Button color={"info"} onClick={() => this.props.timeStepSkipped(steps, this.state.currentStep)}>Pass
+					<Button color={"info"} onClick={() => this.props.timeStepSkipped(this.state.currentStep)}>Pass
 						step</Button>
 					<Button color={"info"} onClick={() => this.props.timeStepComplete(this.state.currentStep)}>Complete
 						Step</Button>
 					<Button color={"info"}
-					        onClick={() => this.props.timeStepChangeCurrent(steps, this.state.currentStep)}>Change
+					        onClick={() => this.props.timeStepChangeCurrent(this.state.currentStep)}>Change
 						current
 						step
 					</Button>

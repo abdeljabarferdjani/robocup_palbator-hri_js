@@ -14,6 +14,7 @@ import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
 import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
 import MainMenu from '../view/Scenario/MainMenu/'
+import Wait from "../view/Global/Wait";
 const {views} = ConfigWrapper.get();
 
 const getClassFromView = (view) => {
@@ -21,7 +22,6 @@ const getClassFromView = (view) => {
 };
 
 /**
- *
  * @description Map that resolve a name of a view (in views.json) to React component
  * If you want to **add new views** you have to modify this object
  */
@@ -40,7 +40,8 @@ const viewClassMap = {
 	[views.findGuest]: FindGuest,
 	[views.seatGuest]: SeatGuest,
 	[views.askToFollow]: AskToFollow,
-	[views.mainMenu]: MainMenu
+	[views.mainMenu]: MainMenu,
+	[views.wait]: Wait
 	
 	
 };

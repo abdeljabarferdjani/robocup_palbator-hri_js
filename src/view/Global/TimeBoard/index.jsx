@@ -6,7 +6,6 @@ import Logger from "../../../dev/Logger";
 import debug from '../../../config/log'
 import './TimeBoard.css'
 import {viewAction} from "../../../redux/actions/ViewAction";
-import * as ReactDOM from "react-dom";
 
 function mapStateToProps(state) {
 	return {
@@ -66,7 +65,6 @@ class TimeBoard extends Component {
 		
 		if (newSortedSteps[0] !== prevState.sortedSteps[0])
 		{
-			// console.warn('HEY 2')
 			return {
 				sortedSteps: TimeBoard.createStepFromProps(nextProps),
 				globalElapsedTime: nextProps.time.globalElapsedTime,
@@ -84,35 +82,31 @@ class TimeBoard extends Component {
 		
 		props.time.doneSteps.forEach(step => {
 			steps.push({
+				...step,
 				status: Step.Status.done,
-				...step
 				
 			})
 		});
 		
 		if (props.time.currentStep !== null) {
 			steps.push({
+				...props.time.currentStep,
 				status: Step.Status.current,
-				...props.time.currentStep
 			});
-			
-			
 		}
-		
 		
 		props.time.todoSteps.forEach(step => {
 			steps.push({
+				...step,
 				status: Step.Status.todo,
-				...step
 			})
 		});
-		
 		
 		props.time.skippedSteps.forEach(step => {
 			
 			steps.push({
+				...step,
 				status: Step.Status.skipped,
-				...step
 			})
 			
 		});
@@ -125,15 +119,6 @@ class TimeBoard extends Component {
 		
 		
 		return steps;
-	}
-	
-	componentDidMount() {
-		// this.setState(prev => {
-		// 	return {
-		// 		...prev,
-		// 		parentDiv: ReactDOM.findDOMNode(this).parentNode
-		// 	}
-		// })
 	}
 	
 	render() {
@@ -150,11 +135,7 @@ class TimeBoard extends Component {
 			}
 		}
 		
-		
 		const steps = [];
-		
-		
-		
 		
 		this.state.sortedSteps.forEach(((step, index) => {
 			steps.push(<Step step={step} key={index}/>);

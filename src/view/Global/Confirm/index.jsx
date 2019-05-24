@@ -42,7 +42,7 @@ class Confirm extends Component {
 		
 		const textToShow = this.props.textToShow || "Are you sure that you want X?";
 		let img = null;
-		if (this.props.other !== undefined && this.props.other.imagePath !== undefined) {
+		if (this.props.imagePath !== undefined) {
 			
 			img = <img src={process.env.PUBLIC_URL + "/" + this.props.imagePath} alt=""/>
 		}

@@ -19,16 +19,12 @@ export default class Timer {
 	
 	static startTimer() {
 		
-		if (Timer.#startTime === undefined) {
-		
-		}
 		Timer.#startTime = Date.now();
 		Timer.#lastTime = Date.now();
 		
 		Timer.#intervalId = setInterval(() => {
 			const dateNow = Date.now();
 			dispatch({
-				
 				type: timeAction.passSecond.type,
 				globalElapsedTime: Timer.getElapsedTime(Timer.#startTime, dateNow),
 				timeFromLastEvent: Timer.getElapsedTime(Timer.#lastTime, dateNow)

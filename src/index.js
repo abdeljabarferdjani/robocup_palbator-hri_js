@@ -16,16 +16,11 @@ async function initApp() {
 	
 	ALMemoryBridge.initBridge(qi);
 	
-	
-	
 	const App = require("./App").default;
 	const Provider = require("react-redux").Provider;
 	const getStore = require("./redux/Store").default;
 	const Debug = require("./view/Debug/Debug").default;
 
-
-//
-//
 	ReactDOM.render(<Provider store={getStore()}>
 		<App/>
 		<Debug/>

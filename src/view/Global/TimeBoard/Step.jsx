@@ -24,7 +24,11 @@ class Step extends Component {
 	
 	static propTypes = {
 		currentTime: PropTypes.number, // only supplied if it's the current Step
-		step: PropTypes.object.isRequired
+		step: PropTypes.shape({
+			status : PropTypes.oneOf(Step.Status.current, Step.Status.todo, Step.Status.skipped, Step.Status.done),
+			eta : PropTypes.number.isRequired,
+			name : PropTypes.string.isRequired
+		}).isRequired
 	};
 	
 	static defaultProps = {};
@@ -77,26 +81,11 @@ class Step extends Component {
 		let currentTime = (this.state.currentTime !== undefined) ? this.state.currentTime : 0;
 		
 		
-		let className = `Step`;
-		if (this.props.time.currentStep && this.state.order === this.props.time.currentStep.order) {
-			className += " current";
-		} else {
-			if (this.props.time.todoSteps.findIndex(step => step.order === this.state.order) !== -1)
-			{
-				className += " todo"
-			} else {
-				if (this.props.time.skippedSteps.findIndex(step => step.order === this.state.order) !== -1)
-				{
-					className += " skipped"
-				} else {
-					if (this.props.time.doneSteps.findIndex(step => step.order === this.state.order) !== -1)
-					{
-						className += " done"
-					}
-				}
-				
-			}
-		}
+		let className = `Step ${this.props.step.status}`;
+		
+		// console.log(this.props.step);
+		
+		
 		
 		
 		// Step.logger.log("render", this.props.step);

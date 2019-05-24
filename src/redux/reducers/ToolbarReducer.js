@@ -5,10 +5,10 @@ const INITIAL_STATE = {
 	// pcConnection: undefined,
 	// micro: undefined,
 	// canMove: undefined
-	internet: toolbarAction.changeToolbar.state.error,
-	pcConnection: toolbarAction.changeToolbar.state.ok,
-	micro: toolbarAction.changeToolbar.state.error,
-	canMove: toolbarAction.changeToolbar.state.ok
+	internet: toolbarAction.toolbarState.state.error,
+	pcConnection: toolbarAction.toolbarState.state.ok,
+	micro: toolbarAction.toolbarState.state.error,
+	canMove: toolbarAction.toolbarState.state.ok
 };
 
 
@@ -21,9 +21,9 @@ const toolbarReducer = (state = INITIAL_STATE, action) => {
 	if (possibleActionTypes.includes(action.type)) {
 		
 		
-		if (action.type === toolbarAction.changeToolbar.type) {
+		if (action.type === toolbarAction.toolbarState.type) {
 			const value = action.state;
-			let actionPayload = toolbarAction.changeToolbar.payload;
+			let actionPayload = toolbarAction.toolbarState.system;
 			const payloads = Object.keys(actionPayload);
 			for (const p of payloads) {
 				if (actionPayload[p] === action.system) {

@@ -38,17 +38,18 @@ class AskName extends Component {
 	}
 	
 	addNumber(number) {
-		
-		this.setState(prev => {
-			
-			let newValue = Number.parseInt(prev.value + number.toString());
-			
-			
-			return {
-				...prev,
-				value: newValue.toString()
-			}
-		})
+		if (this.state.value.length < 3) {
+			this.setState(prev => {
+				
+				
+				let newValue = Number.parseInt(prev.value + number.toString());
+				
+				return {
+					...prev,
+					value: newValue.toString()
+				}
+			})
+		}
 	}
 	
 	render() {
@@ -58,7 +59,8 @@ class AskName extends Component {
 		const digits = [];
 		
 		for (let i = 1; i < 10; i++) {
-			digits.push(<button className={"btn btn-classic"} onClick={() => this.addNumber(i)}>{i}</button>)
+			digits.push(<button className={"btn btn-classic"}
+			                    onClick={() => this.addNumber(i)}>{i}</button>)
 		}
 		
 		const value = (this.state.value.length > 0) ? this.state.value : "0";
@@ -71,8 +73,12 @@ class AskName extends Component {
 					
 					<div id="digits">
 						{digits}
-						<button className={"btn no"} onClick={() => this.deleteNumber()}>DEL</button>
-						<button className={"btn btn-classic"} onClick={() => this.addNumber(0)}>0</button>
+						<button className={"btn no"}
+						        onClick={() => this.deleteNumber()}>DEL
+						</button>
+						<button className={"btn btn-classic"}
+						        onClick={() => this.addNumber(0)}>0
+						</button>
 						<button className={"btn ok"}
 						        onClick={() => this.props.sendAge(this.props.dispatch, Number.parseInt(this.state.value))}>OK
 						</button>

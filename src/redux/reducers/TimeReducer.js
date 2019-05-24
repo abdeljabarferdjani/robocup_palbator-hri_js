@@ -3,23 +3,28 @@ import debug from '../../config/log';
 import Logger from "../../dev/Logger";
 import Timer from "../../model/Timer";
 import ConfigWrapper from "../../controller/ConfigWrapper";
+import ALMemoryBridge, {
+	getScenarioSteps,
+	getStepById
+} from "../../controller/ALMemoryBridge";
 
 
 const logger = new Logger(debug.reducer.time, "TimeReducer");
-const {ALMemoryEvent} = ConfigWrapper.get();
-
+const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
 const init = (state, steps) => {
 	
 	
 	state = {...state};
 	
+	
 	const getDataFromJson = (jsonValue) => {
 		
 		return {
 			name: jsonValue.name,
 			eta: jsonValue.eta,
-			order: jsonValue.order
+			order: jsonValue.order,
+			id: jsonValue.id
 			
 		}
 	};
@@ -27,13 +32,6 @@ const init = (state, steps) => {
 	Object.keys(steps).forEach(key => {
 		state.todoSteps.push(getDataFromJson(steps[key]));
 	});
-	
-	// state.currentStep = getDataFromJson(steps[keys[0]]);
-	//
-	// for (let i = 1; i < keys.length; i++) {
-	// 	state.todoSteps.push(getDataFromJson(steps[keys[i]]));
-	//
-	// }
 	
 	console.log("State,", state, DEFAULT_STATE);
 	
@@ -52,11 +50,6 @@ const DEFAULT_STATE = {
 };
 
 function clone(obj) {
-	// if (null == obj || "object" != typeof obj) return obj;
-	// const copy = obj.constructor();
-	// for (const attr in obj) {
-	// 	if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-	// }
 	return JSON.parse(JSON.stringify(obj));
 }
 
@@ -65,16 +58,11 @@ function getDefaultState() {
 }
 
 
-
-
-const INITIAL_STATE = init(getDefaultState(), []   );
-
-
+const INITIAL_STATE = init(getDefaultState(), []);
 
 
 function undefinedActionStep(action) {
 	return (action.step === undefined)
-	
 }
 
 
@@ -93,9 +81,14 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 	// Dont allow other reducer's action to interact with this reducer
 	
 	if (possibleActionType.includes(action.type)) {
+		console.log("Action : ", action);
 		
 		switch (action.type) {
+			
+			
+			
 			case timeAction.passSecond.type:
+				
 				if (action.globalElapsedTime !== undefined && action.timeFromLastEvent !== undefined) {
 					logger.log(timeAction.passSecond.type, action.globalElapsedTime);
 					
@@ -104,6 +97,8 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 						globalElapsedTime: action.globalElapsedTime,
 						stepElapsedTime: clonedState.stepElapsedTime + action.timeFromLastEvent
 					};
+					
+					
 				} else {
 					logger.warn(timeAction.passSecond.type, "Care no action.globalElapsedTime");
 				}
@@ -111,16 +106,19 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				break;
 			
-			case timeAction.changeCurrentStep.type:
+			case timeAction.currentStep.type:
 				
 				
-				if (!undefinedActionStep(action)) {
-					stepIndex = clonedState.todoSteps.findIndex(step => step.name === action.step.name);
+				if (action.stepId !== undefined) {
+					
+					console.log("ChangeCurrentStep", action);
+					
+					stepIndex = clonedState.todoSteps.findIndex(step => step.id === action.stepId);
 					
 					clonedState.stepElapsedTime = 0;
 					
 					todoStep = [...state.todoSteps];
-					todoStep.splice(stepIndex, 1);
+					const step = todoStep.splice(stepIndex, 1)[0];
 					
 					if (clonedState.currentStep !== null) {
 						todoStep.push(clonedState.currentStep);
@@ -130,19 +128,19 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 						...clonedState,
 						currentStep: {
 							...clonedState.currentStep,
-							...action.step
+							...step
 						},
 						todoSteps: todoStep
 					};
 				} else {
-					logger.warn(timeAction.changeCurrentStep.type, "Care try to changeCurrentStep with an undefined step");
+					logger.warn(timeAction.currentStep.type, "Care try to currentStep with an undefined step");
 					
 				}
 				
 				
 				break;
 			
-			case timeAction.setStepCompleted.type:
+			case timeAction.stepCompleted.type:
 				
 				if (clonedState.currentStep !== null) {
 					const doneStep = [...state.doneSteps];
@@ -155,35 +153,37 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					};
 					
 				} else {
-					logger.warn(timeAction.setStepCompleted.type, "Try to set complete an undefined step");
+					logger.warn(timeAction.stepCompleted.type, "Try to set complete an undefined step");
 					
 				}
 				
 				break;
 			
-			case timeAction.setStepSkipped.type:
+			case timeAction.stepSkipped.type:
 				
-				if (!undefinedActionStep(action)) {
+				if (action.stepId !== undefined) {
 					const skippedStep = [...clonedState.skippedSteps];
 					todoStep = [...state.todoSteps];
+					const step = getStepById(action.stepId);
+					
 					
 					// Check if the new skippedStep is not already in the skippedStep
-					if (skippedStep.indexOf(action.step) === -1)
+					if (skippedStep.indexOf(step => step.id === action.stepId) === -1)
 					{
-						skippedStep.push(action.step);
+						skippedStep.push(step);
 					} else {
 						logger.warn(`Cant have multiple times ${action.step.name} in skippedStep []`)
 					}
 					
 					// Check if the currentStep is the one that have to be skipped
 					let currentStep = clonedState.currentStep;
-					if (currentStep && currentStep.order === action.step.order) {
+					if (currentStep && currentStep.id === action.step.id) {
 						currentStep = null;
 					}
 					
 					
 					// Search if the new Skipped step was in todoSteps and remove it
-					const indexInTodoStep = state.todoSteps.findIndex(step => step.order === action.step.order);
+					const indexInTodoStep = state.todoSteps.findIndex(step => step.id === action.step.id);
 					if (indexInTodoStep >= 0) {
 						todoStep.splice(indexInTodoStep, 1);
 					}
@@ -203,17 +203,17 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				break;
 			
-			case timeAction.toggleTimer.type:
+			case timeAction.timerState.type:
 				
-				const {start, stop} = ALMemoryEvent.toggleTimer.mode;
+				const {on, off} = generalManagerHRI.timerState.state;
 				
-				if ([start, stop].includes(action.mode)) {
-					switch (action.mode) {
-						case start:
+				if ([on, off].includes(action.state)) {
+					switch (action.state) {
+						case on:
 							Timer.startTimer();
 							break;
 						
-						case stop:
+						case off:
 							Timer.stopTimer();
 							break;
 						
@@ -222,23 +222,23 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 							break
 					}
 				} else {
-					logger.warn("ToggleTimer", "Unknown mode for toggleTimer")
+					logger.warn("ToggleTimer", "Unknown ALMstate for timerState")
 				}
 				
 				break;
-		
+			
 			case timeAction.replaceAllSteps.type:
 				
 				logger.debug("You are un replaceAllSteps reducer", action);
-				if(action.steps.length !== undefined) {
+				if (action.steps.length !== undefined) {
 					logger.debug("B", clonedState);
 					clonedState = init(getDefaultState(), action.steps);
 					logger.debug("A", clonedState);
 				}
 				
 				break;
-				
-				
+			
+			
 			default:
 				break;
 		}

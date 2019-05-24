@@ -1,20 +1,17 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {ALMemoryEvent} = ConfigWrapper.get();
+const {apis : {common}} = ConfigWrapper.get();
 
 export const toolbarAction = {
 	
-	changeToolbar: {
-		type: ALMemoryEvent.changeToolbar.reduxKey,
+	toolbarState: {
+		type: common.toolbarState.reduxKey,
 		state: {
-			ok: ALMemoryEvent.changeToolbar.state.ok,
-			error: ALMemoryEvent.changeToolbar.state.error
+			ok: common.toolbarState.state.ok,
+			error: common.toolbarState.state.error
 		},
-		payload: {
-			internet: "INTERNET",
-			pcConnection: "PC_CONNECTION",
-			micro: "MICRO",
-			canMove: "CAN_MOVE",
+		system: {
+			...common.toolbarState.system
 		}
 	}
 };

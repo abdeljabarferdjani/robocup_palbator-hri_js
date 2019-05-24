@@ -1,6 +1,6 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {ALMemoryEvent} = ConfigWrapper.get();
+const {apis : {generalManagerHRI}} = ConfigWrapper.get();
 
 
 export const timeAction = {
@@ -9,26 +9,20 @@ export const timeAction = {
 		globalElapsedTime: 0
 	},
 	
-	/*
-	@value step : a step name from jsonSteps.json in config directory
-	 */
-	changeCurrentStep: {
-		type: ALMemoryEvent.changeCurrentStep.reduxKey,
-		step: ""
+	currentStep: {
+		type: generalManagerHRI.currentStep.reduxKey,
 	},
 	
-	setStepSkipped: {
-		type: ALMemoryEvent.setStepSkipped.reduxKey,
-		step: ""
+	stepSkipped: {
+		type: generalManagerHRI.stepSkipped.reduxKey,
 	},
 	
-	setStepCompleted: {
-		type: ALMemoryEvent.setStepCompleted.reduxKey,
-		step: ""
+	stepCompleted: {
+		type: generalManagerHRI.stepCompleted.reduxKey,
 	},
-	toggleTimer: {
-		type: ALMemoryEvent.toggleTimer.reduxKey,
-		mode: ALMemoryEvent.toggleTimer.mode,
+	timerState: {
+		type: generalManagerHRI.timerState.reduxKey,
+		state: generalManagerHRI.timerState.state,
 	},
 	
 	replaceAllSteps : {

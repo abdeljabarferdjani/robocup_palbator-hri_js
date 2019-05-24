@@ -4,17 +4,17 @@ import {connect} from "react-redux";
 import ConfigWrapper from "../../../controller/ConfigWrapper";
 import QiWrapper from "../../../model/QiWrapper";
 
-const {scenario, ALMemoryEvent} = ConfigWrapper.get();
+const {apis : {generalManagerHRI}} = ConfigWrapper.get();
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		changeCurrentScenario: (scenario) => {
+		currentScenario: (scenario) => {
 			
 			
-			QiWrapper.raise(ALMemoryEvent.changeCurrentScenario.ALMemory, {scenario: scenario})
+			QiWrapper.raise(generalManagerHRI.currentScenario.ALMemory, {scenario: scenario})
 			//
 			// dispatch({
-			// 	type: scenarioAction.changeCurrentScenario.type,
+			// 	type: scenarioAction.currentScenario.type,
 			// 	scenario: scenario
 			// })
 			//
@@ -42,17 +42,17 @@ class MainMenu extends Component {
 		return (
 			<div>
 				<Button color={"info"}
-				        onClick={() => this.props.changeCurrentScenario("servingDrinks")}
+				        onClick={() => this.props.currentScenario("servingDrinks")}
 				        size={"lg"}>
 					Serving Drinks
 				</Button>
 				<Button color={"info"}
-				        onClick={() => this.props.changeCurrentScenario("receptionist")}
+				        onClick={() => this.props.currentScenario("receptionist")}
 				        size={"lg"}>
 					Receptionist
 				</Button>
 				{/*<Button color={"info"}*/}
-				{/*        onClick={() => this.props.changeCurrentScenario(scenario.mainMenu)}*/}
+				{/*        onClick={() => this.props.currentScenario(scenario.mainMenu)}*/}
 				{/*        size={"lg"}>*/}
 				{/*	Main Menu*/}
 				{/*</Button>*/}

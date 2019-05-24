@@ -65,17 +65,12 @@ class ViewManager extends Component {
 			comp = <MainMenu/>
 		} else {
 			
-			comp = React.createElement(getClassFromView(this.state.currentView), {
-				textToShow: this.state.currentData.textToShow || "",
-				choice: this.state.currentData.choices || [],
-				other : this.state.currentData.other
-			})
-			//
-			// comp = <UserFrontComponent
-			// 	textToShow={this.state.currentData.textToShow || ""}
-			// 	choices={this.state.currentData.choices || []}
-			// 	component={getClassFromView(this.state.currentView)}
-			// />
+			comp = React.createElement(
+				getClassFromView(this.state.currentView),
+				{
+					...this.state.currentData
+				}
+			)
 			
 		}
 		

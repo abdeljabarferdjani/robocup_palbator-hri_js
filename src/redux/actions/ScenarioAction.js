@@ -1,10 +1,10 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {ALMemoryEvent} = ConfigWrapper.get();
+const {apis : {generalManagerHRI}} = ConfigWrapper.get();
 
 export const scenarioAction = {
-	changeCurrentScenario: {
-		type: ALMemoryEvent.changeCurrentScenario.reduxKey,
+	currentScenario: {
+		type: generalManagerHRI.currentScenario.reduxKey,
 		scenario: "SCENARIO"
 	}
 };

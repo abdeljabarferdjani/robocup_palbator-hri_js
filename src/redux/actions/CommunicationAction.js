@@ -1,26 +1,26 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {ALMemoryEvent} = ConfigWrapper.get();
+const {apis : {generalManagerHRI, common, tabletLM}} = ConfigWrapper.get();
 
 export const comAction = {
-	setStepRecieved: {
-		type: ALMemoryEvent.setStepRecieved.reduxKey,
+	stepReceived: {
+		type: generalManagerHRI.stepReceived.reduxKey,
 	},
 	
-	setStepCompleted: {
-		type: ALMemoryEvent.setStepCompleted.reduxKey,
+	stepCompleted: {
+		type: generalManagerHRI.stepCompleted.reduxKey,
 		mode: {
 			user: "WORK_DONE/USER",
 			drink: "WORK_DONE/DRINK"
 		},
 	},
-	heartbeats: {
-		type: ALMemoryEvent.sendHeartbeat.reduxKey,
-		time: "timestamp"
+	jsHeartBeat: {
+		type: common.jsHeartbeat.reduxKey,
+		time: "__timestamp"
 	},
-	sendData: {
-		type: ALMemoryEvent.sendDataJs.reduxKey,
-		dataType: ALMemoryEvent.sendDataJs.dataType,
+	dataJs: {
+		type: tabletLM.dataJs.reduxKey,
+		dataType: tabletLM.dataJs.dataType,
 		data: ""
 		
 	},

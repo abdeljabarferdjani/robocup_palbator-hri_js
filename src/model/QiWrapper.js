@@ -36,19 +36,12 @@ class QiWrapper {
 	constructor(session, ALMemory) {
 		
 		
-		// eslint-disable-next-line no-undef
-		// QiWrapper.logger.log("QI", QiSession);
-		
-		
 		this.#session = session;
 		this.#AlMemory = ALMemory;
 		QiWrapper.#instance = this;
-		// QiWrapper.logger.log("QiWrapper", this);
-		
 	}
 	
 	/**
-	 *
 	 * @param inst {QiWrapper | FalseQiWrapper}
 	 */
 	static set instance(inst) {
@@ -56,7 +49,6 @@ class QiWrapper {
 	}
 	
 	/**
-	 *
 	 * @returns {QiWrapper}
 	 */
 	static getInstanceSync() {
@@ -141,23 +133,8 @@ class QiWrapper {
 		return new Promise(resolve =>
 			this.#AlMemory.subscriber(event).then(subscriber => {
 				subscriber.signal.connect(state => {
-					// try {
-					//
-					//
-					// 	try {
-					// 	} catch (e) {
-					// 		console.error("Error Callback on " + event, {e, state})
-					//
-					// 	}
-					//
-					// } catch (e) {
-					// 	console.error("Error parsing JSON on " + event, {e, state})
-					// }
-					
 					const dataParsed = JSON.parse(state);
 					cb(dataParsed);
-					
-					
 				});
 				resolve(QiWrapper.logger.log("Listen at", event));
 				
@@ -208,12 +185,17 @@ class QiWrapper {
 
 class FalseQiWrapper {
 	
-	constructor() {
+	#client;
+	
+	constructor(url) {
+		
 		QiWrapper.instance = this;
+		this.#client = new WebSocket(url, "json");
 	}
 	
 	// static warningMessage = () => QiWrapper.logger.warn("FalseRaise", "Naoqi is not present in global.config, check if it's not wanted");
-	static warningMessage() {}
+	static warningMessage() {
+	}
 	
 	raise(x, y) {
 		FalseQiWrapper.warningMessage()

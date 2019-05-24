@@ -8,9 +8,10 @@
 	"goTo": "GO_TO",
 	"findAvailableDrinks": "FIND_AVAILABLE_DRINKS",
 	"openDoor": "OPEN_DOOR",
-	"findWhoWantsDrinks": "FIND_WHO_WANTS_DRINKS",
+	"findWhoWantsDrinks": "FIND_WHO_WANT_DRINKS",
 	"serveDrinks": "SERVE_DRINK",
 	"findGuest": "FIND_GUEST",
 	"seatGuest": "SEAT_GUEST",
-	"askToFollow": "ASK_TO_FOLLOW"
+	"askToFollow": "ASK_TO_FOLLOW",
+	"wait": "WAIT"
 }

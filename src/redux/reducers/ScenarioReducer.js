@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 
 export const scenarioReducer = (state = INITIAL_STATE, action) => {
 	
-	if (action.type === scenarioAction.changeCurrentScenario.type) {
+	if (action.type === scenarioAction.currentScenario.type) {
 		state = {
 			...state,
 			current: action.scenario

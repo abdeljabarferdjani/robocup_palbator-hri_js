@@ -1,25 +1,19 @@
 import {viewAction} from "../actions/ViewAction";
 import Logger from "../../dev/Logger";
 import logConfig from '../../config/log'
-import ConfigWrapper from "../../controller/ConfigWrapper";
-import {getClassFromView} from "../../controller/ViewStepBridge";
-
-const {} = ConfigWrapper.get().scenario;
 
 
 const INITIAL_STATE = {
 	currentView: null,
 	currentData: {
-		textToShow : null,
-		choices : []
+		textToShow: null,
+		choices: []
 	},
 	componentVisibility: {
 		timeBoard: viewAction.setComponentVisibility.state.visible
 	}
 	
 };
-
-
 
 
 const logger = new Logger(logConfig.reducer.view, "ViewReducer");

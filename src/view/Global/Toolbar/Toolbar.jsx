@@ -54,7 +54,7 @@ class Toolbar extends Component {
 		
 		const icons = [];
 		
-		if (this.state.infos.internet === toolbarAction.changeToolbar.state.error) {
+		if (this.state.infos.internet === toolbarAction.toolbarState.state.error) {
 			icons.push(<Icon image={internetError}
 			                 description={"An error occured with the internet connection"}
 			                 animation={false}
@@ -62,7 +62,7 @@ class Toolbar extends Component {
 			                 key={0}/>)
 		}
 		
-		if (this.state.infos.micro === toolbarAction.changeToolbar.state.error) {
+		if (this.state.infos.micro === toolbarAction.toolbarState.state.error) {
 			icons.push(<Icon image={muteMicro}
 			                 description={"Pepper can't hear you"}
 			                 animation={true}
@@ -71,7 +71,7 @@ class Toolbar extends Component {
 		}
 		
 		
-		if (this.state.infos.pcConnection === toolbarAction.changeToolbar.state.error) {
+		if (this.state.infos.pcConnection === toolbarAction.toolbarState.state.error) {
 			icons.push(<Icon image={pcProblem}
 			                 description={"Pepper can't connect to the laptop"}
 			                 animation={false}

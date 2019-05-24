@@ -5,7 +5,7 @@ import logConfig from '../../config/log'
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
 
-const {ALMemoryEvent,} = ConfigWrapper.get();
+const {apis: {generalManagerHRI, common, tabletLM},} = ConfigWrapper.get();
 
 const INITIAL_STATE = {};
 const logger = new Logger(logConfig.reducer.com, "ComReducer");
@@ -26,49 +26,29 @@ const comReducer = (state = INITIAL_STATE, action) => {
 		
 		switch (action.type) {
 			case comAction.setStepRecieved.type:
-				/**
-				 *  action : {
-				 *      type : almemoryEvent.setStepRecieved.alMemory,
-				 *  }
-				 */
-				wrapper.raise(ALMemoryEvent.setStepRecieved.ALMemory, null);
+			
+				wrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
 				break;
 			
-			case comAction.setStepCompleted.type:
-				/**
-				 *  action : {
-				 *      type : almemoryEvent.setStepCompleted.alMemory,
-				 *      step : STEP
-				 *  }
-				 */
-				wrapper.raise(ALMemoryEvent.setStepCompleted.ALMemory, {step: action.step});
+			case comAction.stepCompleted.type:
+		
+				wrapper.raise(generalManagerHRI.stepCompleted.ALMemory, {step: action.step});
 				break;
 			
-			case comAction.heartbeats.type:
-				/**
-				 *  action : {
-				 *      type : almemoryEvent.heartbeats.alMemory,
-				 *  }
-				 */
-				wrapper.setALValue(ALMemoryEvent.heartbeats.ALMemory, Date.now());
+			case comAction.jsHeartBeat.type:
+		
+				wrapper.setALValue(common.jsHeartBeat.ALMemory, Date.now());
 				break;
 			
-			case comAction.sendData.type:
+			case comAction.dataJs.type:
 				
 				if (action.data !== undefined)
 				{
 					
-					const {ALMemory, dataType} = ALMemoryEvent.sendDataJs;
-					/**
-					 *  action : {
-					 *      type : almemoryEvent.sendata.type
-					 *      dataType : almemoryEvent.sendData.dataType.drink | almemoryEvent.sendData.dataType.name | ... @see ALMemoryEvent.json
-					 *      data : JSON object with the name or the drink (depends of the dataType)
-					 *  }
-					 */
-						
-						// Check if the data to pass the name, the drink or the age of guest to LocalManager
-						// if ([dataType.drink, dataType.name, dataType.age, dataType.].includes(action.dataType))
+					const {ALMemory, dataType} = tabletLM.dataJs;
+			
+					// Check if the data to pass the name, the drink or the age of guest to LocalManager
+					// if ([dataType.drink, dataType.name, dataType.age, dataType.].includes(action.dataType))
 					
 					
 					const dataTypeKeys = Object.keys(dataType);
@@ -86,10 +66,10 @@ const comReducer = (state = INITIAL_STATE, action) => {
 							data: action.data
 						});
 					}
-					break;
 					
 				}
 			
+			break;
 			
 			default:
 				// console.warn("Unknown action on commmunication reducer", action);

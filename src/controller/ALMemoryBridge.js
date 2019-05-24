@@ -9,17 +9,32 @@ import {toolbarAction} from "../redux/actions/ToolbarAction";
 import {scenarioAction} from "../redux/actions/ScenarioAction";
 
 
-const {ALMemoryEvent, scenario} = ConfigWrapper.get();
+const {apis : {tabletLM, common, generalManagerHRI}, scenario} = ConfigWrapper.get();
 
 /**
  *
  * @return {[Object]}
  */
 const getScenarioSteps = () => {
-	
 	return store.getState().scenario.current.steps;
+};
+
+
+/**
+ *
+ * @param id
+ * @returns {Object | undefined}
+ */
+const getStepById = (id) => {
+	const steps = getScenarioSteps();
+	return steps[steps.findIndex(step => step.id = id)];
 	
 };
+
+export {
+	getScenarioSteps,
+	getStepById
+}
 
 
 /**
@@ -29,107 +44,28 @@ export default class ALMemoryBridge {
 	static logger = new Logger(debug.ALMemoryBridge, "AlMemoryBridge");
 	
 	static initBridge = () => {
-		const changeToolbar = ALMemoryEvent.changeToolbar;
+		const toolbarState = common.toolbarState;
 		
 		Promise.all([
 			
-			QiWrapper.listen(changeToolbar.ALMemory, data => {
-				
-				const possibleState = [changeToolbar.state.ok, changeToolbar.state.error];
-				
-				if (possibleState.includes(data.state)) {
-					const possibleSystems = [];
-					const systemKeys = Object.keys(changeToolbar.system);
-					systemKeys.forEach(key => {
-						possibleSystems.push(ALMemoryEvent.changeToolbar.system[key])
-					});
-					
-					if (possibleSystems.includes(data.system)) {
-						dispatch({
-							type: toolbarAction.changeToolbar.type,
-							system: data.system,
-							state: data.state
-						})
-					} else {
-						ALMemoryBridge.logger.warn("Listen changeToolbar", "Unknown data.system")
-					}
-				} else {
-					ALMemoryBridge.logger.warn("Listen changeToolbar", "Unknown data.state")
-				}
-			}),
+			QiWrapper.listen(toolbarState.ALMemory, this.handleToolbarChange(toolbarState)),
 			
 			
-			QiWrapper.listen(ALMemoryEvent.changeCurrentStep.ALMemory, (data) => {
-				if (getScenarioSteps().findIndex(step => step.order === data.step.order) >= 0) {
-					dispatch({
-						type: timeAction.changeCurrentStep.type,
-						step: data.step
-					});
-					
-				} else {
-					ALMemoryBridge.logger.warn("ChangeCurrentStep", "Unknown data.step.order")
-				}
-			}),
+			QiWrapper.listen(generalManagerHRI.currentStep.ALMemory, this.handleChangeCurrentStep()),
 			
 			
-			QiWrapper.listen(ALMemoryEvent.setStepCompleted.ALMemory, (data) => {
-				
-				if (data && data.step === null) {
-					dispatch({
-						type: ALMemoryEvent.setStepCompleted.reduxKey,
-					})
-				}
-			}),
+			QiWrapper.listen(generalManagerHRI.stepCompleted.ALMemory, this.handleStepCompleted()),
 			
-			QiWrapper.listen(ALMemoryEvent.setStepSkipped.ALMemory, (data) => {
-				if (getScenarioSteps().findIndex(step => step.order === data.step.order) >= 0) {
-					dispatch({
-						type: ALMemoryEvent.setStepSkipped.reduxKey,
-						step: data.step
-					})
-				} else {
-					ALMemoryBridge.logger.warn("SetStepSkipped", "Unknown data.step.order")
-				}
-			}),
+			QiWrapper.listen(generalManagerHRI.stepSkipped.ALMemory, this.handleSetStepSkipped()),
 			
 			
-			QiWrapper.listen(ALMemoryEvent.toggleTimer.ALMemory, (data) => {
-				
-				
-				if ([timeAction.toggleTimer.mode.start, timeAction.toggleTimer.mode.stop].includes(data.mode)) {
-					dispatch({
-						type: timeAction.toggleTimer.type,
-						mode: data.mode
-					})
-				} else {
-					ALMemoryBridge.logger.warn("Unknown mode for toggleTimer");
-				}
-			}),
+			QiWrapper.listen(generalManagerHRI.timerState.ALMemory, this.handleToggleTimer()),
 			
 			
-			QiWrapper.listen(ALMemoryEvent.changeCurrentScenario.ALMemory, (data) => {
-				
-				
-				
-				if (Object.keys(scenario).includes(data.scenario)) {
-					const newSenar = scenario[data.scenario];
-					
-					dispatch({
-						type: scenarioAction.changeCurrentScenario.type,
-						scenario: newSenar
-					});
-					
-					dispatch({
-						type: timeAction.replaceAllSteps.type,
-						steps: newSenar.steps
-					})
-				}
-			
-				
-			}),
+			QiWrapper.listen(generalManagerHRI.currentScenario.ALMemory, this.handleChangeCurrentScenario()),
 			
 			
-			QiWrapper.listen(ALMemoryEvent.changeCurrentView.ALMemory, data => {
+			QiWrapper.listen(tabletLM.currentView.ALMemory, data => {
 				
 				if (data.view !== undefined || data.data !== undefined) {
 					dispatch({
@@ -142,14 +78,115 @@ export default class ALMemoryBridge {
 				
 			})
 		
-		]).then(() => QiWrapper.raise(ALMemoryEvent.sendTabletOperational.ALMemory, {time: Date.now()}))
+		]).then(() => QiWrapper.raise(tabletLM.tabletOperational.ALMemory, {time: Date.now()}))
 			.then(() => {
 				setInterval(() => {
-					QiWrapper.raise(ALMemoryEvent.sendHeartbeat.ALMemory, {time: Date.now()});
+					QiWrapper.raise(common.jsHeartbeat.ALMemory, {time: Date.now()});
 				}, 1000)
 			})
 		
 		
+	};
+	
+	static handleChangeCurrentScenario() {
+		return (data) => {
+			
+			
+			if (Object.keys(scenario).includes(data.scenario)) {
+				const newSenar = scenario[data.scenario];
+				
+				dispatch({
+					type: scenarioAction.currentScenario.type,
+					scenario: newSenar
+				});
+				
+				dispatch({
+					type: timeAction.replaceAllSteps.type,
+					steps: newSenar.steps
+				})
+			}
+			
+			
+		};
 	}
 	
+	static handleToggleTimer() {
+		return (data) => {
+			
+			
+			if ([timeAction.timerState.state.on, timeAction.timerState.state.off].includes(data.state)) {
+				dispatch({
+					type: timeAction.timerState.type,
+					state: data.state
+				})
+			} else {
+				ALMemoryBridge.logger.warn("Unknown mode for timerState");
+			}
+		};
+	}
+	
+	static handleSetStepSkipped() {
+		return (data) => {
+			if (getScenarioSteps().findIndex(step => step.order === data.step.order) >= 0) {
+				dispatch({
+					type: generalManagerHRI.stepSkipped.reduxKey,
+					step: data.step
+				})
+			} else {
+				ALMemoryBridge.logger.warn("SetStepSkipped", "Unknown data.step.order")
+			}
+		};
+	}
+	
+	static handleStepCompleted() {
+		return (data) => {
+			
+			if (data && data.step === null) {
+				dispatch({
+					type: generalManagerHRI.stepCompleted.reduxKey,
+				})
+			}
+		};
+	}
+	
+	static handleChangeCurrentStep() {
+		return (data) => {
+			if (getStepById(data.stepId !== undefined)) {
+				dispatch({
+					type: timeAction.currentStep.type,
+					stepId: data.stepId
+				});
+				
+			} else {
+				ALMemoryBridge.logger.warn("ChangeCurrentStep", "Unknown data.step.order")
+			}
+		};
+	}
+	
+	static handleToolbarChange(changeToolbar) {
+		return data => {
+			
+			const possibleState = [changeToolbar.state.ok, changeToolbar.state.error];
+			
+			if (possibleState.includes(data.state)) {
+				const possibleSystems = [];
+				const systemKeys = Object.keys(changeToolbar.system);
+				systemKeys.forEach(key => {
+					possibleSystems.push(common.toolbarState.system[key])
+				});
+				
+				if (possibleSystems.includes(data.system)) {
+					dispatch({
+						type: toolbarAction.toolbarState.type,
+						system: data.system,
+						state: data.state
+					})
+				} else {
+					ALMemoryBridge.logger.warn("Listen toolbarState", "Unknown data.system")
+				}
+			} else {
+				ALMemoryBridge.logger.warn("Listen toolbarState", "Unknown data.state")
+			}
+		};
+	}
 }
