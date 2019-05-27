@@ -1,0 +1,19 @@
+div#ViewSimulator > form{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+div#ViewSimulator > form  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#ViewSimulator > form > div > textarea {
+    width: 30rem;
+    height: 20rem;
+    font-size: 1.25rem;
+}

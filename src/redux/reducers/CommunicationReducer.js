@@ -7,82 +7,118 @@ import ConfigWrapper from "../../controller/ConfigWrapper";
 
 const {apis: {generalManagerHRI, common, tabletLM},} = ConfigWrapper.get();
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = {
+	lastLocalManagerHeartbeat: null,
+	lastGeneralManagerHeartbeat: null
+};
 const logger = new Logger(logConfig.reducer.com, "ComReducer");
-/**
- * @description Reducer for communication between the locale Manager (py) and JS
- * @param state
- * @param action
- */
+
 
 const possibleActionType = [];
 Object.keys(comAction).forEach(key => possibleActionType.push(comAction[key].type));
 
+/**
+ * @description Reducer for communication between the locale Manager (py) and JS
+ */
 const comReducer = (state = INITIAL_STATE, action) => {
-	
-	if (possibleActionType.includes(action.type)) {
 		
-		const wrapper = QiWrapper.getInstanceSync();
-		
-		switch (action.type) {
-			case comAction.setStepRecieved.type:
+		if (possibleActionType.includes(action.type)) {
 			
-				wrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
-				break;
+			const wrapper = QiWrapper.getInstanceSync();
 			
-			case comAction.stepCompleted.type:
-		
-				wrapper.raise(generalManagerHRI.stepCompleted.ALMemory, {step: action.step});
-				break;
-			
-			case comAction.jsHeartBeat.type:
-		
-				wrapper.setALValue(common.jsHeartBeat.ALMemory, Date.now());
-				break;
-			
-			case comAction.dataJs.type:
+			switch (action.type) {
+				case comAction.stepReceived.type:
+					
+					wrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
+					break;
 				
-				if (action.data !== undefined)
-				{
+				case comAction.stepCompleted.type:
 					
-					const {ALMemory, dataType} = tabletLM.dataJs;
-			
-					// Check if the data to pass the name, the drink or the age of guest to LocalManager
-					// if ([dataType.drink, dataType.name, dataType.age, dataType.].includes(action.dataType))
+					wrapper.raise(generalManagerHRI.stepCompleted.ALMemory, {step: action.step});
+					break;
+				
+				case comAction.jsHeartbeat.type:
 					
+					wrapper.raise(common.jsHeartbeat.ALMemory, Date.now());
+					break;
+				
+				case comAction.dataJs.type:
 					
-					const dataTypeKeys = Object.keys(dataType);
-					const possibleDataType = [];
-					
-					dataTypeKeys.forEach(key => {
-						possibleDataType.push(dataType[key]);
-					});
-					
-					if (possibleDataType.includes(action.dataType)) {
+					if (action.data !== undefined)
+					{
 						
-						logger.log("sendData : send : ", action);
-						wrapper.raise(ALMemory, {
-							dataType: action.dataType,
-							data: action.data
+						const {ALMemory, dataType} = tabletLM.dataJs;
+						
+						// Check if the data to pass the name, the drink or the age of guest to LocalManager
+						// if ([dataType.drink, dataType.name, dataType.age, dataType.].includes(action.dataType))
+						
+						
+						const dataTypeKeys = Object.keys(dataType);
+						const possibleDataType = [];
+						
+						dataTypeKeys.forEach(key => {
+							possibleDataType.push(dataType[key]);
 						});
+						
+						if (possibleDataType.includes(action.dataType)) {
+							
+							logger.log("sendData : send : ", action);
+							wrapper.raise(ALMemory, {
+								dataType: action.dataType,
+								data: action.data
+							});
+						}
+						
 					}
 					
-				}
+					break;
+				
+				
+				case comAction.extHeartbeat.type:
+					
+					state = {
+						...state,
+						lastGeneralManagerHeartbeat: action.time.gm,
+						lastLocalManagerHeartbeat: action.time.lm
+					};
+					
+					const currentTime = Date.now() / 1000;
+					
+					let diffLM = (currentTime - state.lastLocalManagerHeartbeat);
+					const LMStr = "No heartbeats from LocalManager since " + diffLM
+					if (diffLM > 10) {
+						logger.error(LMStr)
+					} else if (diffLM > 5) {
+						logger.warn(LMStr)
+					}
+					
+					
+					let diffGM = (currentTime - state.lastGeneralManagerHeartbeat);
+					const GMStr = "No heartbeats from LocalManager since " + diffGM;
+					if (diffGM > 10) {
+						logger.error(GMStr)
+					} else if (diffGM > 5) {
+						logger.warn(GMStr)
+					}
+					
+					logger.debug(currentTime);
+					
+					console.log(action, diffLM, diffGM)
+					break;
+				
+				default:
+					// console.warn("Unknown action on commmunication reducer", action);
+					break;
+				
+			}
 			
-			break;
-			
-			default:
-				// console.warn("Unknown action on commmunication reducer", action);
-				break;
 			
 		}
 		
+		return state;
 		
 	}
-	
-	return state;
-	
-};
+;
 
 export {
 	comReducer

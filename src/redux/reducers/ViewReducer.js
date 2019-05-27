@@ -24,7 +24,7 @@ const viewReducer = (state = INITIAL_STATE, action) => {
 		
 		case viewAction.changeView.type:
 			
-			console.log("New View : ", action.view);
+			console.log("New View : ", action);
 			
 			state = {
 				...state,

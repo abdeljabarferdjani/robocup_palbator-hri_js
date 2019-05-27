@@ -10,10 +10,10 @@ const {names : offlineName} = ConfigWrapper.get();
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		sendAge : (dispatch, name) => {
+		sendName : (dispatch, name) => {
 			dispatch({
-				type : comAction.sendData.type,
-				dataType: comAction.sendData.dataType.name,
+				type : comAction.dataJs.type,
+				dataType: comAction.dataJs.dataType.name,
 				data : name
 			});
 			
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 			<div>
 				<h2 className={"viewTitle"}>{textToShow}</h2>
 				<div className="names">
-					{names.map(name => <SpeakableButton  onClick={() => this.props.sendAge(this.props.dispatch, name)}>{name}</SpeakableButton>)}
+					{names.map(name => <SpeakableButton  onClick={() => this.props.sendName(this.props.dispatch, name)}>{name}</SpeakableButton>)}
 				</div>
 			</div>
 		);

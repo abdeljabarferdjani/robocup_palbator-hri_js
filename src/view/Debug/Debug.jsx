@@ -4,11 +4,12 @@ import {toolbarAction} from "../../redux/actions/ToolbarAction";
 import {viewAction} from "../../redux/actions/ViewAction";
 import {comAction} from "../../redux/actions/CommunicationAction";
 import './Debug.css'
-import {Button} from 'reactstrap'
 import ConfigWrapper from "../../controller/ConfigWrapper";
 import QiWrapper from "../../model/QiWrapper";
 import DebugServingDrinks from "../Scenario/ServingDrinks/DebugServingDrinks";
 import DebugReceptionist from "../Scenario/Receptionist/DebugReceptionist";
+import ViewManager from "../ViewManager";
+import ViewSimulator from "./ViewSimulator";
 
 const steps = [];
 
@@ -54,9 +55,9 @@ function mapDispatchToProps(dispatch) {
 			})
 			
 		},
-		jsHeartBeat: function () {
+		jsHeartbeat: function () {
 			dispatch({
-				type: comAction.jsHeartBeat.type,
+				type: comAction.jsHeartbeat.type,
 			});
 		},
 		stepCompleted: function () {
@@ -185,47 +186,48 @@ class Debug extends Component {
 					
 					<div id="changeView">
 						<h3>View</h3>
+						<ViewSimulator/>
 						<h4>changeView</h4>
 						
 						<h4>Component visibility</h4>
 						
-						<Button
+						<button
 							onClick={() => this.props.toggleTimeBoardVisibilty(this.props.view.componentVisibility.timeBoard)}
-							color={"info"}>Toggle timeBoard Visibility</Button>
+							className={"btn btn-info"}>Toggle timeBoard Visibility</button>
 					</div>
 					
 					<div id="toolbar">
 						<h3>Toolbar</h3>
-						<Button color={"info"}
+						<button className={"btn btn-info"}
 						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.canMove,
 							        this.props.toolbar.canMove === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Can Move
-						</Button>
-						<Button color={"info"}
+						</button>
+						<button className={"btn btn-info"}
 						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.micro,
 							        this.props.toolbar.micro === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Micro
-						</Button>
-						<Button color={"info"}
+						</button>
+						<button className={"btn btn-info"}
 						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.internet,
 							        this.props.toolbar.internet === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Internet
-						</Button>
-						<Button color={"info"}
+						</button>
+						<button className={"btn btn-info"}
 						        onClick={() => this.props.toolbarState(toolbarAction.toolbarState.system.pcConnection,
 							        this.props.toolbar.pcConnection === toolbarState.ok ? toolbarState.error : toolbarState.ok)}>
 							Pc Connection
-						</Button>
+						</button>
 					</div>
 					<div id="communication">
 						<h3>Communication</h3>
-						<Button color={"info"} onClick={() => this.props.jsHeartBeat()}>Heartbeats</Button>
+						<button className={"btn btn-info"} onClick={() => this.props.jsHeartbeat()}>Heartbeats</button>
 						
 						<div id="taskRecieved">
-							<Button color={"info"} onClick={() => {
+							<button className={"btn btn-info"} onClick={() => {
 								this.props.setStepRecieved()
 							}}>Step recieved
-							</Button>
+							</button>
 						</div>
 					</div>
 					
@@ -234,12 +236,12 @@ class Debug extends Component {
 						<h3>Time</h3>
 						
 						
-						<Button color={"danger"}
+						<button className={"btn btn-danger"}
 						        onClick={() => this.props.timeToggleTimer(apiGeneralManagerHRI.timerState.state.on)}>Start
-							timer</Button>
-						<Button color={"danger"}
+							timer</button>
+						<button className={"btn btn-danger"}
 						        onClick={() => this.props.timeToggleTimer(apiGeneralManagerHRI.timerState.state.off)}>Stop
-							timer</Button>
+							timer</button>
 					
 					</div>
 				</div>
@@ -255,19 +257,19 @@ class Debug extends Component {
 							}
 						})
 					}}>{stepOptions}</select>
-					<Button color={"info"} onClick={() => this.props.timeStepSkipped(this.state.currentStep)}>Pass
-						step</Button>
-					<Button color={"info"} onClick={() => this.props.timeStepComplete(this.state.currentStep)}>Complete
-						Step</Button>
-					<Button color={"info"}
+					<button className={"btn btn-info"} onClick={() => this.props.timeStepSkipped(this.state.currentStep)}>Pass
+						step</button>
+					<button className={"btn btn-info"} onClick={() => this.props.timeStepComplete(this.state.currentStep)}>Complete
+						Step</button>
+					<button className={"btn btn-info"}
 					        onClick={() => this.props.timeStepChangeCurrent(this.state.currentStep)}>Change
 						current
 						step
-					</Button>
+					</button>
 				</div>
 				
 				
-				<Button color={"info"} onClick={this.props.gotoMainMenu}>Go to Main Menu</Button>
+				<button className={"btn btn-info"} onClick={this.props.gotoMainMenu}>Go to Main Menu</button>
 				
 				<h2>Current Scenario</h2>
 				{scenarioDebug}

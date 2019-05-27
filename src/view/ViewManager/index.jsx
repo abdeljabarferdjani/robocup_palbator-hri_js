@@ -40,10 +40,12 @@ class ViewManager extends Component {
 		console.debug(nextProps, prevState);
 		
 		
-		if (nextProps.view.currentView !== prevState.currentView) {
+		if (nextProps.view.currentView !== prevState.currentView || nextProps.view.currentData !== prevState.currentData) {
+			
 			return {
 				currentView: nextProps.view.currentView,
-				currentData: nextProps.view.currentData || {textToShow: "", choices: []}
+				// currentData: nextProps.view.currentData || {textToShow: "", choices: []}
+				currentData: nextProps.view.currentData
 			}
 		}
 		if (nextProps.scenario.current !== prevState.currentScenario) {

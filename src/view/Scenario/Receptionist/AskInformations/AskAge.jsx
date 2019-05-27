@@ -5,10 +5,10 @@ import {comAction} from "../../../../redux/actions/CommunicationAction";
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		sendAge: (dispatch, name) => {
+		sendName: (dispatch, name) => {
 			dispatch({
-				type: comAction.sendData.type,
-				dataType: comAction.sendData.dataType.age,
+				type: comAction.dataJs.type,
+				dataType: comAction.dataJs.dataType.age,
 				data: name
 			});
 			
@@ -80,7 +80,7 @@ class AskName extends Component {
 						        onClick={() => this.addNumber(0)}>0
 						</button>
 						<button className={"btn ok"}
-						        onClick={() => this.props.sendAge(this.props.dispatch, Number.parseInt(this.state.value))}>OK
+						        onClick={() => this.props.sendName(this.props.dispatch, Number.parseInt(this.state.value))}>OK
 						</button>
 					</div>
 				

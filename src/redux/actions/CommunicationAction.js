@@ -14,7 +14,7 @@ export const comAction = {
 			drink: "WORK_DONE/DRINK"
 		},
 	},
-	jsHeartBeat: {
+	jsHeartbeat: {
 		type: common.jsHeartbeat.reduxKey,
 		time: "__timestamp"
 	},
@@ -24,6 +24,14 @@ export const comAction = {
 		data: ""
 		
 	},
+	
+	extHeartbeat : {
+		type : "COM/EXT_HEARTBEAT",
+		time : {
+			gm : "_gmTimestamp",
+			lm : "_lmTimestamp"
+		}
+	}
 	
 	
 };

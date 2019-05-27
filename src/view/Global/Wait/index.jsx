@@ -14,6 +14,18 @@ class Wait extends Component {
 		}
 	}
 	
+	componentDidMount() {
+		const self = this;
+		setTimeout(() => {
+			self.setState(prev => {
+				return {
+					...prev,
+					remainingTime: prev.remainingTime - 1
+				}
+			})
+		}, 1000);
+	}
+	
 	
 	render() {
 		
@@ -21,8 +33,6 @@ class Wait extends Component {
 		
 		const minutes = remainingTime / 60;
 		remainingTime %= 60;
-		
-		
 		
 		
 		return (

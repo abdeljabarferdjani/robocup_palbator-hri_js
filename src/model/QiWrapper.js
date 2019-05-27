@@ -98,7 +98,7 @@ class QiWrapper {
 	}
 	
 	/**
-	 * @exampsle to get the event when pepper catch a touch : QiWrapper.listen("TouchChanged", (data) => {console.log(data)})
+	 * @example to get the event when pepper catch a touch : QiWrapper.listen("TouchChanged", (data) => {console.log(data)})
 	 * @param event {string} the event that will be subscribed
 	 * @param cb {function} the callback to do something when event is raised
 	 * @return {Promise<null>}
@@ -112,13 +112,25 @@ class QiWrapper {
 		
 	}
 	
+	
+	/**
+	 * @description get the value stored in a ALMemory
+	 * @param event {string} the name of the ALMemory
+	 * @returns {Promise<string>} the value in the ALMemory named {event}
+	 */
 	static getALValue(event) {
 		return QiWrapper.getInstanceSync().getAlValue(event)
 		
 	}
 	
+	/**
+	 * @description raise an ALMemory event
+	 * @param event {string} the name of the ALMemory
+	 * @param value {Object} the value of the event
+	 * @return {Promise} a promise that is resolved when event is raised.
+	 */
 	static raise(event, value) {
-		QiWrapper.getInstanceSync().raise(event, value)
+		return QiWrapper.getInstanceSync().raise(event, value)
 	}
 	
 	
@@ -133,8 +145,7 @@ class QiWrapper {
 		return new Promise(resolve =>
 			this.#AlMemory.subscriber(event).then(subscriber => {
 				subscriber.signal.connect(state => {
-					const dataParsed = JSON.parse(state);
-					cb(dataParsed);
+					cb(JSON.parse(state));
 				});
 				resolve(QiWrapper.logger.log("Listen at", event));
 				
@@ -145,23 +156,24 @@ class QiWrapper {
 	 * @description Set the value in a ALMemory
 	 * @param event {string} the name of the ALMemory
 	 * @param value {Object} the value of the event
+	 *
 	 */
 	setALValue(event, value) {
 		value = QiWrapper.toJson(value);
 		QiWrapper.logger.log("Set ALValue on " + event, value);
 		
-		this.#AlMemory.insertData(event, value);
+		console.log("Set Value", this.#AlMemory.insertData(event, value));
 		
 	}
 	
 	/**
-	 * @description get an ALMemory value
+	 * @description get the value stored in a ALMemory
 	 * @param event {string} the name of the ALMemory
-	 * @returns {Promise<any>} the value in the almemoryValue named {event}
+	 * @returns {Promise<string>} the value in the ALMemory named {event}
 	 */
-	getAlValue(event) {
+	async getAlValue(event) {
 		const value = this.#AlMemory.getData(event);
-		QiWrapper.logger.log(`getAlValue from ${event}`, value);
+		QiWrapper.logger.log(`getAlValue from ${event}`, await value);
 		return value;
 		
 	}
@@ -170,7 +182,7 @@ class QiWrapper {
 	 * @description raise an ALMemory event
 	 * @param event {string} the name of the ALMemory
 	 * @param value {Object} the value of the event
-	 *
+	 * @return {Promise} a promise that is resolved when event is raised.
 	 */
 	raise(event, value) {
 		

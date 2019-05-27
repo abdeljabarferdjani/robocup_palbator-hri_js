@@ -9,10 +9,10 @@ const {drinks : offlineDrinks} = ConfigWrapper.get();
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		sendAge : (dispatch, name) => {
+		sendName : (dispatch, name) => {
 			dispatch({
-				type : comAction.sendData.type,
-				dataType: comAction.sendData.dataType.drink,
+				type : comAction.dataJs.type,
+				dataType: comAction.dataJs.dataType.drink,
 				data : name
 			});
 			
@@ -26,7 +26,7 @@ class AskName extends Component {
 	
 	render() {
 		
-		const textToShow = this.props.textToShow || "Hello X, what is your prefered drinks ?";
+		const textToShow = this.props.textToShow  || "Hello X, what is your prefered drinks ?";
 		
 		const names = (this.props.choices.length > 0) ? this.props.choices : offlineDrinks;
 		
@@ -34,7 +34,7 @@ class AskName extends Component {
 			<div id={"AskDrink"}>
 				<h2 className={"viewTitle"}>{textToShow}</h2>
 				<div className="drinks">
-					{names.map(name => <SpeakableButton  onClick={() => this.props.sendAge(this.props.dispatch, name)}>{name}</SpeakableButton>)}
+					{names.map(name => <SpeakableButton  onClick={() => this.props.sendName(this.props.dispatch, name)}>{name}</SpeakableButton>)}
 				</div>
 			</div>
 		);

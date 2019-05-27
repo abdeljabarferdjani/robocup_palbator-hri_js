@@ -1,5 +1,5 @@
 
-.btn {
+.btn, button {
     display: inline-block;
     font-weight: 400;
     text-align: center;

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import Button from "reactstrap/es/Button";
 import {connect} from "react-redux";
 import ConfigWrapper from "../../../controller/ConfigWrapper";
 import QiWrapper from "../../../model/QiWrapper";
 
-const {apis : {generalManagerHRI}} = ConfigWrapper.get();
+const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -41,16 +40,16 @@ class MainMenu extends Component {
 		
 		return (
 			<div>
-				<Button color={"info"}
+				<button className={"btn btn-info"}
 				        onClick={() => this.props.currentScenario("servingDrinks")}
-				        size={"lg"}>
+				>
 					Serving Drinks
-				</Button>
-				<Button color={"info"}
+				</button>
+				<button className={"btn btn-info"}
 				        onClick={() => this.props.currentScenario("receptionist")}
-				        size={"lg"}>
+				>
 					Receptionist
-				</Button>
+				</button>
 				{/*<Button color={"info"}*/}
 				{/*        onClick={() => this.props.currentScenario(scenario.mainMenu)}*/}
 				{/*        size={"lg"}>*/}
