@@ -49,7 +49,7 @@ class TimeBoard extends Component {
 	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
-		// console.warn("HEY ! ", JSON.parse(JSON.stringify(nextProps)), JSON.parse(JSON.stringify(prevState)));
+		console.warn("HEY ! ");
 		
 		if (prevState.visible !== nextProps.view.componentVisibility.timeBoard) {
 			// console.warn("HEY 1");
@@ -63,8 +63,19 @@ class TimeBoard extends Component {
 		const newSortedSteps = TimeBoard.createStepFromProps(nextProps);
 		
 		
-		if (newSortedSteps[0] !== prevState.sortedSteps[0])
+		console.debug(newSortedSteps, prevState.sortedSteps);
+		
+		
+		if (
+			(
+				newSortedSteps[0] !== undefined
+				&& prevState.sortedSteps[0] !== undefined
+				&& newSortedSteps[0].id !== prevState.sortedSteps[0].id
+			)
+			|| newSortedSteps.length !== prevState.sortedSteps.length)
 		{
+			
+			console.warn("HEY 2", newSortedSteps[0] !== prevState.sortedSteps[0], newSortedSteps.length !== prevState.sortedSteps.length);
 			return {
 				sortedSteps: TimeBoard.createStepFromProps(nextProps),
 				globalElapsedTime: nextProps.time.globalElapsedTime,
@@ -141,7 +152,7 @@ class TimeBoard extends Component {
 			steps.push(<Step step={step} key={index}/>);
 		}));
 		
-		if(steps.length > 0) {
+		if (steps.length > 0) {
 			return (
 				<div className={className}>
 					<h1 className={"componentTitle"}>Steps</h1>
@@ -150,13 +161,12 @@ class TimeBoard extends Component {
 					</div>
 				</div>
 			);
-		}
-		else {
+		} else {
 			return (
 				<div className={className + " hidden"}/>
 			)
 		}
-	
+		
 	}
 }
 

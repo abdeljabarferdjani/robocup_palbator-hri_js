@@ -25,9 +25,9 @@ class Step extends Component {
 	static propTypes = {
 		currentTime: PropTypes.number, // only supplied if it's the current Step
 		step: PropTypes.shape({
-			status : PropTypes.oneOf(Step.Status.current, Step.Status.todo, Step.Status.skipped, Step.Status.done),
-			eta : PropTypes.number.isRequired,
-			name : PropTypes.string.isRequired
+			status: PropTypes.oneOf(Step.Status.current, Step.Status.todo, Step.Status.skipped, Step.Status.done),
+			eta: PropTypes.number.isRequired,
+			name: PropTypes.string.isRequired
 		}).isRequired
 	};
 	
@@ -68,10 +68,7 @@ class Step extends Component {
 				currentTime: nextProps.time.stepElapsedTime
 			}
 			
-			
 		}
-		
-		
 		return null;
 	}
 	
@@ -83,19 +80,15 @@ class Step extends Component {
 		
 		let className = `Step ${this.props.step.status}`;
 		
-		// console.log(this.props.step);
-		
-		
-		
-		
-		// Step.logger.log("render", this.props.step);
 		const eta = Math.round(this.props.step.eta - currentTime);
 		Step.logger.log("Render ETA", this.props.step.eta);
 		return (
 			<div className={className}>
-				<p>{this.props.step.name} </p> <span className="eta">{eta}s</span>
+				<p>{this.props.step.name} </p> <span
+				className="eta">{eta}s</span>
 				
-				<ProgressBar ref={this.state.progressBarRef} current={currentTime}
+				<ProgressBar ref={this.state.progressBarRef}
+				             current={currentTime}
 				             max={this.props.step.eta}/>
 			
 			</div>
