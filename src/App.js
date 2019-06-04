@@ -40,7 +40,13 @@ class App extends Component {
 	
 	render() {
 		
-		console.log(this.props, this.state);
+		let scenarioName;
+		
+		if (this.state.scenario !== undefined) {
+			scenarioName = this.state.scenario.name
+		} else {
+			scenarioName = "No scenario loaded"
+		}
 		
 		return (
 			<div className={"App"}>
@@ -53,7 +59,7 @@ class App extends Component {
 					<div id="header">
 						
 						<div className="component scenarioTitle">
-							<h1>{this.state.scenario.name}</h1>
+							<h1>{scenarioName}</h1>
 						
 						</div>
 						

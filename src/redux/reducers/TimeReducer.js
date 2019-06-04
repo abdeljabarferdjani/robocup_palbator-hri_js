@@ -3,10 +3,7 @@ import debug from '../../config/log';
 import Logger from "../../dev/Logger";
 import Timer from "../../model/Timer";
 import ConfigWrapper from "../../controller/ConfigWrapper";
-import ALMemoryBridge, {
-	getScenarioSteps,
-	getStepById
-} from "../../controller/ALMemoryBridge";
+import {getStepById} from "../../controller/ALMemoryBridge";
 
 
 const logger = new Logger(debug.reducer.time, "TimeReducer");
@@ -24,7 +21,8 @@ const init = (state, steps) => {
 			name: jsonValue.name,
 			eta: jsonValue.eta,
 			order: jsonValue.order,
-			id: jsonValue.id
+			id: jsonValue.id,
+			action: jsonValue.action
 			
 		}
 	};
@@ -33,7 +31,6 @@ const init = (state, steps) => {
 		state.todoSteps.push(getDataFromJson(steps[key]));
 	});
 	
-	console.log("State,", state, DEFAULT_STATE);
 	
 	return state
 };
@@ -60,19 +57,11 @@ function getDefaultState() {
 
 const INITIAL_STATE = init(getDefaultState(), []);
 
-
-function undefinedActionStep(action) {
-	return (action.step === undefined)
-}
-
-
 const possibleActionType = [];
 Object.keys(timeAction).forEach(key => {
 	possibleActionType.push(timeAction[key].type)
 });
 
-
-console.log("Possible actions : ", possibleActionType);
 
 const timeReducer = (state = INITIAL_STATE, action) => {
 	
@@ -84,7 +73,6 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 		console.log("Action : ", action);
 		
 		switch (action.type) {
-			
 			
 			
 			case timeAction.passSecond.type:
@@ -110,28 +98,34 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				
 				if (action.stepId !== undefined) {
-					
-					console.log("ChangeCurrentStep", action);
+					console.log("HEY 1")
 					
 					stepIndex = clonedState.todoSteps.findIndex(step => step.id === action.stepId);
+					
+					console.log("HEY 2", stepIndex)
 					
 					clonedState.stepElapsedTime = 0;
 					
 					todoStep = [...state.todoSteps];
 					const step = todoStep.splice(stepIndex, 1)[0];
 					
+					console.log("HEY 2.5", step)
 					if (clonedState.currentStep !== null) {
+						console.log("HEY 3")
 						todoStep.push(clonedState.currentStep);
 					}
 					
 					clonedState = {
 						...clonedState,
 						currentStep: {
-							...clonedState.currentStep,
 							...step
 						},
 						todoSteps: todoStep
 					};
+					
+					console.warn("HEY 4", clonedState)
+					
+					
 				} else {
 					logger.warn(timeAction.currentStep.type, "Care try to currentStep with an undefined step");
 					
@@ -231,9 +225,24 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				logger.debug("You are un replaceAllSteps reducer", action);
 				if (action.steps.length !== undefined) {
-					logger.debug("B", clonedState);
-					clonedState = init(getDefaultState(), action.steps);
-					logger.debug("A", clonedState);
+					
+					const steps = [];
+					console.warn(1, clonedState, steps);
+					
+					action.steps.forEach(step => {
+						// Add only title steps (in blue in excel)
+						if (step.action === "") {
+							steps.push(step);
+						}
+						
+						
+					});
+					
+					logger.debug("replace B", clonedState);
+					clonedState = init(getDefaultState(), steps);
+					logger.debug("replace A", clonedState);
+					console.warn(2, clonedState, steps)
+					
 				}
 				
 				break;

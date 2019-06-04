@@ -38,17 +38,18 @@
     background-color: #ffc107;
     border-color: #ffc107;
 }
+
 .btn-info {
     background-color: #3aa6ff;
-    color:white;
+    color: white;
 }
 
 .btn-danger {
     background: red;
-    color:white;
+    color: white;
 }
 
 .btn-classic {
     background-color: #888888;
-    color : whitesmoke;
+    color: whitesmoke;
 }

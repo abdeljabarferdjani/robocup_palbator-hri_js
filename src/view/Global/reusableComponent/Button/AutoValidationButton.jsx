@@ -9,9 +9,10 @@ class AutoValidationButton extends Component {
 	
 	
 	static propTypes = {
-		timeout : PropTypes.number.isRequired, // timeout in second before the button is automaticly pressed.
+		timeout: PropTypes.number.isRequired, // timeout in second before the button is automaticly pressed.
 		...SpeakableButton.propTypes
 	};
+	subButton = React.createRef();
 	
 	static drawToXY(canvas, x, y) {
 		
@@ -26,6 +27,10 @@ class AutoValidationButton extends Component {
 		ctx.stroke();
 	}
 	
+	componentWillUnmount() {
+		clearInterval(this.inter)
+	}
+	
 	componentDidMount() {
 		const canvas = document.querySelector("canvas#canvasOK");
 		const ctx = canvas.getContext("2d");
@@ -34,18 +39,15 @@ class AutoValidationButton extends Component {
 		canvas.height = ReactDOM.findDOMNode(this).clientHeight;
 		canvas.width = ReactDOM.findDOMNode(this).clientWidth;
 		
-		console.log(canvas.height, canvas.width);
-		
 		
 		ctx.moveTo(canvas.width / 2, canvas.height / 2);
 		
 		let i = 0;
 		
-		const inter = setInterval(() => {
+		this.inter = setInterval(() => {
 			if (i > Math.PI * 2)
 			{
-				clearInterval(inter);
-				console.log("Ref : ", this.subButton);
+				clearInterval(this.inter);
 				ReactTestUtils.Simulate.click(ReactDOM.findDOMNode(this.subButton));
 			} else {
 				AutoValidationButton.drawToXY(canvas, canvas.width * Math.cos(i) + canvas.height / 2, canvas.height * Math.sin(i) + canvas.height / 2);
@@ -61,16 +63,13 @@ class AutoValidationButton extends Component {
 		
 	}
 	
-	subButton = React.createRef();
-	
-	
 	render() {
 		return (
 			<div className={"AutoValidationButton"}>
 				
 				<SpeakableButton color={this.props.color}
-			                    onClick={this.props.onClick}
-								ref={ref => this.subButton = ref}>
+				                 onClick={this.props.onClick}
+				                 ref={ref => this.subButton = ref}>
 					<span>
 						{this.props.children}
 					</span>

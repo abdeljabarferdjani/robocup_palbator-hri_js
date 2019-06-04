@@ -1,0 +1,26 @@
+div#chart {
+    width: 75%;
+    /*height: 50vh;*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 66vh;
+
+}
+
+div#Wait {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+div#chart span {
+    position: absolute;
+    left: calc(50% - 1.5rem);
+    top: calc(50% - 1.5rem);
+    font-size: 3rem;
+}

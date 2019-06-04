@@ -8,7 +8,6 @@ import drinks from '../config/drinks';
 import names from '../config/people'
 import scenario from '../config/scenario'
 import Logger from "../dev/Logger";
-import views from '../config/views'
 // import ALMemoryEvent from '../config/almemoryEvent'
 
 /**
@@ -26,10 +25,10 @@ export default class ConfigWrapper
 	
 	static #_scenario;
 	
+	static #_locations
 	
 	static #_apis;
 	
-	static #_views;
 	
 	static logger = new Logger(true, "ConfigWrapper");
 	
@@ -73,31 +72,31 @@ export default class ConfigWrapper
 				)
 			);
 			
-			// --- Scenario ---
-			ConfigWrapper.#_scenario = JSON.parse(
+			ConfigWrapper.#_locations = JSON.parse(
 				await QiWrapper.getALValue(
-					ConfigWrapper.#_apis.common.AL_VALUE.scenario
+					ConfigWrapper.#_apis.common.AL_VALUE.locations
 				)
 			);
 			
-			const scenarioKeys = Object.keys(ConfigWrapper.#_scenario);
-			scenarioKeys.forEach(scenarKey => {
-				
-				let order = 0;
-				const stepsKeys = Object.keys(ConfigWrapper.#_scenario[scenarKey].steps);
-				console.log("Current Scenar :", ConfigWrapper.#_scenario[scenarKey]);
-				stepsKeys.forEach(stepKey => {
-					
-					ConfigWrapper.#_scenario[scenarKey].steps[stepKey].order = order++;
-				})
-			});
+			// --- Scenario ---
+			// ConfigWrapper.#_scenario = JSON.parse(
+			// 	await QiWrapper.getALValue(
+			// 		ConfigWrapper.#_apis.common.AL_VALUE.scenario
+			// 	)
+			// );
+			//
+			// const scenarioKeys = Object.keys(ConfigWrapper.#_scenario);
+			// scenarioKeys.forEach(scenarKey => {
+			//
+			// 	let order = 0;
+			// 	const stepsKeys = Object.keys(ConfigWrapper.#_scenario[scenarKey].steps);
+			// 	stepsKeys.forEach(stepKey => {
+			// 		// todo make order great again in new scenario
+			// 		ConfigWrapper.#_scenario[scenarKey].steps[stepKey].order = order++;
+			// 	})
+			// });
 			
 			
-			ConfigWrapper.#_views = JSON.parse(
-				await QiWrapper.getALValue(
-					ConfigWrapper.#_apis.common.AL_VALUE.views
-				)
-			)
 		} else {
 			
 			ConfigWrapper.logger.log("ConfigWrapper logged from src");
@@ -106,12 +105,9 @@ export default class ConfigWrapper
 			ConfigWrapper.#_names = names;
 			ConfigWrapper.#_drinks = drinks;
 			ConfigWrapper.#_scenario = scenario;
-			ConfigWrapper.#_views = views;
+			// ConfigWrapper.#_views = views;
 			
 		}
-		
-		
-		console.log(ConfigWrapper.get());
 		
 		
 	}
@@ -119,7 +115,7 @@ export default class ConfigWrapper
 	
 	/**
 	 *
-	 * @return {{apis : {common, tabletLM, generalManagerHRI}, names, scenario, drinks, views}}
+	 * @return {{apis : {common, tabletLM, generalManagerHRI}, names, locations, drinks}}
 	 */
 	static get() {
 		
@@ -127,13 +123,12 @@ export default class ConfigWrapper
 		return {
 			drinks: ConfigWrapper.#_drinks,
 			names: ConfigWrapper.#_names,
+			locations: ConfigWrapper.#_locations,
 			apis: {
 				common: ConfigWrapper.#_apis.common,
 				tabletLM: ConfigWrapper.#_apis.tabletLM,
 				generalManagerHRI: ConfigWrapper.#_apis.generalManagerHRI
-			},
-			scenario: ConfigWrapper.#_scenario,
-			views: ConfigWrapper.#_views
+			}
 		}
 	}
 	

@@ -6,14 +6,11 @@ import {comAction} from "../../redux/actions/CommunicationAction";
 import './Debug.css'
 import ConfigWrapper from "../../controller/ConfigWrapper";
 import QiWrapper from "../../model/QiWrapper";
-import DebugServingDrinks from "../Scenario/ServingDrinks/DebugServingDrinks";
-import DebugReceptionist from "../Scenario/Receptionist/DebugReceptionist";
-import ViewManager from "../ViewManager";
 import ViewSimulator from "./ViewSimulator";
+import ComponentTitle from "../Global/reusableComponent/ComponentTitle";
 
-const steps = [];
 
-const {apis : {common : apiCommon, tabletLM : apiTabletLM, generalManagerHRI: apiGeneralManagerHRI}, scenario} = ConfigWrapper.get();
+const {apis: {common: apiCommon, tabletLM: apiTabletLM, generalManagerHRI: apiGeneralManagerHRI}} = ConfigWrapper.get();
 
 function mapStateToProps(state) {
 	return {
@@ -86,7 +83,7 @@ function mapDispatchToProps(dispatch) {
 			QiWrapper.raise(apiTabletLM.changeCurrentView.ALMemory, {view: "mainMenu"})
 		},
 		
-		timeStepComplete: function (steps, taskId) {
+		timeStepComplete: function () {
 			
 			QiWrapper.raise(apiGeneralManagerHRI.stepCompleted.ALMemory, {step: null})
 		},
@@ -113,23 +110,22 @@ function mapDispatchToProps(dispatch) {
 
 class Debug extends Component {
 	
-	static getDerivedStateFromProps(nextProps, prevState) {
-		if(prevState.currentScenario !== nextProps.currentScenario) {
-			return {
-				currentScenario : nextProps.currentScenario
-			}
-		}
-		return null;
-	}
-	
 	constructor(props) {
 		super(props);
 		this.state = {
 			currentStep: null,
-			currentScenario : this.props.scenario.current
+			currentScenario: this.props.scenario.current
 		}
 	}
 	
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if (prevState.currentScenario !== nextProps.currentScenario) {
+			return {
+				currentScenario: nextProps.currentScenario
+			}
+		}
+		return null;
+	}
 	
 	render() {
 		
@@ -138,48 +134,11 @@ class Debug extends Component {
 		
 		let scenarioDebug = null;
 		
-		switch (this.props.scenario.current.name) {
-			case scenario.mainMenu.name:
-				steps.length = 0;
-				steps.push(...scenario.mainMenu.steps);
-				break;
-			
-			
-			case scenario.servingDrinks.name:
-				scenarioDebug = <DebugServingDrinks steps={scenario.servingDrinks.steps}/>;
-				steps.length = 0;
-				steps.push(...scenario.servingDrinks.steps);
-				break;
-			
-			
-			case scenario.receptionist.name:
-				scenarioDebug =
-					<DebugReceptionist steps={scenario.receptionist.steps} changeView={this.props.changeView}/>;
-				steps.length = 0;
-				steps.push(...scenario.receptionist.steps);
-				break;
-			default:
-				break;
-			
-		}
-		
-		
 		const toolbarState = toolbarAction.toolbarState.state;
-		
-		
-		const stepOptions = [];
-		
-		console.log("I m here, ", steps);
-		
-		steps.forEach((step) => {
-			stepOptions.push(
-				<option value={step.id}>{step.name}</option>
-			)
-		});
 		
 		return (
 			<div className={className}>
-				<h1>Debug</h1>
+				<ComponentTitle>Debug</ComponentTitle>
 				
 				<div id="redux">
 					<h2>REDUX</h2>
@@ -193,7 +152,9 @@ class Debug extends Component {
 						
 						<button
 							onClick={() => this.props.toggleTimeBoardVisibilty(this.props.view.componentVisibility.timeBoard)}
-							className={"btn btn-info"}>Toggle timeBoard Visibility</button>
+							className={"btn btn-info"}>Toggle timeBoard
+							Visibility
+						</button>
 					</div>
 					
 					<div id="toolbar">
@@ -221,7 +182,9 @@ class Debug extends Component {
 					</div>
 					<div id="communication">
 						<h3>Communication</h3>
-						<button className={"btn btn-info"} onClick={() => this.props.jsHeartbeat()}>Heartbeats</button>
+						<button className={"btn btn-info"}
+						        onClick={() => this.props.jsHeartbeat()}>Heartbeats
+						</button>
 						
 						<div id="taskRecieved">
 							<button className={"btn btn-info"} onClick={() => {
@@ -238,29 +201,27 @@ class Debug extends Component {
 						
 						<button className={"btn btn-danger"}
 						        onClick={() => this.props.timeToggleTimer(apiGeneralManagerHRI.timerState.state.on)}>Start
-							timer</button>
+							timer
+						</button>
 						<button className={"btn btn-danger"}
 						        onClick={() => this.props.timeToggleTimer(apiGeneralManagerHRI.timerState.state.off)}>Stop
-							timer</button>
+							timer
+						</button>
 					
 					</div>
 				</div>
 				
 				
 				<div id="steps">
-					<select onChange={evt => {
-						evt.persist();
-						this.setState(prev => {
-							return {
-								...prev,
-								currentStep: Number.parseInt(evt.target.value)
-							}
-						})
-					}}>{stepOptions}</select>
-					<button className={"btn btn-info"} onClick={() => this.props.timeStepSkipped(this.state.currentStep)}>Pass
-						step</button>
-					<button className={"btn btn-info"} onClick={() => this.props.timeStepComplete(this.state.currentStep)}>Complete
-						Step</button>
+					
+					<button className={"btn btn-info"}
+					        onClick={() => this.props.timeStepSkipped(this.state.currentStep)}>Pass
+						step
+					</button>
+					<button className={"btn btn-info"}
+					        onClick={() => this.props.timeStepComplete()}>Complete
+						Step
+					</button>
 					<button className={"btn btn-info"}
 					        onClick={() => this.props.timeStepChangeCurrent(this.state.currentStep)}>Change
 						current
@@ -269,7 +230,9 @@ class Debug extends Component {
 				</div>
 				
 				
-				<button className={"btn btn-info"} onClick={this.props.gotoMainMenu}>Go to Main Menu</button>
+				<button className={"btn btn-info"}
+				        onClick={this.props.gotoMainMenu}>Go to Main Menu
+				</button>
 				
 				<h2>Current Scenario</h2>
 				{scenarioDebug}

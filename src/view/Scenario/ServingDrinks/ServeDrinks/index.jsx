@@ -4,7 +4,7 @@ class ServeDrinks extends Component {
 	render() {
 		return (
 			<div>
-				
+			
 			</div>
 		);
 	}

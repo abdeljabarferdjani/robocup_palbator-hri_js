@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg height="42pt" width="42pt" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-     viewBox="0 0 591.146 591.146" style="enable-background:new 0 0 591.146 591.146;" xml:space="preserve">
+<svg height="42pt" width="42pt" version="1.1" id="Capa_1"
+     xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     viewBox="0 0 591.146 591.146"
+     style="enable-background:new 0 0 591.146 591.146;" xml:space="preserve">
 <g>
 	<g>
 		<g id="filled_outline_10_">
@@ -16,8 +18,10 @@
             <path style="fill:#FDB62F;" d="M169.895,277.188L285.72,103.451c3.606-5.439,10.946-6.926,16.385-3.32
 				c1.32,0.877,2.443,2,3.32,3.32l115.825,173.738c3.626,5.429,2.158,12.769-3.271,16.394c-1.951,1.301-4.237,1.99-6.581,1.99
 				h-231.67c-6.532,0-11.823-5.291-11.823-11.823C167.905,281.415,168.595,279.129,169.895,277.188z"/>
-            <rect x="285.72" y="157.639" style="fill:#126099;" width="19.705" height="68.967"/>
-            <rect x="285.72" y="246.311" style="fill:#126099;" width="19.705" height="19.705"/>
+            <rect x="285.72" y="157.639" style="fill:#126099;" width="19.705"
+                  height="68.967"/>
+            <rect x="285.72" y="246.311" style="fill:#126099;" width="19.705"
+                  height="19.705"/>
             <polygon style="fill:#C7CACC;"
                      points="350.205,472.917 344.835,443.359 246.311,443.359 240.941,472.917 			"/>
             <path d="M541.884,29.557H49.262C22.069,29.587,0.03,51.627,0,78.819v325.13c0.03,27.193,22.069,49.233,49.262,49.262h185.226

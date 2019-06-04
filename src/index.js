@@ -10,6 +10,7 @@ import ConfigWrapper from "./controller/ConfigWrapper";
 
 async function initApp() {
 	const qi = await QiWrapper.createInstance();
+	console.log(qi);
 	await ConfigWrapper.setConfigFromALMemory();
 	
 	const ALMemoryBridge = require("./controller/ALMemoryBridge").default;
@@ -20,7 +21,7 @@ async function initApp() {
 	const Provider = require("react-redux").Provider;
 	const getStore = require("./redux/Store").default;
 	const Debug = require("./view/Debug/Debug").default;
-
+	
 	ReactDOM.render(<Provider store={getStore()}>
 		<App/>
 		<Debug/>
@@ -29,9 +30,7 @@ async function initApp() {
 	
 }
 
-initApp().catch(e => {
-	console.error("An error occured in DetailDrinks.js", e);
-}).then(() => {
+initApp().then(() => {
 	console.log("App Loaded")
 });
 

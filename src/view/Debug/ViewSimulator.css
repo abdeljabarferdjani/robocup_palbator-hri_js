@@ -1,11 +1,11 @@
-div#ViewSimulator > form{
+div#ViewSimulator > form {
     display: flex;
     flex-direction: row;
     justify-content: left;
     align-items: center;
 }
 
-div#ViewSimulator > form  > div {
+div#ViewSimulator > form > div {
     display: flex;
     flex-direction: column;
     justify-content: center;

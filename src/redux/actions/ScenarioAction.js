@@ -1,6 +1,6 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {apis : {generalManagerHRI}} = ConfigWrapper.get();
+const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
 export const scenarioAction = {
 	currentScenario: {

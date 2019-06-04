@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => {
 				data: name
 			});
 			
-			console.log("Click on " + name);
 		}
 	}
 };

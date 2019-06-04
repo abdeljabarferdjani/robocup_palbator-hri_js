@@ -37,8 +37,6 @@ class ViewManager extends Component {
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
-		console.debug(nextProps, prevState);
-		
 		
 		if (nextProps.view.currentView !== prevState.currentView || nextProps.view.currentData !== prevState.currentData) {
 			
@@ -61,7 +59,6 @@ class ViewManager extends Component {
 	render() {
 		
 		let comp;
-		console.log("Here", this.state.currentView, getClassFromView(this.state.currentView));
 		
 		if (this.state.currentView === null) {
 			comp = <MainMenu/>

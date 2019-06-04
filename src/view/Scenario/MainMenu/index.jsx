@@ -1,28 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import ConfigWrapper from "../../../controller/ConfigWrapper";
-import QiWrapper from "../../../model/QiWrapper";
+import {comAction} from "../../../redux/actions/CommunicationAction";
 
 const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		currentScenario: (scenario) => {
-			
-			
-			QiWrapper.raise(generalManagerHRI.currentScenario.ALMemory, {scenario: scenario})
-			//
-			// dispatch({
-			// 	type: scenarioAction.currentScenario.type,
-			// 	scenario: scenario
-			// })
-			//
-			// dispatch({
-			// 	type : timeAction.replaceAllSteps.type,
-			// 	steps : scenario.steps
-			// })
-			
+		
+		askToChangeScenario: scenarioName => {
+			dispatch({
+				type: comAction.askToChangeScenario.type,
+				scenario: scenarioName
+			})
 		}
+		
 	}
 };
 
@@ -37,19 +29,21 @@ class MainMenu extends Component {
 	
 	render() {
 		
+		const buttons = [];
+		
+		comAction.askToChangeScenario.scenario.forEach(scenario => {
+			buttons.push(
+				<button className={"btn btn-info"}
+				        onClick={() => this.props.askToChangeScenario(scenario)}>
+					{scenario}
+				</button>
+			)
+		});
+		
 		
 		return (
 			<div>
-				<button className={"btn btn-info"}
-				        onClick={() => this.props.currentScenario("servingDrinks")}
-				>
-					Serving Drinks
-				</button>
-				<button className={"btn btn-info"}
-				        onClick={() => this.props.currentScenario("receptionist")}
-				>
-					Receptionist
-				</button>
+				{buttons}
 				{/*<Button color={"info"}*/}
 				{/*        onClick={() => this.props.currentScenario(scenario.mainMenu)}*/}
 				{/*        size={"lg"}>*/}

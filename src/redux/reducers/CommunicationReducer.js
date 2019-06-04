@@ -1,15 +1,17 @@
 import {comAction} from "../actions/CommunicationAction";
-import QiWrapper from "../../model/QiWrapper";
 import Logger from "../../dev/Logger";
 import logConfig from '../../config/log'
-import ConfigWrapper from "../../controller/ConfigWrapper";
+import QiWrapper from "../../model/QiWrapper";
+import ConfigQiWrapper from "../../controller/ConfigWrapper";
+import ALMemoryBridge from "../../controller/ALMemoryBridge";
 
 
-const {apis: {generalManagerHRI, common, tabletLM},} = ConfigWrapper.get();
+const {apis: {generalManagerHRI, common, tabletLM},} = ConfigQiWrapper.get();
 
 const INITIAL_STATE = {
 	lastLocalManagerHeartbeat: null,
-	lastGeneralManagerHeartbeat: null
+	lastGeneralManagerHeartbeat: null,
+	delayWithPepper: 0
 };
 const logger = new Logger(logConfig.reducer.com, "ComReducer");
 
@@ -24,57 +26,61 @@ const comReducer = (state = INITIAL_STATE, action) => {
 		
 		if (possibleActionType.includes(action.type)) {
 			
-			const wrapper = QiWrapper.getInstanceSync();
 			
 			switch (action.type) {
 				case comAction.stepReceived.type:
 					
-					wrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
+					QiWrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
 					break;
 				
-				case comAction.stepCompleted.type:
-					
-					wrapper.raise(generalManagerHRI.stepCompleted.ALMemory, {step: action.step});
-					break;
+	
 				
 				case comAction.jsHeartbeat.type:
 					
-					wrapper.raise(common.jsHeartbeat.ALMemory, Date.now());
+					QiWrapper.raise(common.jsHeartbeat.ALMemory, Date.now());
 					break;
 				
 				case comAction.dataJs.type:
+						const {ALMemory} = tabletLM.dataJs;
 					
-					if (action.data !== undefined)
-					{
-						
-						const {ALMemory, dataType} = tabletLM.dataJs;
-						
-						// Check if the data to pass the name, the drink or the age of guest to LocalManager
-						// if ([dataType.drink, dataType.name, dataType.age, dataType.].includes(action.dataType))
-						
-						
-						const dataTypeKeys = Object.keys(dataType);
-						const possibleDataType = [];
-						
-						dataTypeKeys.forEach(key => {
-							possibleDataType.push(dataType[key]);
-						});
-						
-						if (possibleDataType.includes(action.dataType)) {
-							
-							logger.log("sendData : send : ", action);
-							wrapper.raise(ALMemory, {
-								dataType: action.dataType,
-								data: action.data
-							});
-						}
-						
-					}
+					// if (action.data !== undefined)
+					// {
+					//
+					//
+					// 	const dataTypeKeys = Object.keys(dataType);
+					// 	const possibleDataType = [];
+					//
+					// 	dataTypeKeys.forEach(key => {
+					// 		possibleDataType.push(dataType[key]);
+					// 	});
+					//
+					// 	if (possibleDataType.includes(action.dataType)) {
+					//
+					// 		logger.log("sendData : send : ", action);
+					// 		QiWrapper.raise(ALMemory, {
+					// 			dataType: action.dataType,
+					// 			data: action.data
+					// 		});
+					// 	}
+					//
+					// }
+					//
+					
+					QiWrapper.raise(ALMemory, {
+						dataType: action.dataType,
+						data: action.data
+					});
 					
 					break;
 				
-				
 				case comAction.extHeartbeat.type:
+					
+					
+					if (state.lastLocalManagerHeartbeat === null && action.time.lm !== undefined) {
+						state.delayWithPepper = Math.floor(Date.now() / 1000) - action.time.lm;
+						
+					}
+					
 					
 					state = {
 						...state,
@@ -84,8 +90,8 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					
 					const currentTime = Date.now() / 1000;
 					
-					let diffLM = (currentTime - state.lastLocalManagerHeartbeat);
-					const LMStr = "No heartbeats from LocalManager since " + diffLM
+					let diffLM = (currentTime - state.lastLocalManagerHeartbeat - state.delayWithPepper);
+					const LMStr = "No heartbeats from LocalManager since " + diffLM;
 					if (diffLM > 10) {
 						logger.error(LMStr)
 					} else if (diffLM > 5) {
@@ -103,10 +109,17 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					
 					logger.debug(currentTime);
 					
-					console.log(action, diffLM, diffGM)
 					break;
 				
-				default:
+				case comAction.askToChangeScenario.type:
+					QiWrapper.raise(generalManagerHRI.askToChangeScenario.ALMemory, {
+						scenario: action.scenario
+					});
+					break;
+					
+		
+					
+					default:
 					// console.warn("Unknown action on commmunication reducer", action);
 					break;
 				

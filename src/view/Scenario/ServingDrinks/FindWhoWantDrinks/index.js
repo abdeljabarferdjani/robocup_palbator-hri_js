@@ -4,7 +4,7 @@ class FindWhoWantDrinks extends Component {
 	render() {
 		return (
 			<div>
-				
+			
 			</div>
 		);
 	}

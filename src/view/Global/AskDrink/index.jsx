@@ -4,19 +4,20 @@ import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import './AskDrink.css'
-const {drinks : offlineDrinks} = ConfigWrapper.get();
+import ComponentTitle from "../reusableComponent/ComponentTitle";
+
+const {drinks: offlineDrinks} = ConfigWrapper.get();
 
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		sendName : (dispatch, name) => {
+		sendName: (dispatch, name) => {
 			dispatch({
-				type : comAction.dataJs.type,
+				type: comAction.dataJs.type,
 				dataType: comAction.dataJs.dataType.drink,
-				data : name
+				data: name
 			});
 			
-			console.log("Click on " + name);
 		}
 	}
 };
@@ -26,21 +27,27 @@ class AskName extends Component {
 	
 	render() {
 		
-		const textToShow = this.props.textToShow  || "Hello X, what is your prefered drinks ?";
+		const textToShow = this.props.textToShow || "Hello X, what is your prefered drinks ?";
 		
-		const names = (this.props.choices.length > 0) ? this.props.choices : offlineDrinks;
 		
+		let drinks;
+		if (this.props.choices.length > 0) {
+			drinks = this.props.choices;
+		} else {
+			drinks = [];
+			offlineDrinks.forEach(obj => drinks.push(obj.name))
+		}
 		return (
 			<div id={"AskDrink"}>
-				<h2 className={"viewTitle"}>{textToShow}</h2>
+				<ComponentTitle>{textToShow}</ComponentTitle>
 				<div className="drinks">
-					{names.map(name => <SpeakableButton  onClick={() => this.props.sendName(this.props.dispatch, name)}>{name}</SpeakableButton>)}
+					{drinks.map(drink => <SpeakableButton
+						onClick={() => this.props.sendName(this.props.dispatch, drink)}>{drink}</SpeakableButton>)}
 				</div>
 			</div>
 		);
 	}
 }
-
 
 
 export default connect(mapDispatchToProps)(AskName);

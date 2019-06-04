@@ -4,7 +4,7 @@ import './ViewSimulator.css'
 import QiWrapper from "../../model/QiWrapper";
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {apis : {generalManagerHRI}} = ConfigWrapper.get()
+const {apis: {tabletLM}} = ConfigWrapper.get();
 
 class ViewSimulator extends Component {
 	
@@ -18,7 +18,8 @@ class ViewSimulator extends Component {
 				'\t"imagePath": "",\n' +
 				'\t"choices": [],\n' +
 				'\t"people": {\n\t\t"who": {\n\t\t\t"name": "",\n\t\t\t"drinkId": 0\n\t\t}, \n\t\t"to": {\n\t\t\t"name": "",\n\t\t\t"drinkId": 1\n\t\t}\n\t},\n' +
-				'\t"location": ""\n' +
+				'\t"location": "",\n' +
+				'\t"time": 0\n' +
 				'}',
 		};
 	}
@@ -34,7 +35,7 @@ class ViewSimulator extends Component {
 	};
 	
 	handleJsonChange = evt => {
-		evt.persist()
+		evt.persist();
 		this.setState(prev => {
 			return {
 				...prev,
@@ -47,13 +48,12 @@ class ViewSimulator extends Component {
 		e.preventDefault();
 		
 		let json = this.state.currentJson.replaceAll("[\n\t]", "");
-		console.log("json : ", json);
 		json = JSON.parse(json);
 		
-		console.log("Submit", QiWrapper.raise(generalManagerHRI.currentView.ALMemory, {
-			data : json,
-			view : this.state.currentViewSelected
-		}));
+		QiWrapper.raise(tabletLM.currentView.ALMemory, {
+			data: json,
+			view: this.state.currentViewSelected
+		});
 	};
 	
 	render() {

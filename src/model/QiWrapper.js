@@ -147,7 +147,7 @@ class QiWrapper {
 				subscriber.signal.connect(state => {
 					cb(JSON.parse(state));
 				});
-				resolve(QiWrapper.logger.log("Listen at", event));
+				resolve(QiWrapper.logger.event("Listen at", event));
 				
 			}));
 	}
@@ -160,9 +160,8 @@ class QiWrapper {
 	 */
 	setALValue(event, value) {
 		value = QiWrapper.toJson(value);
-		QiWrapper.logger.log("Set ALValue on " + event, value);
-		
-		console.log("Set Value", this.#AlMemory.insertData(event, value));
+		QiWrapper.logger.event("Set ALValue on " + event, value);
+		this.#AlMemory.insertData(event, value)
 		
 	}
 	
@@ -172,9 +171,11 @@ class QiWrapper {
 	 * @returns {Promise<string>} the value in the ALMemory named {event}
 	 */
 	async getAlValue(event) {
-		const value = this.#AlMemory.getData(event);
-		QiWrapper.logger.log(`getAlValue from ${event}`, await value);
-		return value;
+		const promisedValue = this.#AlMemory.getData(event);
+		
+		let value = await promisedValue;
+		QiWrapper.logger.event(`getAlValue from ${event}`, value);
+		return promisedValue;
 		
 	}
 	
@@ -188,8 +189,17 @@ class QiWrapper {
 		
 		value = QiWrapper.toJson(value);
 		
-		if (!event.includes("R2019/Global/LmLogger"))
+		if (event.includes("R2019/Global/LmLogger"))
 			QiWrapper.logger.log(`Send on ${event}`, value, false);
+		else {
+			if (value.includes("eartbeat"))
+			{
+				QiWrapper.logger.heartbeat(`Send on ${event}`, value, true);
+			} else {
+				QiWrapper.logger.event(`Send on ${event}`, value, true)
+			}
+			
+		}
 		
 		return this.#AlMemory['raiseEvent'](event, value);
 	}

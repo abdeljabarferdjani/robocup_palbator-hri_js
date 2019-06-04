@@ -1,6 +1,6 @@
 import QiWrapper from "../model/QiWrapper";
 
-const [DEBUG, INFO, WARNING, ERROR] = [0, 1, 2, 3];
+const [HEARTBEAT, EVENT, DEBUG, INFO, WARNING, ERROR, CRITICAL] = [0, 1, 2, 3, 4, 5, 6];
 const loggerALMemory = "R2019/Global/LmLogger";
 export default class Logger {
 	
@@ -21,15 +21,8 @@ export default class Logger {
 		if (this.#state)
 		{
 			console.debug(`${this.#label}: ${funcName}`, x);
-			if (sendToLm)
-			{
-				QiWrapper.raise(loggerALMemory, {
-					message: `${funcName} ${x}`,
-					application: `${this.#label}`,
-					level: DEBUG
-					
-				});
-			}
+			this.sendToLm(sendToLm, funcName, x, DEBUG)
+			
 		}
 	}
 	
@@ -37,31 +30,28 @@ export default class Logger {
 		if (this.#state)
 		{
 			console.log(`${this.#label}: ${funcName}`, x);
-			if (sendToLm)
-			{
-				QiWrapper.raise(loggerALMemory, {
-					message: `${funcName} ${x}`,
-					application: `${this.#label}`,
-					level: INFO
-					
-				});
-			}
+			this.sendToLm(sendToLm, funcName, x, INFO);
 		}
 	}
 	
+	
+	sendToLm(sendToLm, funcName, x, level) {
+		if (sendToLm)
+		{
+			QiWrapper.raise(loggerALMemory, {
+				message: `${funcName} ${x}`,
+				application: `${this.#label}`,
+				level: level
+				
+			});
+		}
+	}
 	
 	warn(funcName, x = "", sendToLm = true) {
 		if (this.#state)
 		{
 			console.warn(`${this.#label}: ${funcName}`, x);
-			if (sendToLm) {
-				QiWrapper.raise(loggerALMemory, {
-					message: `${funcName} ${x}`,
-					application: `${this.#label}`,
-					level: WARNING
-					
-				});
-			}
+			this.sendToLm(sendToLm, funcName, x, WARNING)
 		}
 	}
 	
@@ -70,14 +60,35 @@ export default class Logger {
 		if (this.#state)
 		{
 			console.error(`${this.#label}: ${funcName}`, x);
-			if (sendToLm) {
-				QiWrapper.raise(loggerALMemory, {
-					message: `${funcName} ${x}`,
-					application: `${this.#label}`,
-					level: ERROR
-					
-				});
-			}
+			this.sendToLm(sendToLm, funcName, x, ERROR)
+			
+		}
+	}
+	
+	event(funcName, x = "", sendToLm = true) {
+		if (this.#state)
+		{
+			console.info(`${this.#label}: ${funcName}`, x);
+			this.sendToLm(sendToLm, funcName, x, EVENT)
+			
+		}
+	}
+	
+	cricical(funcName, x = "", sendToLm = true) {
+		if (this.#state)
+		{
+			console.error(`${this.#label}: ${funcName}`, x);
+			this.sendToLm(sendToLm, funcName, x, CRITICAL)
+			
+		}
+	}
+	
+	heartbeat(funcName, x = "", sendToLm = true) {
+		if (this.#state)
+		{
+			console.info(`${this.#label}: ${funcName}`, x);
+			this.sendToLm(sendToLm, funcName, x, HEARTBEAT)
+			
 		}
 	}
 	

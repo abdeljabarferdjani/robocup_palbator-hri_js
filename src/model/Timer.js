@@ -10,32 +10,36 @@ export default class Timer {
 	static #intervalId;
 	
 	static #lastTime;
+	static logger = new Logger(logConfig.Timer, "Timer");
 	
 	static stopTimer() {
 		clearInterval(Timer.#intervalId);
+		Timer.#intervalId = undefined
 	}
-	
-	static logger = new Logger(logConfig.Timer, "Timer");
 	
 	static startTimer() {
 		
-		Timer.#startTime = Date.now();
-		Timer.#lastTime = Date.now();
+		if (Timer.#intervalId === undefined) {
+			Timer.#startTime = Date.now();
+			Timer.#lastTime = Date.now();
+			
+			Timer.#intervalId = setInterval(() => {
+				const dateNow = Date.now();
+				dispatch({
+					type: timeAction.passSecond.type,
+					globalElapsedTime: Timer.getElapsedTime(Timer.#startTime, dateNow),
+					timeFromLastEvent: Timer.getElapsedTime(Timer.#lastTime, dateNow)
+				});
+				
+				Timer.logger.log(Timer.#lastTime);
+				
+				Timer.#lastTime = dateNow;
+				Timer.logger.log(Timer.#lastTime)
+				
+			}, 1000);
+		}
 		
-		Timer.#intervalId = setInterval(() => {
-			const dateNow = Date.now();
-			dispatch({
-				type: timeAction.passSecond.type,
-				globalElapsedTime: Timer.getElapsedTime(Timer.#startTime, dateNow),
-				timeFromLastEvent: Timer.getElapsedTime(Timer.#lastTime, dateNow)
-			});
-			
-			Timer.logger.log(Timer.#lastTime);
-			
-			Timer.#lastTime = dateNow;
-			Timer.logger.log(Timer.#lastTime)
-			
-		}, 1000);
+		
 	}
 	
 	

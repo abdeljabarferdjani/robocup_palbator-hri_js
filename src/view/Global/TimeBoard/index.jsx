@@ -48,8 +48,24 @@ class TimeBoard extends Component {
 		
 	}
 	
+	static compareSteps(nextSteps, oldSteps) {
+		
+		if (nextSteps.length !== oldSteps.length) {
+			return true
+		}
+		
+		for (let i = 0; i < nextSteps.length; i++) {
+			if(nextSteps[i] !== undefined && oldSteps[i] !== undefined) {
+				if(nextSteps[i].status !== oldSteps[i].status) {
+					return true
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 	static getDerivedStateFromProps(nextProps, prevState) {
-		console.warn("HEY ! ");
 		
 		if (prevState.visible !== nextProps.view.componentVisibility.timeBoard) {
 			// console.warn("HEY 1");
@@ -61,21 +77,9 @@ class TimeBoard extends Component {
 		}
 		
 		const newSortedSteps = TimeBoard.createStepFromProps(nextProps);
-		
-		
-		console.debug(newSortedSteps, prevState.sortedSteps);
-		
-		
-		if (
-			(
-				newSortedSteps[0] !== undefined
-				&& prevState.sortedSteps[0] !== undefined
-				&& newSortedSteps[0].id !== prevState.sortedSteps[0].id
-			)
-			|| newSortedSteps.length !== prevState.sortedSteps.length)
+		if (TimeBoard.compareSteps(newSortedSteps, prevState.sortedSteps))
 		{
-			
-			console.warn("HEY 2", newSortedSteps[0] !== prevState.sortedSteps[0], newSortedSteps.length !== prevState.sortedSteps.length);
+			console.warn("Hey 2.2")
 			return {
 				sortedSteps: TimeBoard.createStepFromProps(nextProps),
 				globalElapsedTime: nextProps.time.globalElapsedTime,
@@ -84,6 +88,7 @@ class TimeBoard extends Component {
 				todoSteps: [...nextProps.time.todoSteps],
 			}
 		}
+		
 		
 		return null;
 	}
@@ -125,7 +130,7 @@ class TimeBoard extends Component {
 		
 		steps.sort((stepA, stepB) => {
 			
-			return stepA.order < stepB.order ? -1 : 1;
+			return stepA.id < stepB.id ? -1 : 1;
 		});
 		
 		

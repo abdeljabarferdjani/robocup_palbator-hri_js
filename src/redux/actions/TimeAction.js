@@ -1,6 +1,6 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {apis : {generalManagerHRI}} = ConfigWrapper.get();
+const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
 
 export const timeAction = {
@@ -25,9 +25,9 @@ export const timeAction = {
 		state: generalManagerHRI.timerState.state,
 	},
 	
-	replaceAllSteps : {
+	replaceAllSteps: {
 		type: "REPLACE_ALL_STEPS",
-		steps : ["Steps"]
+		steps: ["Steps"]
 	}
 	
 };

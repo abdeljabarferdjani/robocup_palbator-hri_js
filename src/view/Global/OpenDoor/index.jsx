@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import ComponentTitle from "../reusableComponent/ComponentTitle";
 
 class OpenDoor extends Component {
 	render() {
 		return (
 			<div>
-				wait that door is opened
+				<ComponentTitle>Please open the door</ComponentTitle>
 			</div>
 		);
 	}

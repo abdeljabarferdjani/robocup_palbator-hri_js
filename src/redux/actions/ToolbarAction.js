@@ -1,6 +1,6 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {apis : {common}} = ConfigWrapper.get();
+const {apis: {common}} = ConfigWrapper.get();
 
 export const toolbarAction = {
 	

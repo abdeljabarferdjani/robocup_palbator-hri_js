@@ -1,4 +1,3 @@
-import ConfigWrapper from "./ConfigWrapper";
 import AskName from "../view/Global/AskName";
 import AskAge from "../view/Scenario/Receptionist/AskInformations/AskAge";
 import AskDrink from "../view/Global/AskDrink";
@@ -17,11 +16,11 @@ import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
 import MainMenu from '../view/Scenario/MainMenu/'
 import Wait from "../view/Global/Wait";
+import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
 
-const {views} = ConfigWrapper.get();
 
 const getClassFromView = (view) => {
-	return viewClassMap[view] ;
+	return viewClassMap[view];
 };
 
 /**
@@ -29,22 +28,23 @@ const getClassFromView = (view) => {
  * If you want to **add new views** you have to modify this object
  */
 const viewClassMap = {
-	[views.askName]: AskName,
-	[views.askDrink]: AskDrink,
-	[views.askAge]: AskAge,
-	[views.confirm]: Confirm,
-	[views.detailDrinks]: DetailDrinks,
-	[views.presentPerson]: PresentPeople,
-	[views.goTo]: GoTo,
-	[views.findAvailableDrinks]: FindAvailableDrinks,
-	[views.openDoor]: OpenDoor,
-	[views.findWhoWantsDrinks]: FindWhoWantsDrinks,
-	[views.serveDrinks] : ServeDrinks,
-	[views.findGuest]: FindGuest,
-	[views.seatGuest]: SeatGuest,
-	[views.askToFollow]: AskToFollow,
-	[views.mainMenu]: MainMenu,
-	[views.wait]: Wait
+	"askName": AskName,
+	"askDrink": AskDrink,
+	"askAge": AskAge,
+	"confirm": Confirm,
+	"detailDrinks": DetailDrinks,
+	"presentPerson": PresentPeople,
+	"goTo": GoTo,
+	"findAvailableDrinks": FindAvailableDrinks,
+	"openDoor": OpenDoor,
+	"findWhoWantsDrinks": FindWhoWantsDrinks,
+	"serveDrinks": ServeDrinks,
+	"findGuest": FindGuest,
+	"seatGuest": SeatGuest,
+	"askToFollow": AskToFollow,
+	"mainMenu": MainMenu,
+	"wait": Wait,
+	"askOpenDoor": AskOpenDoor
 	
 	
 };
@@ -56,7 +56,6 @@ const viewClassMap = {
 const getAllViewsKey = () => {
 	return Object.keys(viewClassMap);
 };
-
 
 
 export {

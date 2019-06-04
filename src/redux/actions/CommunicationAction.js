@@ -1,18 +1,15 @@
 import ConfigWrapper from "../../controller/ConfigWrapper";
 
-const {apis : {generalManagerHRI, common, tabletLM}} = ConfigWrapper.get();
+const {apis: {generalManagerHRI, common, tabletLM}} = ConfigWrapper.get();
 
 export const comAction = {
 	stepReceived: {
 		type: generalManagerHRI.stepReceived.reduxKey,
 	},
 	
+	// Never raise this event, @see dataJs
 	stepCompleted: {
 		type: generalManagerHRI.stepCompleted.reduxKey,
-		mode: {
-			user: "WORK_DONE/USER",
-			drink: "WORK_DONE/DRINK"
-		},
 	},
 	jsHeartbeat: {
 		type: common.jsHeartbeat.reduxKey,
@@ -25,13 +22,19 @@ export const comAction = {
 		
 	},
 	
-	extHeartbeat : {
-		type : "COM/EXT_HEARTBEAT",
-		time : {
-			gm : "_gmTimestamp",
-			lm : "_lmTimestamp"
+	extHeartbeat: {
+		type: "COM/EXT_HEARTBEAT",
+		time: {
+			gm: "_gmTimestamp",
+			lm: "_lmTimestamp"
 		}
-	}
+	},
+	
+	askToChangeScenario: {
+		type: generalManagerHRI.askToChangeScenario.reduxKey,
+		scenario: ["receptionist", "servingDrinks", "mainMenu"]
+	},
+
 	
 	
 };

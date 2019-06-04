@@ -5,47 +5,58 @@ import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import './AskName.css'
 import {UserComponentPropTypes} from "../../../dev/types";
-const {names : offlineName} = ConfigWrapper.get();
+import ComponentTitle from "../reusableComponent/ComponentTitle";
+
+const {names: offlineName} = ConfigWrapper.get();
 
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		sendName : (dispatch, name) => {
+		sendName: (dispatch, name) => {
 			dispatch({
-				type : comAction.dataJs.type,
+				type: comAction.dataJs.type,
 				dataType: comAction.dataJs.dataType.name,
-				data : name
+				data: name
 			});
 			
-			console.log("Click on " + name);
 		}
 	}
 };
 
- class AskName extends Component {
+class AskName extends Component {
 	
- 	static propTypes = {
- 		...UserComponentPropTypes
-    };
- 	
+	static propTypes = {
+		...UserComponentPropTypes
+	};
+	
 	
 	render() {
 		
 		const textToShow = this.props.textToShow || "Hello, what is your name ?";
 		
-		const names = (this.props.choices.length > 0) ? this.props.choices : offlineName;
+		let names;
+		if (this.props.choices.length > 0) {
+			names = this.props.choices;
+		} else {
+			names = [];
+			offlineName.forEach(obj => names.push(obj.name))
+		}
+		
+		
+		
+		console.log("Names", names, offlineName)
 		
 		return (
 			<div>
-				<h2 className={"viewTitle"}>{textToShow}</h2>
+				<ComponentTitle>{textToShow}</ComponentTitle>
 				<div className="names">
-					{names.map(name => <SpeakableButton  onClick={() => this.props.sendName(this.props.dispatch, name)}>{name}</SpeakableButton>)}
+					{names.map(name => <SpeakableButton
+						onClick={() => this.props.sendName(this.props.dispatch, name)}>{name}</SpeakableButton>)}
 				</div>
 			</div>
 		);
 	}
 }
-
 
 
 export default connect(mapDispatchToProps)(AskName);

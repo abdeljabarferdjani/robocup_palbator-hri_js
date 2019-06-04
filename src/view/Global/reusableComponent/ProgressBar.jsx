@@ -32,23 +32,11 @@ class ProgressBar extends Component {
 		}
 	}
 	
-	
-	changeCurrentValue = (newValue) => {
-		
-		this.setState(prev => {
-			return {
-				...prev,
-				current: newValue
-			}
-		}, () => ProgressBar.logger.log("changeCurrentValue : New state : ", this.state))
-	};
-	
 	static addToColor(color, field, value) {
 		if (color[field] !== undefined) {
 			color[field] = (color[field] + value < 255) ? color[field] + value : 255
 		}
 	}
-	
 	
 	static removeToColor(color, field, value) {
 		if (color[field] !== undefined) {
@@ -70,13 +58,22 @@ class ProgressBar extends Component {
 		return `#${getHexValue(color.r)}${getHexValue(color.g)}${getHexValue(color.b)}`
 	}
 	
+	changeCurrentValue = (newValue) => {
+		
+		this.setState(prev => {
+			return {
+				...prev,
+				current: newValue
+			}
+		}, () => ProgressBar.logger.log("changeCurrentValue : New state : ", this.state))
+	};
 	
 	render() {
 		
 		let percentLoad = 0;
 		
 		
-		if (this.state.current >= 0) {
+		if (this.state.current >= 0 && this.state.max > 0) {
 			
 			percentLoad = Math.round(this.state.current / this.state.max * 100);
 		}

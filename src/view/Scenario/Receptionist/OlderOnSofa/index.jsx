@@ -10,7 +10,6 @@ class OlderOnSofa extends Component {
 	render() {
 		
 		
-		
 		return (
 			<div>
 				Please let X on Sofa, old age is inevitable

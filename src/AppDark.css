@@ -36,7 +36,7 @@ div.component {
     margin: 1rem;
     background-color: #1E1E1E;
     border-radius: 0.2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,.16),0 2px 4px rgba(0,0,0,.23);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .16), 0 2px 4px rgba(0, 0, 0, .23);
 
 }
 
@@ -50,9 +50,7 @@ div.component.scenarioTitle {
 
 
 div.App {
-    background-color: #121212
-
-;
+    background-color: #121212;
     display: flex;
     flex-direction: row;
 }
@@ -91,9 +89,6 @@ div#rightPart > div#header {
 div.component > div {
     padding: 1rem;
 }
-
-
-
 
 
 div.App div.Toolbar {

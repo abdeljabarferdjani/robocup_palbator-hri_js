@@ -19,7 +19,8 @@ class Icon extends Component {
 		}
 		
 		return (
-			<img className={className} src={this.props.image} alt={this.props.description}
+			<img className={className} src={this.props.image}
+			     alt={this.props.description}
 			     title={this.props.copyright}/>
 		);
 	}

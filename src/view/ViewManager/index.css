@@ -2,12 +2,14 @@ div.App div.ViewManager {
     /*width: 95%;*/
     /*height: 76vh;*/
 }
+
 .viewTitle {
     text-align: center;
     padding: 1rem 0;
     font-size: calc(1.5rem + 0.25vw);
 }
-div.ViewManager >  div {
+
+div.ViewManager > div {
 
     /*height: 70vh;*/
 }

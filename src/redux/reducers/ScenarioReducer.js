@@ -1,22 +1,25 @@
 import {scenarioAction} from '../actions/ScenarioAction'
-import ConfigWrapper from "../../controller/ConfigWrapper";
-
-const {scenario} = ConfigWrapper.get();
 
 
 const INITIAL_STATE = {
-	current: scenario["mainMenu"]
+	current: {}
+	// todo scenario
 };
 
 
 export const scenarioReducer = (state = INITIAL_STATE, action) => {
 	
 	if (action.type === scenarioAction.currentScenario.type) {
+		
 		state = {
+			
 			...state,
-			current: action.scenario
+			
+			current: {
+				...action.scenario,
+			}
 		};
-	} else {
+		
 	}
 	
 	return state;

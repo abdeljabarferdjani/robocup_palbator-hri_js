@@ -13,7 +13,7 @@ let dispatch = null;
 let localStore;
 
 const getStore = () => {
-	if(localStore === undefined) {
+	if (localStore === undefined) {
 		let store;
 		if (logConfig.redux) {
 			const logger = createLogger({

@@ -43,7 +43,7 @@ div.component {
     background-color: #E0E0E0;
     border-radius: 0.8rem;
     /*box-shadow: 0 2px 4px rgba(0,0,0,.16),0 2px 4px rgba(0,0,0,.23);*/
-    box-shadow: 10px 10px 8px -6px rgba(194,194,194,1);
+    box-shadow: 10px 10px 8px -6px rgba(194, 194, 194, 1);
     z-index: 3;
 
 }
@@ -58,14 +58,14 @@ button.ok, button.btn-ok {
     color: white
 }
 
-button.no, button.btn-no{
+button.no, button.btn-no {
     background: #B67373;
-    color : white
+    color: white
 }
 
 button.warn {
     background: #b49124;
-    color : white
+    color: white
 }
 
 div.component.scenarioTitle {

@@ -10,11 +10,10 @@ function mapStateToProps(state) {
 export class SpeakableButton extends Component {
 	
 	static propTypes = {
-		onClick : PropTypes.func.isRequired,
+		onClick: PropTypes.func.isRequired,
 		color: PropTypes.oneOf(["info", "danger", "warning", "success", "ok", "no"])
 		
 	};
-	
 	
 	
 	render() {
@@ -22,9 +21,8 @@ export class SpeakableButton extends Component {
 		const color = this.props.color || "classic";
 		
 		
-		
 		return (
-			<button onClick={this.props.onClick} className={`btn btn-${color}`} >
+			<button onClick={this.props.onClick} className={`btn btn-${color}`}>
 				"{this.props.children}"
 			</button>
 		);

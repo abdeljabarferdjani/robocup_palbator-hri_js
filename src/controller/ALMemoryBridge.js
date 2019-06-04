@@ -10,7 +10,7 @@ import {scenarioAction} from "../redux/actions/ScenarioAction";
 import {comAction} from "../redux/actions/CommunicationAction";
 
 
-const {apis: {tabletLM, common, generalManagerHRI}, scenario} = ConfigWrapper.get();
+const {apis: {tabletLM, common, generalManagerHRI}} = ConfigWrapper.get();
 
 /**
  *
@@ -55,7 +55,7 @@ export default class ALMemoryBridge {
 			QiWrapper.listen(generalManagerHRI.stepSkipped.ALMemory, this.handleSetStepSkipped()),
 			QiWrapper.listen(generalManagerHRI.timerState.ALMemory, this.handleToggleTimer()),
 			QiWrapper.listen(generalManagerHRI.currentScenario.ALMemory, this.handleChangeCurrentScenario()),
-			QiWrapper.listen(generalManagerHRI.currentView.ALMemory, this.handleChangeCurrentView())
+			QiWrapper.listen(tabletLM.currentView.ALMemory, this.handleChangeCurrentView())
 		
 		]).then(() => QiWrapper.raise(tabletLM.tabletOperational.ALMemory, {time: Date.now()}))
 			.then(() => {
@@ -65,7 +65,7 @@ export default class ALMemoryBridge {
 					dispatch({
 						type: comAction.extHeartbeat.type,
 						time: {
-							lm: JSON.parse(await QiWrapper.getALValue(common.localManagerHeartbeat.ALMemory)).time ,
+							lm: JSON.parse(await QiWrapper.getALValue(common.localManagerHeartbeat.ALMemory)).time,
 							// gm: JSON.parse(await QiWrapper.getALValue(common.generalManagerHeartbeat.ALMemory)).time
 						}
 					})
@@ -92,20 +92,15 @@ export default class ALMemoryBridge {
 	
 	static handleChangeCurrentScenario = () => (data) => {
 		
+		dispatch({
+			type: scenarioAction.currentScenario.type,
+			scenario: data.scenario
+		});
 		
-		if (Object.keys(scenario).includes(data.scenario)) {
-			const newSenar = scenario[data.scenario];
-			
-			dispatch({
-				type: scenarioAction.currentScenario.type,
-				scenario: newSenar
-			});
-			
-			dispatch({
-				type: timeAction.replaceAllSteps.type,
-				steps: newSenar.steps
-			})
-		}
+		dispatch({
+			type: timeAction.replaceAllSteps.type,
+			steps: data.scenario.steps
+		})
 		
 		
 	};
@@ -134,18 +129,19 @@ export default class ALMemoryBridge {
 	
 	static handleStepCompleted = () => (data) => {
 		
-		if (data && data.step === null) {
+		if (data) {
 			dispatch({
-				type: generalManagerHRI.stepCompleted.reduxKey,
+				// type: generalManagerHRI.stepCompleted.reduxKey,
+				type : timeAction.stepCompleted.type
 			})
 		}
 	};
 	
 	static handleChangeCurrentStep = () => (data) => {
-		if (getStepById(data.stepId !== undefined)) {
+		if (getStepById(data.actionId !== undefined)) {
 			dispatch({
 				type: timeAction.currentStep.type,
-				stepId: data.stepId
+				stepId: data.actionId
 			});
 			
 		} else {
