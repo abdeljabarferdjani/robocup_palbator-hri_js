@@ -3,12 +3,15 @@ div.TimeBoard {
     flex-direction: column;
     justify-content: center;
     /*align-items: center;*/
-    height: 89vh;
+    height: 91vh;
     width: initial;
     padding: 0 !important;
 
 }
 
+div.TimeBoard .ComponentTitle {
+    margin-bottom: 3rem !important;
+}
 
 div.TimeBoard div#steps {
     /*display: flex;*/

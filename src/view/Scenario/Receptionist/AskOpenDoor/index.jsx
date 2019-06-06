@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch) => {
 		handleClick : () => {
 			dispatch({
 				type : comAction.dataJs.type,
-				data : {x : 1}
+				data : {}
 			})
 		}
 	}
@@ -29,7 +29,8 @@ class AskOpenDoor extends Component {
 	render() {
 		return (
 			<div>
-				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
+				<ComponentTitle>{this.props.textToShow.title}</ComponentTitle>
+				<p className="description">{this.props.textToShow.description}</p>
 				<button className={"btn btn-ok"} onClick={this.props.handleClick}>I opened the door</button>
 			</div>
 		);

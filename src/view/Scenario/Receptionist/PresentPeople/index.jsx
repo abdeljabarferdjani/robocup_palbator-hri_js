@@ -31,7 +31,7 @@ export class PresentPeople extends Component {
 		console.log(this);
 		
 		return (
-			<div id={"PresentPerson"}>
+			<div className={"PresentPerson"}>
 				<Guest drinkName={this.props.people.who.drink} name={this.props.people.who.name}/>
 				<Guest drinkName={this.props.people.to.drink} name={this.props.people.to.name}/>
 			</div>

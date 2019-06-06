@@ -20,7 +20,9 @@ div#Wait {
 
 div#chart span {
     position: absolute;
-    left: calc(50% - 1.5rem);
-    top: calc(50% - 1.5rem);
+    top: calc(50% - 1.8rem);
     font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    align-items: center;
 }

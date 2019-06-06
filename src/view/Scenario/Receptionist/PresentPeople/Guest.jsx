@@ -1,7 +1,7 @@
 import ConfigWrapper from "../../../../controller/ConfigWrapper";
 import React from "react";
 import PropTypes from "prop-types";
-
+import './Guest.css'
 const {drinks} = ConfigWrapper.get();
 
 class Guest extends React.Component {
