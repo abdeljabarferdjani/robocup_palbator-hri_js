@@ -43,7 +43,10 @@ class Wait extends Component {
 	
 	render() {
 		
-		const title = this.props.textToShow !== "" || "I'm waiting for ";
+		let title = this.props.textToShow;
+		if (title === "") {
+			title = "I'm waiting for ";
+		}
 		const data = {
 			labels: [
 				"", ""
@@ -74,7 +77,7 @@ class Wait extends Component {
 			scales: {xAxes: [{display: false,}], yAxes: [{display: false,}],},
 			
 			
-		}
+		};
 		const chart = <Doughnut data={data} options={options}/>;
 		
 		return (

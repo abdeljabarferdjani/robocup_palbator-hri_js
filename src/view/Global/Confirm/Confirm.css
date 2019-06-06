@@ -1,3 +1,15 @@
+div.Confirm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+div.Confirm > * {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
 div.choices {
     display: flex;
     width: 100%;

@@ -6,6 +6,7 @@ import {SpeakableButton} from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import {UserComponentPropTypes} from "../../../dev/types";
+import ComponentTitle from "../reusableComponent/ComponentTitle";
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -49,8 +50,8 @@ class Confirm extends Component {
 		
 		
 		return (
-			<div>
-				<viewTitle>{textToShow}</viewTitle>
+			<div className={"Confirm"}>
+				<ComponentTitle>{textToShow}</ComponentTitle>
 				
 				{img}
 				

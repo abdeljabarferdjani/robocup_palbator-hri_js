@@ -17,7 +17,7 @@ class ViewSimulator extends Component {
 				'\t"textToShow": "",\n' +
 				'\t"imagePath": "",\n' +
 				'\t"choices": [],\n' +
-				'\t"people": {\n\t\t"who": {\n\t\t\t"name": "",\n\t\t\t"drinkId": 0\n\t\t}, \n\t\t"to": {\n\t\t\t"name": "",\n\t\t\t"drinkId": 1\n\t\t}\n\t},\n' +
+				'\t"people": {\n\t\t"who": {\n\t\t\t"name": "",\n\t\t\t"drinkName": 0\n\t\t}, \n\t\t"to": {\n\t\t\t"name": "",\n\t\t\t"drinkName": 1\n\t\t}\n\t},\n' +
 				'\t"location": "",\n' +
 				'\t"time": 0\n' +
 				'}',

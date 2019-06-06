@@ -3,8 +3,8 @@ import Logger from "../../dev/Logger";
 import logConfig from '../../config/log'
 import QiWrapper from "../../model/QiWrapper";
 import ConfigQiWrapper from "../../controller/ConfigWrapper";
-import ALMemoryBridge from "../../controller/ALMemoryBridge";
-
+import {toolbarAction} from "../actions/ToolbarAction";
+import {dispatch} from "../Store";
 
 const {apis: {generalManagerHRI, common, tabletLM},} = ConfigQiWrapper.get();
 
@@ -33,7 +33,6 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					QiWrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
 					break;
 				
-	
 				
 				case comAction.jsHeartbeat.type:
 					
@@ -41,7 +40,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					break;
 				
 				case comAction.dataJs.type:
-						const {ALMemory} = tabletLM.dataJs;
+					const {ALMemory} = tabletLM.dataJs;
 					
 					// if (action.data !== undefined)
 					// {
@@ -94,6 +93,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					const LMStr = "No heartbeats from LocalManager since " + diffLM;
 					if (diffLM > 10) {
 						logger.error(LMStr)
+						
 					} else if (diffLM > 5) {
 						logger.warn(LMStr)
 					}
@@ -103,8 +103,19 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					const GMStr = "No heartbeats from LocalManager since " + diffGM;
 					if (diffGM > 10) {
 						logger.error(GMStr)
+						// dispatch({
+						// 	type: toolbarAction.toolbarState.type,
+						// 	system: toolbarAction.toolbarState.system.pcConnection,
+						// 	state: toolbarAction.toolbarState.state.error
+						// })
 					} else if (diffGM > 5) {
 						logger.warn(GMStr)
+					} else {
+						// dispatch({
+						// 	type: toolbarAction.toolbarState.type,
+						// 	system: toolbarAction.toolbarState.system.pcConnection,
+						// 	state: toolbarAction.toolbarState.state.ok
+						// })
 					}
 					
 					logger.debug(currentTime);
@@ -116,10 +127,9 @@ const comReducer = (state = INITIAL_STATE, action) => {
 						scenario: action.scenario
 					});
 					break;
-					
-		
-					
-					default:
+				
+				
+				default:
 					// console.warn("Unknown action on commmunication reducer", action);
 					break;
 				

@@ -8,6 +8,7 @@ import drinks from '../config/drinks';
 import names from '../config/people'
 import scenario from '../config/scenario'
 import Logger from "../dev/Logger";
+import {deepFreeze} from "../dev/Tools";
 // import ALMemoryEvent from '../config/almemoryEvent'
 
 /**
@@ -78,25 +79,6 @@ export default class ConfigWrapper
 				)
 			);
 			
-			// --- Scenario ---
-			// ConfigWrapper.#_scenario = JSON.parse(
-			// 	await QiWrapper.getALValue(
-			// 		ConfigWrapper.#_apis.common.AL_VALUE.scenario
-			// 	)
-			// );
-			//
-			// const scenarioKeys = Object.keys(ConfigWrapper.#_scenario);
-			// scenarioKeys.forEach(scenarKey => {
-			//
-			// 	let order = 0;
-			// 	const stepsKeys = Object.keys(ConfigWrapper.#_scenario[scenarKey].steps);
-			// 	stepsKeys.forEach(stepKey => {
-			// 		// todo make order great again in new scenario
-			// 		ConfigWrapper.#_scenario[scenarKey].steps[stepKey].order = order++;
-			// 	})
-			// });
-			
-			
 		} else {
 			
 			ConfigWrapper.logger.log("ConfigWrapper logged from src");
@@ -108,6 +90,12 @@ export default class ConfigWrapper
 			// ConfigWrapper.#_views = views;
 			
 		}
+		
+		
+		
+		
+		deepFreeze(ConfigWrapper.get())
+		
 		
 		
 	}

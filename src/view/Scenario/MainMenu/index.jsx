@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import ConfigWrapper from "../../../controller/ConfigWrapper";
 import {comAction} from "../../../redux/actions/CommunicationAction";
+import ComponentTitle from "../../Global/reusableComponent/ComponentTitle";
 
 const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
@@ -43,6 +44,7 @@ class MainMenu extends Component {
 		
 		return (
 			<div>
+				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
 				{buttons}
 				{/*<Button color={"info"}*/}
 				{/*        onClick={() => this.props.currentScenario(scenario.mainMenu)}*/}

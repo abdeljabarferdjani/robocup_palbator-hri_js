@@ -81,11 +81,11 @@ class ProgressBar extends Component {
 		let color = this.state.color;
 		
 		const deltaColor = Math.round(255 / this.state.max);
-		if (percentLoad > 50 && percentLoad <= 150) {
+		if (percentLoad > 70 && percentLoad <= 100) {
 			ProgressBar.addToColor(color, 'r', deltaColor)
 			
 		}
-		if (percentLoad > 150) {
+		if (percentLoad > 100) {
 			ProgressBar.removeToColor(color, 'g', deltaColor)
 		}
 		

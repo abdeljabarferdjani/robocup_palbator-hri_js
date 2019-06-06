@@ -42,10 +42,6 @@ class AskName extends Component {
 			offlineName.forEach(obj => names.push(obj.name))
 		}
 		
-		
-		
-		console.log("Names", names, offlineName)
-		
 		return (
 			<div>
 				<ComponentTitle>{textToShow}</ComponentTitle>

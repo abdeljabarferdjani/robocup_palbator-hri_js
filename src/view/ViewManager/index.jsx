@@ -37,7 +37,7 @@ class ViewManager extends Component {
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
-		
+		console.log("Here", nextProps.view.currentData, prevState.currentData, nextProps.view.currentData !== prevState.currentData);
 		if (nextProps.view.currentView !== prevState.currentView || nextProps.view.currentData !== prevState.currentData) {
 			
 			return {

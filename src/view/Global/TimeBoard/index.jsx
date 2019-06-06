@@ -6,6 +6,7 @@ import Logger from "../../../dev/Logger";
 import debug from '../../../config/log'
 import './TimeBoard.css'
 import {viewAction} from "../../../redux/actions/ViewAction";
+import ComponentTitle from "../reusableComponent/ComponentTitle";
 
 function mapStateToProps(state) {
 	return {
@@ -160,7 +161,7 @@ class TimeBoard extends Component {
 		if (steps.length > 0) {
 			return (
 				<div className={className}>
-					<h1 className={"componentTitle"}>Steps</h1>
+					<ComponentTitle>Steps</ComponentTitle>
 					<div id="steps">
 						{steps}
 					</div>

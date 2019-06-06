@@ -132,7 +132,7 @@ export default class ALMemoryBridge {
 		if (data) {
 			dispatch({
 				// type: generalManagerHRI.stepCompleted.reduxKey,
-				type : timeAction.stepCompleted.type
+				type: timeAction.stepCompleted.type
 			})
 		}
 	};

@@ -1,11 +1,13 @@
-div.AskToFollow {
+div.Guest {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-div.AskToFollow {
-    margin-top: 2rem;
-    max-width: 100%;
+p.guestName {
+    font-size: 3rem;
+}
+p.guestDrink {
+    font-size: 2rem;
 }

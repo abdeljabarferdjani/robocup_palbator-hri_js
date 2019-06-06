@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import './AskAge.css'
 import {comAction} from "../../../../redux/actions/CommunicationAction";
+import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -66,7 +67,7 @@ class AskName extends Component {
 		
 		return (
 			<div>
-				<h2 className={"viewTitle"}>{textToShow}</h2>
+				<ComponentTitle>{textToShow}</ComponentTitle>
 				<div id="ages">
 					<p className="value">{value}</p>
 					

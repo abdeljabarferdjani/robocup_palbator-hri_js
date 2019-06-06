@@ -1,11 +1,10 @@
-div.AskToFollow {
+div.Goto {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-div.AskToFollow {
-    margin-top: 2rem;
-    max-width: 100%;
+div.Goto img {
+    max-height: 66vh;
 }

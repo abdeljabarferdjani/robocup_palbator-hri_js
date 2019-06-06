@@ -29,6 +29,13 @@
     }
 }
 
+.ComponentTitle {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 3.5rem;
+}
+
 .btn.animated:hover {
     animation: scaleUp ease-in-out 500ms forwards;
 }

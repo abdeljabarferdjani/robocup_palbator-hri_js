@@ -5,9 +5,9 @@ const INITIAL_STATE = {
 	// pcConnection: undefined,
 	// micro: undefined,
 	// canMove: undefined
-	internet: toolbarAction.toolbarState.state.error,
+	internet: toolbarAction.toolbarState.state.ok,
 	pcConnection: toolbarAction.toolbarState.state.ok,
-	micro: toolbarAction.toolbarState.state.error,
+	micro: toolbarAction.toolbarState.state.ok,
 	canMove: toolbarAction.toolbarState.state.ok
 };
 

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const personPropTypes = PropTypes.shape({
 	name: PropTypes.string.isRequired,
-	drinkId: PropTypes.number.isRequired
+	drinkName: PropTypes.number.isRequired
 });
 
 

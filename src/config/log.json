@@ -1,15 +1,15 @@
 {
 	"QiWrapper": false,
-	"ALMemoryBridge": false,
+	"ALMemoryBridge": true,
 	"reduxKey": false,
 	"reducer": {
-		"time": true,
-		"com": true,
+		"time": false,
+		"com": false,
 		"view": false
 	},
 	"TimeBoard": false,
 	"Step": false,
-	"ViewManager": true,
+	"ViewManager": false,
 	"App": false,
 	"Toolbar": false,
 	"ProgressBar": false,

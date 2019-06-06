@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import ConfigWrapper from "../../../controller/ConfigWrapper";
-
+import './Location.css'
 const {locations} = ConfigWrapper.get();
 
 class Location extends Component {
@@ -12,14 +12,14 @@ class Location extends Component {
 	
 	render() {
 		
-		console.log(locations, this.props.id);
 		
-		const ind = locations.findIndex(step => step.id = this.props.id)
+		const ind = locations.findIndex(step => step.id === this.props.id);
+		
 		
 		
 		return (
 			<img
-				src={process.env.PUBLIC_URL + locations[ind].pathOnTablet}
+				src={locations[ind].pathOnTablet}
 				alt={this.props.id}/>
 		);
 	}
