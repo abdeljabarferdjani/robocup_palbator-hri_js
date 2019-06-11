@@ -17,7 +17,8 @@ import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
 import MainMenu from '../view/Scenario/MainMenu/'
 import Wait from "../view/Global/Wait";
 import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
-
+import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
+import ShowVideo from '../view/Scenario/TakeOutTheGarbage/ShowVideo'
 
 const getClassFromView = (view) => {
 	return viewClassMap[view];
@@ -44,7 +45,9 @@ const viewClassMap = {
 	"askToFollow": AskToFollow,
 	"mainMenu": MainMenu,
 	"wait": Wait,
-	"askOpenDoor": AskOpenDoor
+	"askOpenDoor": AskOpenDoor,
+	"callHuman": CallHuman,
+	"showVideo": ShowVideo
 	
 	
 };

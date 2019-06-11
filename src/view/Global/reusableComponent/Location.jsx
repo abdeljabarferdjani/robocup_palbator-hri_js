@@ -12,10 +12,11 @@ class Location extends Component {
 	
 	render() {
 		
-		
 		const ind = locations.findIndex(step => step.id === this.props.id);
 		
-		
+		if(ind === undefined) {
+			console.warn(`Care: location ${this.props.id} not found in 'steps'`)
+		}
 		
 		return (
 			<img

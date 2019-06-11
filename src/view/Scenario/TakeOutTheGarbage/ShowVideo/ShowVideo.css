@@ -1,0 +1,20 @@
+div.ShowVideo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.ShowVideo > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+div.ShowVideo > div > video  {
+    width: 70%;
+}
+div.ShowVideo > div > ul  {
+    width: 30%;
+}
