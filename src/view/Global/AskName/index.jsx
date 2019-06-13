@@ -35,8 +35,8 @@ class AskName extends Component {
 		const textToShow = this.props.textToShow || "Hello, what is your name ?";
 		
 		let names;
-		if (this.props.choices.length > 0) {
-			names = this.props.choices;
+		if (this.props.choices && this.props.choices.length > 0) {
+			names = this.props.choices
 		} else {
 			names = [];
 			offlineName.forEach(obj => names.push(obj.name))

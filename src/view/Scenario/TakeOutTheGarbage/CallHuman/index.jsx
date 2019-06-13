@@ -37,7 +37,7 @@ class CallHuman extends Component {
 				<SpeakableButton
 					onClick={this.props.humanIsHere}>{"I'm here"}
 				</SpeakableButton>
-				<Wait time={this.props.time}/>
+				<Wait time={60}/>
 			</div>
 		);
 	}

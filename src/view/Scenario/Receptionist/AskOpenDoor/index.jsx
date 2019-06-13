@@ -3,36 +3,49 @@ import {comAction} from "../../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import {SpeakableButton} from "../../../Global/reusableComponent/Button/SpeakableButton";
-
-
+import PropTypes from 'prop-types'
+import './AskOpenDoor.css'
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		handleClick : () => {
+		handleClick: () => {
 			dispatch({
-				type : comAction.dataJs.type,
-				data : {}
+				type: comAction.dataJs.type,
+				data: {}
 			})
 		}
 	}
 };
 
 const mapStateToProps = () => {
-	return {
-	
-	}
+	return {}
 }
 
 class AskOpenDoor extends Component {
-
 	
-
+	static propTypes = {
+		textToShow: PropTypes.shape({
+			title: PropTypes.string.isRequired,
+			description: PropTypes.arrayOf(PropTypes.string).isRequired
+		})
+	}
+	
 	render() {
 		return (
-			<div>
+			<div className={"AskOpenDoor"}>
 				<ComponentTitle>{this.props.textToShow.title}</ComponentTitle>
-				<p className="description">{this.props.textToShow.description}</p>
-				<SpeakableButton onClick={this.props.handleClick}>Next</SpeakableButton>
+				<div>
+					
+					<ul className="description">
+						{this.props.textToShow.description.map(str =>
+							<li>{str}</li>
+						)}
+					</ul>
+					<div>
+						<SpeakableButton onClick={this.props.handleClick}>Next</SpeakableButton>
+					</div>
+				</div>
+			
 			</div>
 		);
 	}

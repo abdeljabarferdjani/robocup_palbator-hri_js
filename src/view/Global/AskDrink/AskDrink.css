@@ -1,12 +1,14 @@
-
-div.drinks > button {
-    width: calc(100% / 4 - 2rem);
-    height: calc(100% / 4 - 3rem);
+ div.drinks > div {
+     width: 18%;
+     height: 31%;
     font-size: calc(1vw + 0.75rem);
     margin-right: 1rem;
 
 }
-
+div.drinks > div > * {
+    width: 100%;
+    height: 100%;
+}
 button.actionBtn {
     background-color: gray(50%);
 }
@@ -14,12 +16,21 @@ button.actionBtn {
 div.drinks {
     display: flex;
     flex-wrap: wrap;
-    /*justify-content: space-between;*/
+    justify-content: space-between;
     align-items: center;
     height: 70vh;
+}
+
+div.drinks button {
+    /*width: 9rem;*/
+
+    /*height: 10rem;*/
 }
 
 div#AskDrink {
     position: relative;
     height: 100%;
 }
+
+
+

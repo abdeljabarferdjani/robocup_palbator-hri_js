@@ -19,7 +19,7 @@
 		"build": "react-scripts build",
 		"build:win32": "rmdir /S /Q build",
 		"build:linux": "rm -rf build",
-		"build-to-deploy:linux": "npm run build && node deploy.js",
+		"build_to_deploy": "npm run build && node deploy.js --ip pepper3.local",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"resetDependency": "rm -rf ./node_modules && npm install"

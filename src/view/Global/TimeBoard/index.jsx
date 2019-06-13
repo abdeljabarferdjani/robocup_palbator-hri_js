@@ -129,10 +129,7 @@ class TimeBoard extends Component {
 		});
 		
 		
-		steps.sort((stepA, stepB) => {
-			
-			return stepA.id < stepB.id ? -1 : 1;
-		});
+		
 		
 		
 		return steps;

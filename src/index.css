@@ -29,6 +29,11 @@
     }
 }
 
+.description > * {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
 .ComponentTitle {
     margin-bottom: 1rem;
     margin-top: 1rem;

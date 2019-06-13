@@ -14,6 +14,7 @@ div.ShowVideo > div {
 
 div.ShowVideo > div > video  {
     width: 70%;
+    margin: 1rem 3rem 1rem 1rem; /*left right top bottom*/
 }
 div.ShowVideo > div > ul  {
     width: 30%;

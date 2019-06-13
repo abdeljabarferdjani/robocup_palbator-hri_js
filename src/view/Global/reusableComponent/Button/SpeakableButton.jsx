@@ -11,8 +11,8 @@ export class SpeakableButton extends Component {
 	
 	static propTypes = {
 		onClick: PropTypes.func.isRequired,
-		color: PropTypes.oneOf(["info", "danger", "warning", "success", "ok", "no"])
-		
+		color: PropTypes.oneOf(["info", "danger", "warning", "success", "ok", "no"]),
+		image: PropTypes.object
 	};
 	
 	
@@ -20,10 +20,11 @@ export class SpeakableButton extends Component {
 		
 		const color = this.props.color || "classic";
 		
-		
+		let image = this.props.image || ""
 		return (
 			<button onClick={this.props.onClick} className={`btn btn-${color}`}>
-				"{this.props.children}"
+				{image}
+				<p>"{this.props.children}"</p>
 			</button>
 		);
 	}

@@ -2,6 +2,7 @@ import ConfigWrapper from "../../../../controller/ConfigWrapper";
 import React from "react";
 import PropTypes from "prop-types";
 import './Guest.css'
+import Drink from "../../../Global/reusableComponent/Drink/Drink";
 const {drinks} = ConfigWrapper.get();
 
 class Guest extends React.Component {
@@ -36,12 +37,11 @@ class Guest extends React.Component {
 		
 		return (
 			<div className="Guest">
-				<p className="guestName">{this.state.name}</p>
+				{/*<p className="guestName">{this.state.name}</p>*/}
 				<img src={this.props.guestPhotoPath} alt={this.state.name}/>
-				<p className={"guestDrink"}>He
-					likes: {this.state.drinkObj.name} </p>
-				<img
-					src={this.state.drinkObj['pathOnTablet']}
+				<p className={"guestDrink"}>{this.state.name} likes: {this.state.drinkObj.name} </p>
+				<Drink
+					name={this.state.drinkObj['name']}
 					alt={this.state.drinkObj["name"]}/>
 			</div>
 		)
