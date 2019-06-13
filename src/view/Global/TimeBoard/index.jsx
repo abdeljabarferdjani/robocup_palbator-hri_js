@@ -39,7 +39,7 @@ class TimeBoard extends Component {
 			skippedSteps: [...props.time.skippedSteps],
 			todoSteps: [...props.time.todoSteps],
 			visible: props.view.componentVisibility.timeBoard,
-			parentDiv: null
+			parentDiv: null,
 			
 		};
 		
@@ -56,8 +56,8 @@ class TimeBoard extends Component {
 		}
 		
 		for (let i = 0; i < nextSteps.length; i++) {
-			if(nextSteps[i] !== undefined && oldSteps[i] !== undefined) {
-				if(nextSteps[i].status !== oldSteps[i].status) {
+			if (nextSteps[i] !== undefined && oldSteps[i] !== undefined) {
+				if (nextSteps[i].status !== oldSteps[i].status) {
 					return true
 				}
 			}
@@ -80,7 +80,7 @@ class TimeBoard extends Component {
 		const newSortedSteps = TimeBoard.createStepFromProps(nextProps);
 		if (TimeBoard.compareSteps(newSortedSteps, prevState.sortedSteps))
 		{
-			console.warn("Hey 2.2")
+			console.warn("Hey 2.2");
 			return {
 				sortedSteps: TimeBoard.createStepFromProps(nextProps),
 				globalElapsedTime: nextProps.time.globalElapsedTime,
@@ -129,10 +129,16 @@ class TimeBoard extends Component {
 		});
 		
 		
-		
-		
-		
 		return steps;
+	}
+	
+	componentDidMount() {
+		const nbStepsDone = this.state.doneSteps.length;
+		// 4 = number of steps displayed at the same time on screen
+		const offset = 4;
+		if (nbStepsDone > offset) {
+			document.querySelectorAll(".Steps")[nbStepsDone - offset].scrollIntoView(true)
+		}
 	}
 	
 	render() {

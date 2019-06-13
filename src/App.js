@@ -27,7 +27,6 @@ class App extends Component {
 		scenario: this.props.scenario.current
 	};
 	
-	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		if (nextProps.scenario.current !== prevState.scenario) {
 			return {
@@ -36,6 +35,12 @@ class App extends Component {
 		}
 		
 		return null;
+	}
+	
+	componentDidMount() {
+		document.ontouchmove = (e) => {
+			e.preventDefault()
+		}
 	}
 	
 	render() {
