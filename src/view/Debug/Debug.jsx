@@ -10,7 +10,7 @@ import ViewSimulator from "./ViewSimulator";
 import ComponentTitle from "../Global/reusableComponent/ComponentTitle";
 
 
-const {apis: {common: apiCommon, tabletLM: apiTabletLM, generalManagerHRI: apiGeneralManagerHRI}} = ConfigWrapper.get();
+const {apis: {common: apiCommon, tabletLM: apiTabletLM, generalManagerHRI: apiGeneralManagerHRI}, drinks, locations, names, videos} = ConfigWrapper.get();
 
 function mapStateToProps(state) {
 	return {
@@ -114,7 +114,9 @@ class Debug extends Component {
 		super(props);
 		this.state = {
 			currentStep: null,
-			currentScenario: this.props.scenario.current
+			currentScenario: this.props.scenario.current,
+			imagePath: "",
+			videoPath: ""
 		}
 	}
 	
@@ -127,9 +129,30 @@ class Debug extends Component {
 		return null;
 	}
 	
+	handleImageClick = () => {
+	
+	}
+	
+	
+	handleVideoClick = ()  => {
+	
+	}
+	
 	render() {
 		
 		let className = "Debug";
+		
+		let images = [];
+		images.push(drinks, locations);
+		let imagesOptions = [];
+		images.forEach(img => {
+			imagesOptions.push(<option value={img['pathOnTablet']}>{img['name']}</option>)
+		})
+		
+		let videosOptions = []
+		videos.forEach(video => {
+			videosOptions.push(<option value={video['pathOnTablet']}>{video['name']}</option>)
+		})
 		
 		
 		let scenarioDebug = null;
@@ -233,13 +256,43 @@ class Debug extends Component {
 				<button className={"btn btn-info"}
 				        onClick={this.props.gotoMainMenu}>Go to Main Menu
 				</button>
+				<div className="Video">
+					<h3>Video</h3>
+					<select name="" id="" onChange={this.handleVideoInputChange}>
+						{videosOptions}
+					</select>
+					
+					<video src={this.state.videoPath}/>
 				
-				<h2>Current Scenario</h2>
-				{scenarioDebug}
+				</div>
+				
+				<div className="Image">
+					<h3>Image</h3>
+					<select name="" id="" onChange={this.handleVideoInputChange}>
+						{imagesOptions}
+					</select>
+					<img src={this.state.imagePath} alt=""/>
+				</div>
 			
 			</div>
 		);
 	}
+	
+	handleVideoInputChange = (evt) => {
+		
+		console.log(evt.target.value)
+		
+		this.setState(prev => {
+			return {
+				...prev,
+				
+			}
+		})
+	};
+	
+	handleImageInputChange = (evt) => {
+	
+	};
 }
 
 export default connect(

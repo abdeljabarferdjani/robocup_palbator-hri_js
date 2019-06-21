@@ -68,6 +68,7 @@ class TimeBoard extends Component {
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
+		
 		if (prevState.visible !== nextProps.view.componentVisibility.timeBoard) {
 			// console.warn("HEY 1");
 			const bool = (nextProps.view.componentVisibility.timeBoard === viewAction.setComponentVisibility.state.visible);
@@ -80,7 +81,16 @@ class TimeBoard extends Component {
 		const newSortedSteps = TimeBoard.createStepFromProps(nextProps);
 		if (TimeBoard.compareSteps(newSortedSteps, prevState.sortedSteps))
 		{
-			console.warn("Hey 2.2");
+			const nbStepsDone = nextProps.time.doneSteps.length;
+			const offset = 3;
+			if (nbStepsDone > offset) {
+				const aStep = document.querySelector(".Step");
+				console.log("Scrolling to ", nbStepsDone - offset);
+				document.querySelector("div#steps").scrollTop = (nbStepsDone - offset) * aStep.clientHeight
+				
+				
+			}
+			
 			return {
 				sortedSteps: TimeBoard.createStepFromProps(nextProps),
 				globalElapsedTime: nextProps.time.globalElapsedTime,
@@ -94,7 +104,8 @@ class TimeBoard extends Component {
 		return null;
 	}
 	
-	static createStepFromProps(props) {
+	static createStepFromProps(props)
+	{
 		const steps = [];
 		
 		props.time.doneSteps.forEach(step => {
@@ -132,16 +143,13 @@ class TimeBoard extends Component {
 		return steps;
 	}
 	
-	componentDidMount() {
-		const nbStepsDone = this.state.doneSteps.length;
-		// 4 = number of steps displayed at the same time on screen
-		const offset = 4;
-		if (nbStepsDone > offset) {
-			document.querySelectorAll(".Steps")[nbStepsDone - offset].scrollIntoView(true)
-		}
+	componentDidMount()
+	{
+	
 	}
 	
-	render() {
+	render()
+	{
 		let className = "TimeBoard ";
 		className += (this.props.className) ? this.props.className : "";
 		

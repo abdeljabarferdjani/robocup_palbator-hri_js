@@ -3,8 +3,6 @@ import Logger from "../../dev/Logger";
 import logConfig from '../../config/log'
 import QiWrapper from "../../model/QiWrapper";
 import ConfigQiWrapper from "../../controller/ConfigWrapper";
-import {toolbarAction} from "../actions/ToolbarAction";
-import {dispatch} from "../Store";
 
 const {apis: {generalManagerHRI, common, tabletLM},} = ConfigQiWrapper.get();
 
@@ -42,32 +40,11 @@ const comReducer = (state = INITIAL_STATE, action) => {
 				case comAction.dataJs.type:
 					const {ALMemory} = tabletLM.dataJs;
 					
-					// if (action.data !== undefined)
-					// {
-					//
-					//
-					// 	const dataTypeKeys = Object.keys(dataType);
-					// 	const possibleDataType = [];
-					//
-					// 	dataTypeKeys.forEach(key => {
-					// 		possibleDataType.push(dataType[key]);
-					// 	});
-					//
-					// 	if (possibleDataType.includes(action.dataType)) {
-					//
-					// 		logger.log("sendData : send : ", action);
-					// 		QiWrapper.raise(ALMemory, {
-					// 			dataType: action.dataType,
-					// 			data: action.data
-					// 		});
-					// 	}
-					//
-					// }
-					//
 					
 					QiWrapper.raise(ALMemory, {
 						dataType: action.dataType,
-						data: action.data
+						data: action.data,
+						actionId: action.actionId
 					});
 					
 					break;

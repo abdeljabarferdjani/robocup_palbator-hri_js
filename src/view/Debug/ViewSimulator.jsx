@@ -32,7 +32,7 @@ class ViewSimulator extends Component {
 					},
 				},
 				"location": "",
-				video : "",
+				video: "",
 				time: 0
 			}, null, 4),
 			

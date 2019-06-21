@@ -3,6 +3,7 @@ import ConfigWrapper from "../../../../controller/ConfigWrapper";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import PropTypes from 'prop-types'
 import './ShowVideo.css'
+
 const {videos} = ConfigWrapper.get();
 
 class ShowVideo extends Component {
@@ -17,13 +18,18 @@ class ShowVideo extends Component {
 	};
 	
 	render() {
-		const textToShow = this.props.textToShow || {title: "Please reproduce the videos", description: ["A", "B", "C", "D"]};
+		const textToShow = this.props.textToShow || {
+			title: "Please reproduce the videos",
+			description: ["A", "B", "C", "D"]
+		};
 		return (
 			<div className={"ShowVideo"}>
 				<ComponentTitle>{textToShow.title}</ComponentTitle>
 				<div>
 					<video autoPlay loop muted src={videos[this.props.video]}/>
-					<ol className={"description"} id="steps">{textToShow.description.map(str => <li>{str}</li>)}</ol>
+					<ol className={"description"}
+					    id="steps">{textToShow.description.map(str =>
+						<li>{str}</li>)}</ol>
 				</div>
 			</div>
 		);

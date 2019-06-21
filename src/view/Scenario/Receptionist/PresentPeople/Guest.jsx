@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import './Guest.css'
 import Drink from "../../../Global/reusableComponent/Drink/Drink";
+
 const {drinks} = ConfigWrapper.get();
 
 class Guest extends React.Component {

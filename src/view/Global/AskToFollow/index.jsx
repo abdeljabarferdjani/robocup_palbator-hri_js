@@ -3,6 +3,7 @@ import ComponentTitle from "../reusableComponent/ComponentTitle";
 import Location from "../reusableComponent/Location";
 import PropTypes from "prop-types";
 import './AskToFollow.css'
+
 class AskToFollow extends Component {
 	
 	static propTypes = {

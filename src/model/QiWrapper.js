@@ -34,8 +34,6 @@ class QiWrapper {
 	 * @param ALMemory the ALMemory's proxy resulted from session.service("AlMemory");
 	 */
 	constructor(session, ALMemory) {
-		
-		
 		this.#session = session;
 		this.#AlMemory = ALMemory;
 		QiWrapper.#instance = this;
@@ -136,21 +134,21 @@ class QiWrapper {
 	
 	/**
 	 *
-	 * @exampsle to get the event when pepper catch a touch : inst.listen("TouchChanged", (data) => {console.log(data)})
+	 * @example to get the event when pepper catch a touch : inst.listen("TouchChanged", (data) => {console.log(data)})
 	 * @param event {string} the event that will be subscribed
-	 * @param cb {function} the callback to do something when event is raised
+	 * @param callback {function} the callback to do something when event is raised
 	 * @return {Promise<null>}
 	 */
-	listen(event, cb) {
-		return new Promise(resolve =>
-			this.#AlMemory.subscriber(event).then(subscriber => {
-				subscriber.signal.connect(state => {
-					cb(JSON.parse(state));
-				});
-				resolve(QiWrapper.logger.event("Listen at", event));
-				
-			}));
-	}
+		listen(event, callback) {
+			return new Promise(resolve =>
+				this.#AlMemory.subscriber(event).then(subscriber => {
+					subscriber.signal.connect(state => {
+						resolve(callback(JSON.parse(state)));
+					});
+					QiWrapper.logger.event("Listen at", event);
+					
+				}));
+		}
 	
 	/**
 	 * @description Set the value in a ALMemory

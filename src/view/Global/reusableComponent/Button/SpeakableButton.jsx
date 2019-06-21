@@ -20,7 +20,7 @@ export class SpeakableButton extends Component {
 		
 		const color = this.props.color || "classic";
 		
-		let image = this.props.image || ""
+		let image = this.props.image || "";
 		return (
 			<button onClick={this.props.onClick} className={`btn btn-${color}`}>
 				{image}

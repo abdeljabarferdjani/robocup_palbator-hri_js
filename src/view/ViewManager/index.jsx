@@ -37,7 +37,8 @@ class ViewManager extends Component {
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
-		console.log("Here", nextProps.view.currentData, prevState.currentData, nextProps.view.currentData !== prevState.currentData);
+		console.log("Here", nextProps.view.currentView !== prevState.currentView, nextProps.view.currentData !== prevState.currentData);
+		console.log("Here2 P S", nextProps, prevState);
 		if (nextProps.view.currentView !== prevState.currentView || nextProps.view.currentData !== prevState.currentData) {
 			
 			return {
@@ -52,7 +53,6 @@ class ViewManager extends Component {
 			}
 		}
 		
-		
 		return null;
 	}
 	
@@ -60,17 +60,14 @@ class ViewManager extends Component {
 		
 		let comp;
 		
-		if (this.state.currentView === null) {
+		if (this.state.currentView === null) {	
 			comp = <MainMenu/>
 		} else {
 			
-			comp = React.createElement(
-				getClassFromView(this.state.currentView),
-				{
+			comp = React.createElement(getClassFromView(this.state.currentView), {
 					...this.state.currentData
 				}
 			)
-			
 		}
 		
 		

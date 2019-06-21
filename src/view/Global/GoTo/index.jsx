@@ -6,9 +6,10 @@ import Location from "../reusableComponent/Location";
 
 class Goto extends Component {
 	static propTypes = {
-		location : PropTypes.string.isRequired,
-		textToShow : PropTypes.string,
+		location: PropTypes.string.isRequired,
+		textToShow: PropTypes.string,
 	};
+	
 	render() {
 		
 		const textToShow = this.props.textToShow || "I'm going to the ";

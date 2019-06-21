@@ -32,9 +32,8 @@ export const comAction = {
 	
 	askToChangeScenario: {
 		type: generalManagerHRI.askToChangeScenario.reduxKey,
-		scenario: ["receptionist", "servingDrinks", "mainMenu"]
+		scenario: ["receptionist", "takeOutGarbage", "mainMenu"]
 	},
-
 	
 	
 };

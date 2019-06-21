@@ -41,6 +41,8 @@ class App extends Component {
 		document.ontouchmove = (e) => {
 			e.preventDefault()
 		}
+		
+		// todo Check if desktop version send "touchMove event"
 	}
 	
 	render() {

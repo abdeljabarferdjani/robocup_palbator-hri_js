@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = () => {
 	return {}
-}
+};
 
 class AskOpenDoor extends Component {
 	
@@ -28,7 +28,7 @@ class AskOpenDoor extends Component {
 			title: PropTypes.string.isRequired,
 			description: PropTypes.arrayOf(PropTypes.string).isRequired
 		})
-	}
+	};
 	
 	render() {
 		return (
@@ -42,7 +42,8 @@ class AskOpenDoor extends Component {
 						)}
 					</ul>
 					<div>
-						<SpeakableButton onClick={this.props.handleClick}>Next</SpeakableButton>
+						<SpeakableButton
+							onClick={this.props.handleClick}>Next</SpeakableButton>
 					</div>
 				</div>
 			

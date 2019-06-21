@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import ConfigWrapper from "../../../controller/ConfigWrapper";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import ComponentTitle from "../../Global/reusableComponent/ComponentTitle";
+import {SpeakableButton} from "../../Global/reusableComponent/Button/SpeakableButton";
 
 const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
@@ -34,10 +35,10 @@ class MainMenu extends Component {
 		
 		comAction.askToChangeScenario.scenario.forEach(scenario => {
 			buttons.push(
-				<button className={"btn btn-info"}
+				<SpeakableButton className={"btn btn-info"}
 				        onClick={() => this.props.askToChangeScenario(scenario)}>
 					{scenario}
-				</button>
+				</SpeakableButton>
 			)
 		});
 		

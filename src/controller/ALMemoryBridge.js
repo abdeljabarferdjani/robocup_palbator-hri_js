@@ -101,8 +101,6 @@ export default class ALMemoryBridge {
 			type: timeAction.replaceAllSteps.type,
 			steps: data.scenario.steps
 		})
-		
-		
 	};
 	
 	static handleToggleTimer = () => (data) => {
@@ -138,7 +136,7 @@ export default class ALMemoryBridge {
 	};
 	
 	static handleChangeCurrentStep = () => (data) => {
-		if (getStepById(data.actionId !== undefined)) {
+		if (getStepById(data.actionId)) {
 			dispatch({
 				type: timeAction.currentStep.type,
 				stepId: data.actionId

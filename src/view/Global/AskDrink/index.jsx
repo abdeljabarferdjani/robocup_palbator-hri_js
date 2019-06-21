@@ -30,7 +30,7 @@ class AskName extends Component {
 	static propTypes = {
 		imagePath: PropTypes.string.isRequired,
 		textToShow: PropTypes.string.isRequired
-	}
+	};
 	
 	render() {
 		
@@ -39,7 +39,7 @@ class AskName extends Component {
 		
 		let drinks;
 		if (this.props.choices && this.props.choices.length > 0) {
-			drinks = this.props.choices.sort()
+			drinks = this.props.choices.QiWrapper()
 		} else {
 			drinks = [];
 			
@@ -58,7 +58,7 @@ class AskName extends Component {
 			
 			
 			</div>)
-		})
+		});
 		return (
 			
 			<div id={"AskDrink"}>

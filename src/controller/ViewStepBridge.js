@@ -40,7 +40,6 @@ const viewClassMap = {
 	"openDoor": OpenDoor,
 	"findWhoWantsDrinks": FindWhoWantsDrinks,
 	"serveDrinks": ServeDrinks,
-	"findGuest": FindGuest,
 	"seatGuest": SeatGuest,
 	"askToFollow": AskToFollow,
 	"mainMenu": MainMenu,

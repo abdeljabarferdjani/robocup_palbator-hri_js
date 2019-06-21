@@ -5,6 +5,7 @@ import {comAction} from "../../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import PropTypes from 'prop-types'
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		humanIsHere: () => {
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => {
 class CallHuman extends Component {
 	
 	static propTypes = {
-		time : PropTypes.number.isRequired,
+		time: PropTypes.number.isRequired,
 		textToShow: PropTypes.string,
 		humanIsHere: PropTypes.func.isRequired
 	};

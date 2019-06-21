@@ -15,7 +15,7 @@
     height: 58vh;
 }
 
-.AskOpenDoor > div > div  {
+.AskOpenDoor > div > div {
     display: flex;
     justify-content: center;
     align-items: center;

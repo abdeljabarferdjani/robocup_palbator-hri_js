@@ -62,8 +62,8 @@ export default class ConfigWrapper
 					ConfigWrapper.#_apis.common["AL_VALUE"]["drinks"]
 				)
 			);
-			ConfigWrapper.#_drinks= ConfigWrapper.#_drinks.sort((a, b) => {
-				return a['name'] > b['name'] ? 1: -1
+			ConfigWrapper.#_drinks = ConfigWrapper.#_drinks.sort((a, b) => {
+				return a['name'] > b['name'] ? 1 : -1
 			});
 			
 			
@@ -73,7 +73,7 @@ export default class ConfigWrapper
 				)
 			);
 			ConfigWrapper.#_names = ConfigWrapper.#_names.sort((a, b) => {
-				return a['name'] > b['name'] ? 1: -1
+				return a['name'] > b['name'] ? 1 : -1
 			});
 			
 			
@@ -97,7 +97,7 @@ export default class ConfigWrapper
 			deepFreeze(ConfigWrapper.get())
 			
 		} catch (e) {
-			console.error("Error in ConfigWrapper", e)
+			console.error("Error in ConfigWrapper", e);
 			const style = {
 				backgroundColor: "#FFF",
 				color: "#F00",
@@ -105,11 +105,11 @@ export default class ConfigWrapper
 				position: "absolute",
 				top: 0,
 				left: 0
-			}
+			};
 			
 			ReactDOM.render(<p style={style}>Error while initialising ALMemory
 				(Config) : can't read Common API in ALMemories, make sure that
-				Local manager is started</p>, document.querySelector("body" ));
+				Local manager is started</p>, document.querySelector("body"));
 			console.log("Done")
 			
 		}
@@ -120,7 +120,7 @@ export default class ConfigWrapper
 	
 	/**
 	 *
-	 * @return {{apis : {common, tabletLM, generalManagerHRI}, names, locations, drinks}}
+	 * @return {{apis : {common, tabletLM, generalManagerHRI}, names, locations, drinks, videos}}
 	 */
 	static get() {
 		

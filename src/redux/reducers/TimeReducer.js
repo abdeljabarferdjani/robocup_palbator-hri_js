@@ -31,6 +31,7 @@ const init = (state, steps) => {
 		state.todoSteps.push(getDataFromJson(steps[key]));
 	});
 	
+	console.warn("State after init", state)
 	
 	return state
 };
@@ -70,11 +71,9 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 	// Dont allow other reducer's action to interact with this reducer
 	
 	if (possibleActionType.includes(action.type)) {
-		console.log("Action : ", action);
-		
+
 		switch (action.type) {
-			
-			
+
 			case timeAction.passSecond.type:
 				
 				if (action.globalElapsedTime !== undefined && action.timeFromLastEvent !== undefined) {
@@ -98,20 +97,20 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				
 				if (action.stepId !== undefined) {
-					console.log("HEY 1")
+					console.log("HEY 1");
 					
 					stepIndex = clonedState.todoSteps.findIndex(step => step.id === action.stepId);
 					
-					console.log("HEY 2", stepIndex)
+					console.log("HEY 2", stepIndex);
 					
 					clonedState.stepElapsedTime = 0;
 					
 					todoStep = [...state.todoSteps];
 					const step = todoStep.splice(stepIndex, 1)[0];
 					
-					console.log("HEY 2.5", step)
+					console.log("HEY 2.5", step);
 					if (clonedState.currentStep !== null) {
-						console.log("HEY 3")
+						console.log("HEY 3");
 						todoStep.push(clonedState.currentStep);
 					}
 					
@@ -226,17 +225,23 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				logger.debug("You are un replaceAllSteps reducer", action);
 				if (action.steps.length !== undefined) {
 					
-					const steps = [];
+					let steps = [];
 					console.warn(1, clonedState, steps);
 					
 					action.steps.forEach(step => {
 						// Add only title steps (in blue in excel)
 						if (step.action === "") {
 							steps.push(step);
+							console.log("DOAZ?D?ZAOXAZ", step);
 						}
 						
 						
 					});
+					
+					steps = steps.sort((step1, step2) => {
+						return step1['order'] < step2['order'] ? -1 : 1
+					});
+					
 					
 					logger.debug("replace B", clonedState);
 					clonedState = init(getDefaultState(), steps);

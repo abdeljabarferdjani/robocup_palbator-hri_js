@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 
 class SeatGuest extends Component {
-	static propTypes = {
-	
-	};
+	static propTypes = {};
 	
 	render() {
 		return (
