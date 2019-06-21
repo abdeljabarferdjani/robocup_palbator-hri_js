@@ -1,6 +1,13 @@
 # robocup_pepper-HRI_JS
+## Dependances 
+need npm unstable version
+`sudo npm install -g n`
+then 
+` sudo n lts`
 
 ## Installation
+
+`npm install`
 
 ## Build
 
