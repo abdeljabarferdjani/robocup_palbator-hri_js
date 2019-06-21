@@ -3,7 +3,8 @@
 need npm unstable version
 `sudo npm install -g n`
 then 
-'n lts' 
+` n lts`
+
 ## Installation
 
 `npm install`
