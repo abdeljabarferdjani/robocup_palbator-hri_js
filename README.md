@@ -2,6 +2,8 @@
 
 ## Installation
 
+`npm install`
+
 ## Build
 
 Build the application:`npm run build`
