@@ -2,6 +2,8 @@
 ## Dependances 
 need npm unstable version
 `sudo npm install -g n`
+then 
+'n lts' 
 ## Installation
 
 `npm install`
