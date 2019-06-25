@@ -1,0 +1,12 @@
+div.CallHuman {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.CallHuman button {
+    width: 16rem;
+    height: 4rem;
+    font-size: large;
+}

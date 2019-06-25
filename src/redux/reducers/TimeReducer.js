@@ -3,7 +3,6 @@ import debug from '../../config/log';
 import Logger from "../../dev/Logger";
 import Timer from "../../model/Timer";
 import ConfigWrapper from "../../controller/ConfigWrapper";
-import {getStepById} from "../../controller/ALMemoryBridge";
 
 
 const logger = new Logger(debug.reducer.time, "TimeReducer");
@@ -20,28 +19,31 @@ const init = (state, steps) => {
 		return {
 			name: jsonValue.name,
 			eta: jsonValue.eta,
-			order: jsonValue.order,
-			id: jsonValue.id,
-			action: jsonValue.action
-			
 		}
 	};
-	
+	let order = 0;
 	Object.keys(steps).forEach(key => {
-		state.todoSteps.push(getDataFromJson(steps[key]));
+		state.todoSteps.push({
+			...getDataFromJson(steps[key]),
+			order: order++
+		});
 	});
 	
-	console.warn("State after init", state)
+	state.allSteps = [...state.todoSteps];
+	
+	console.warn("State after init", state);
 	
 	return state
 };
 
 
 const DEFAULT_STATE = {
+	// todo get only one list of steps with status incorporated
 	currentStep: null,
 	todoSteps: [],
 	doneSteps: [],
 	skippedSteps: [],
+	allSteps: [],
 	globalElapsedTime: 0,
 	stepElapsedTime: 0
 	
@@ -71,9 +73,11 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 	// Dont allow other reducer's action to interact with this reducer
 	
 	if (possibleActionType.includes(action.type)) {
-
+		let doneSteps;
+		let todoSteps;
+		let currentStep;
 		switch (action.type) {
-
+			
 			case timeAction.passSecond.type:
 				
 				if (action.globalElapsedTime !== undefined && action.timeFromLastEvent !== undefined) {
@@ -96,10 +100,12 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 			case timeAction.currentStep.type:
 				
 				
-				if (action.stepId !== undefined) {
+				if (action.index !== undefined) {
 					console.log("HEY 1");
 					
-					stepIndex = clonedState.todoSteps.findIndex(step => step.id === action.stepId);
+					const researchedStep = state.allSteps[action.index];
+					
+					stepIndex = clonedState.todoSteps.findIndex(step => step.name === researchedStep.name);
 					
 					console.log("HEY 2", stepIndex);
 					
@@ -108,11 +114,11 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					todoStep = [...state.todoSteps];
 					const step = todoStep.splice(stepIndex, 1)[0];
 					
-					console.log("HEY 2.5", step);
-					if (clonedState.currentStep !== null) {
-						console.log("HEY 3");
-						todoStep.push(clonedState.currentStep);
-					}
+					// console.log("HEY 2.5", step);
+					// if (clonedState.currentStep !== null) {
+					// 	console.log("HEY 3");
+					// 	todoStep.push(clonedState.currentStep);
+					// }
 					
 					clonedState = {
 						...clonedState,
@@ -135,63 +141,49 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 			
 			case timeAction.stepCompleted.type:
 				
-				if (clonedState.currentStep !== null) {
-					const doneStep = [...state.doneSteps];
-					doneStep.push(clonedState.currentStep);
+				doneSteps = [...clonedState.doneSteps];
+				todoSteps = [...clonedState.todoSteps];
+				currentStep = clonedState.currentStep;
+				
+				action.indexes.forEach(index => {
+					const researchedStep = clonedState.allSteps[index];
+					if(clonedState.currentStep.name === researchedStep.name) {
+						currentStep = null;
+					}
 					
-					clonedState = {
-						...clonedState,
-						doneSteps: doneStep,
-						currentStep: null
-					};
-					
-				} else {
-					logger.warn(timeAction.stepCompleted.type, "Try to set complete an undefined step");
-					
-				}
+					const indexInTodo = todoSteps.findIndex(step => step.name === researchedStep.name);
+					if (indexInTodo > -1) {
+						todoStep.splice(indexInTodo, 1);
+					}
+					doneSteps.push(researchedStep);
+				});
+				
+				clonedState = {
+					...clonedState,
+					currentStep: currentStep,
+					todoSteps: todoSteps,
+					doneSteps: doneSteps,
+				};
 				
 				break;
 			
 			case timeAction.stepSkipped.type:
-				
-				if (action.stepId !== undefined) {
-					const skippedStep = [...clonedState.skippedSteps];
-					todoStep = [...state.todoSteps];
-					const step = getStepById(action.stepId);
-					
-					
-					// Check if the new skippedStep is not already in the skippedStep
-					if (skippedStep.indexOf(step => step.id === action.stepId) === -1)
-					{
-						skippedStep.push(step);
-					} else {
-						logger.warn(`Cant have multiple times ${action.step.name} in skippedStep []`)
-					}
-					
-					// Check if the currentStep is the one that have to be skipped
-					let currentStep = clonedState.currentStep;
-					if (currentStep && currentStep.id === action.step.id) {
+				// action.index
+				doneSteps = [...clonedState.doneSteps];
+				currentStep = clonedState.currentStep
+				action.indexes.forEach(index => {
+					const researchedStep = clonedState.allSteps[index];
+					if(clonedState.currentStep.name === researchedStep.name) {
 						currentStep = null;
 					}
-					
-					
-					// Search if the new Skipped step was in todoSteps and remove it
-					const indexInTodoStep = state.todoSteps.findIndex(step => step.id === action.step.id);
-					if (indexInTodoStep >= 0) {
-						todoStep.splice(indexInTodoStep, 1);
-					}
-					
-					// Recreate clonedState using new steps
-					clonedState = {
-						...clonedState,
-						todoSteps: todoStep,
-						skippedSteps: skippedStep,
-						currentStep: currentStep
-					};
-					
-				} else {
-					logger.warn("Cant skip un undefined action or there is no action to skip");
-				}
+					doneSteps.push(clonedState.allSteps[index]);
+				});
+				
+				clonedState = {
+					...clonedState,
+					currentStep: currentStep,
+					doneSteps: doneSteps,
+				};
 				
 				
 				break;
@@ -225,28 +217,28 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				logger.debug("You are un replaceAllSteps reducer", action);
 				if (action.steps.length !== undefined) {
 					
-					let steps = [];
-					console.warn(1, clonedState, steps);
-					
-					action.steps.forEach(step => {
-						// Add only title steps (in blue in excel)
-						if (step.action === "") {
-							steps.push(step);
-							console.log("DOAZ?D?ZAOXAZ", step);
-						}
-						
-						
-					});
-					
-					steps = steps.sort((step1, step2) => {
-						return step1['order'] < step2['order'] ? -1 : 1
-					});
+					// let steps = [];
+					// console.warn(1, clonedState, steps);
+					//
+					// action.steps.forEach(step => {
+					// 	// Add only title steps (in blue in excel)
+					// 	if (step.action === "") {
+					// 		steps.push(step);
+					// 		console.log("DOAZ?D?ZAOXAZ", step);
+					// 	}
+					//
+					//
+					// });
+					//
+					// steps = steps.sort((step1, step2) => {
+					// 	return step1['order'] < step2['order'] ? -1 : 1
+					// });
 					
 					
 					logger.debug("replace B", clonedState);
-					clonedState = init(getDefaultState(), steps);
+					clonedState = init(getDefaultState(), action.steps);
 					logger.debug("replace A", clonedState);
-					console.warn(2, clonedState, steps)
+					console.warn(2, clonedState, action.steps)
 					
 				}
 				

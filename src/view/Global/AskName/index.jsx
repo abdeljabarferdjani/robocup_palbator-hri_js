@@ -7,7 +7,6 @@ import './AskName.css'
 import {UserComponentPropTypes} from "../../../dev/types";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 
-const {names: offlineName} = ConfigWrapper.get();
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -35,11 +34,8 @@ class AskName extends Component {
 		const textToShow = this.props.textToShow || "Hello, what is your name ?";
 		
 		let names;
-		if (this.props.choices && this.props.choices.length > 0) {
-			names = this.props.choices
-		} else {
-			names = [];
-			offlineName.forEach(obj => names.push(obj.name))
+		if (this.props.names && this.props.names.length > 0) {
+			names = this.props.names
 		}
 		
 		return (

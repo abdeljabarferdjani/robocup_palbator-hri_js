@@ -23,18 +23,18 @@ const getScenarioSteps = () => {
 
 /**
  *
- * @param id
  * @returns {Object | undefined}
+ * @param name
  */
-const getStepById = (id) => {
+const getStepByName = (name) => {
 	const steps = getScenarioSteps();
-	return steps[steps.findIndex(step => step.id = id)];
+	return steps[steps.findIndex(step => step.name = name)];
 	
 };
 
 export {
 	getScenarioSteps,
-	getStepById
+	getStepByName
 }
 
 
@@ -49,23 +49,23 @@ export default class ALMemoryBridge {
 		
 		Promise.all([
 			
-			QiWrapper.listen(toolbarState.ALMemory, this.handleToolbarChange(toolbarState)),
-			QiWrapper.listen(generalManagerHRI.currentStep.ALMemory, this.handleChangeCurrentStep()),
-			QiWrapper.listen(generalManagerHRI.stepCompleted.ALMemory, this.handleStepCompleted()),
-			QiWrapper.listen(generalManagerHRI.stepSkipped.ALMemory, this.handleSetStepSkipped()),
-			QiWrapper.listen(generalManagerHRI.timerState.ALMemory, this.handleToggleTimer()),
-			QiWrapper.listen(generalManagerHRI.currentScenario.ALMemory, this.handleChangeCurrentScenario()),
-			QiWrapper.listen(tabletLM.currentView.ALMemory, this.handleChangeCurrentView())
+			QiWrapper.listen(toolbarState["ALMemory"], this.handleToolbarChange(toolbarState)),
+			QiWrapper.listen(generalManagerHRI.currentStep["ALMemory"], this.handleChangeCurrentStep()),
+			QiWrapper.listen(generalManagerHRI.stepCompleted["ALMemory"], this.handleStepCompleted()),
+			QiWrapper.listen(generalManagerHRI.stepSkipped["ALMemory"], this.handleSetStepSkipped()),
+			QiWrapper.listen(generalManagerHRI.timerState["ALMemory"], this.handleToggleTimer()),
+			QiWrapper.listen(generalManagerHRI.currentScenario["ALMemory"], this.handleChangeCurrentScenario()),
+			QiWrapper.listen(tabletLM.currentView["ALMemory"], this.handleChangeCurrentView())
 		
-		]).then(() => QiWrapper.raise(tabletLM.tabletOperational.ALMemory, {time: Date.now()}))
+		]).then(() => QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {time: Date.now()}))
 			.then(() => {
 				setInterval(async () => {
-					QiWrapper.raise(common.jsHeartbeat.ALMemory, {time: Date.now()});
+					await QiWrapper.raise(common.jsHeartbeat["ALMemory"], {time: Date.now()});
 					
 					dispatch({
 						type: comAction.extHeartbeat.type,
 						time: {
-							lm: JSON.parse(await QiWrapper.getALValue(common.localManagerHeartbeat.ALMemory)).time,
+							lm: JSON.parse(await QiWrapper.getALValue(common["localManagerHeartbeat"]["ALMemory"])).time,
 							// gm: JSON.parse(await QiWrapper.getALValue(common.generalManagerHeartbeat.ALMemory)).time
 						}
 					})
@@ -94,12 +94,12 @@ export default class ALMemoryBridge {
 		
 		dispatch({
 			type: scenarioAction.currentScenario.type,
-			scenario: data.scenario
+			scenarioName: data["scenarioName"]
 		});
 		
 		dispatch({
 			type: timeAction.replaceAllSteps.type,
-			steps: data.scenario.steps
+			steps: data["stepsList"]
 		})
 	};
 	
@@ -115,36 +115,26 @@ export default class ALMemoryBridge {
 	};
 	
 	static handleSetStepSkipped = () => (data) => {
-		if (getScenarioSteps().findIndex(step => step.order === data.step.order) >= 0) {
-			dispatch({
-				type: generalManagerHRI.stepSkipped.reduxKey,
-				step: data.step
-			})
-		} else {
-			ALMemoryBridge.logger.warn("SetStepSkipped", "Unknown data.step.order")
-		}
+		dispatch({
+			type: timeAction.stepSkipped.type,
+			indexes: data.indexes
+		})
 	};
 	
 	static handleStepCompleted = () => (data) => {
+		dispatch({
+			type: timeAction.stepCompleted.type,
+			indexes: data.indexes
+		})
 		
-		if (data) {
-			dispatch({
-				// type: generalManagerHRI.stepCompleted.reduxKey,
-				type: timeAction.stepCompleted.type
-			})
-		}
 	};
 	
 	static handleChangeCurrentStep = () => (data) => {
-		if (getStepById(data.actionId)) {
-			dispatch({
-				type: timeAction.currentStep.type,
-				stepId: data.actionId
-			});
-			
-		} else {
-			ALMemoryBridge.logger.warn("ChangeCurrentStep", "Unknown data.step.order")
-		}
+		dispatch({
+			type: timeAction.currentStep.type,
+			index: data.index
+		})
+
 	};
 	
 	static handleToolbarChange = changeToolbar => data => {

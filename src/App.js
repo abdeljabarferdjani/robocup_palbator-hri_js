@@ -7,6 +7,7 @@ import Toolbar from "./view/Global/Toolbar/Toolbar";
 import logConfig from './config/log'
 import Logger from "./dev/Logger";
 import {connect} from "react-redux";
+import Logo from "./view/Global/Logo";
 
 
 const mapStateToProps = (state) => {
@@ -72,6 +73,9 @@ class App extends Component {
 						
 						<div className="component">
 							<Toolbar/>
+						</div>
+						<div className={"component logo"}>
+							<Logo/>
 						</div>
 					</div>
 					

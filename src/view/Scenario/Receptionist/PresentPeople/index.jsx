@@ -34,9 +34,10 @@ export class PresentPeople extends Component {
 		if (this.props.people.to.length !== undefined) {
 			// Their is an array of people
 			let peoples = [];
+			console.log("People TO array : ", this.props.people.to)
 			this.props.people.to.forEach(guy => {
 				peoples.push(<Guest drinkName={guy["drink"]}
-				                    name={guy["name"]}/>)
+				                    name={guy["obj"]}/>)
 			});
 			toDiv = <div>{peoples}</div>
 		}

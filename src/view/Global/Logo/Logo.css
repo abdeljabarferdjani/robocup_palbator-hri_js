@@ -1,0 +1,16 @@
+div.Logo {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 0 1rem;
+
+}
+
+div.Logo > img {
+    margin-right: 1rem ;
+    width: auto;
+    min-height: calc(80%/6);
+}
+
+div.logo {
+    margin: 0;
+}

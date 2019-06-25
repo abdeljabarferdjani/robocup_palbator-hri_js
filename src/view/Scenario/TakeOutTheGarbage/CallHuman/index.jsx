@@ -5,7 +5,7 @@ import {comAction} from "../../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import PropTypes from 'prop-types'
-
+import './CallHuman.css'
 const mapDispatchToProps = (dispatch) => {
 	return {
 		humanIsHere: () => {
@@ -38,7 +38,7 @@ class CallHuman extends Component {
 				<SpeakableButton
 					onClick={this.props.humanIsHere}>{"I'm here"}
 				</SpeakableButton>
-				<Wait time={60}/>
+				<Wait time={this.props.time}/>
 			</div>
 		);
 	}

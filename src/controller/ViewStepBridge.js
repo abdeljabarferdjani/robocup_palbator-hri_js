@@ -10,7 +10,6 @@ import FindAvailableDrinks
 import OpenDoor from "../view/Global/OpenDoor";
 import FindWhoWantsDrinks
 	from "../view/Scenario/ServingDrinks/FindWhoWantDrinks";
-import FindGuest from "../view/Scenario/Receptionist/FindGuest";
 import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
 import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
@@ -21,7 +20,7 @@ import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
 import ShowVideo from '../view/Scenario/TakeOutTheGarbage/ShowVideo'
 
 const getClassFromView = (view) => {
-	return viewClassMap[view];
+	return viewClassMap[view] || MainMenu;
 };
 
 /**

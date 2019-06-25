@@ -134,7 +134,7 @@ class Debug extends Component {
 	}
 	
 	
-	handleVideoClick = ()  => {
+	handleVideoClick = () => {
 	
 	}
 	
@@ -146,12 +146,18 @@ class Debug extends Component {
 		images.push(drinks, locations);
 		let imagesOptions = [];
 		images.forEach(img => {
-			imagesOptions.push(<option value={img['pathOnTablet']}>{img['name']}</option>)
+			if (img !== undefined) {
+				imagesOptions.push(<option
+					value={img['pathOnTablet']}>{img['obj']}</option>)
+			}
 		})
 		
 		let videosOptions = []
-		videos.forEach(video => {
-			videosOptions.push(<option value={video['pathOnTablet']}>{video['name']}</option>)
+		new Array(videos).forEach(video => {
+			if (video !== undefined) {
+				videosOptions.push(<option
+					value={video['pathOnTablet']}>{video['obj']}</option>)
+			}
 		})
 		
 		
@@ -258,7 +264,8 @@ class Debug extends Component {
 				</button>
 				<div className="Video">
 					<h3>Video</h3>
-					<select name="" id="" onChange={this.handleVideoInputChange}>
+					<select name="" id=""
+					        onChange={this.handleVideoInputChange}>
 						{videosOptions}
 					</select>
 					
@@ -268,7 +275,8 @@ class Debug extends Component {
 				
 				<div className="Image">
 					<h3>Image</h3>
-					<select name="" id="" onChange={this.handleVideoInputChange}>
+					<select name="" id=""
+					        onChange={this.handleVideoInputChange}>
 						{imagesOptions}
 					</select>
 					<img src={this.state.imagePath} alt=""/>

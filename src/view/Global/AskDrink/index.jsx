@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ConfigWrapper from "../../../controller/ConfigWrapper";
 import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
@@ -7,8 +6,6 @@ import './AskDrink.css'
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 import Drink from "../reusableComponent/Drink/Drink";
 import PropTypes from 'prop-types'
-
-const {drinks: offlineDrinks} = ConfigWrapper.get();
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -38,22 +35,18 @@ class AskName extends Component {
 		
 		
 		let drinks;
-		if (this.props.choices && this.props.choices.length > 0) {
-			drinks = this.props.choices.QiWrapper()
-		} else {
-			drinks = [];
-			
-			offlineDrinks.forEach(obj => drinks.push(obj.name))
+		if (this.props.drinks && this.props.drinks.length > 0) {
+			drinks = this.props.drinks
 		}
 		
 		const displayed = [];
 		drinks.forEach(drink => {
 			displayed.push(<div>
 				<SpeakableButton
-					image={<Drink name={drink} alt={""}/>}
-					onClick={() => this.props.sendName(this.props.dispatch, drink)}
+					image={<Drink name={drink['name']} pathOnTablet={drink['pathOnTablet']}/>}
+					onClick={() => this.props.sendName(this.props.dispatch, drink['name'])}
 				>
-					{drink}
+					{drink['name']}
 				</SpeakableButton>
 			
 			

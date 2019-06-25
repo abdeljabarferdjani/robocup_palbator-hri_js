@@ -18,13 +18,11 @@ const CONFIG_ALMEMORY = "R2019/Api/Common";
 export default class ConfigWrapper
 {
 	// static #_steps = steps;
-	static #_drinks;
-	static #_names;
 	
 	static #_videos;
 	
 	static #_locations;
-	
+	static #_images;
 	static #_apis;
 	
 	
@@ -57,25 +55,15 @@ export default class ConfigWrapper
 			);
 			
 			
-			ConfigWrapper.#_drinks = JSON.parse(
+	
+			
+		
+			
+			ConfigWrapper.#_images = JSON.parse(
 				await QiWrapper.getALValue(
-					ConfigWrapper.#_apis.common["AL_VALUE"]["drinks"]
+					ConfigWrapper.#_apis.common['AL_VALUE']['images']
 				)
-			);
-			ConfigWrapper.#_drinks = ConfigWrapper.#_drinks.sort((a, b) => {
-				return a['name'] > b['name'] ? 1 : -1
-			});
-			
-			
-			ConfigWrapper.#_names = JSON.parse(
-				await QiWrapper.getALValue(
-					ConfigWrapper.#_apis.common["AL_VALUE"]["names"]
-				)
-			);
-			ConfigWrapper.#_names = ConfigWrapper.#_names.sort((a, b) => {
-				return a['name'] > b['name'] ? 1 : -1
-			});
-			
+			)
 			
 			ConfigWrapper.#_locations = JSON.parse(
 				await QiWrapper.getALValue(
@@ -95,7 +83,7 @@ export default class ConfigWrapper
 			});
 			
 			deepFreeze(ConfigWrapper.get())
-			
+			console.log("CONFIG", ConfigWrapper.get())
 		} catch (e) {
 			console.error("Error in ConfigWrapper", e);
 			const style = {
@@ -120,16 +108,15 @@ export default class ConfigWrapper
 	
 	/**
 	 *
-	 * @return {{apis : {common, tabletLM, generalManagerHRI}, names, locations, drinks, videos}}
+	 * @return {{apis : {common, tabletLM, generalManagerHRI},  images, locations,  videos}}
 	 */
 	static get() {
 		
 		
 		return {
-			drinks: ConfigWrapper.#_drinks,
-			names: ConfigWrapper.#_names,
 			locations: ConfigWrapper.#_locations,
 			videos: ConfigWrapper.#_videos,
+			images : ConfigWrapper.#_images,
 			apis: {
 				common: ConfigWrapper.#_apis.common,
 				tabletLM: ConfigWrapper.#_apis.tabletLM,

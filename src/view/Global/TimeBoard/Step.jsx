@@ -41,6 +41,7 @@ class Step extends Component {
 		
 		this.state = {
 			id: props.step.id,
+			order: props.step.order,
 			currentTime: props.time.stepElapsedTime,
 			progressBarRef: React.createRef()
 		};
@@ -55,7 +56,8 @@ class Step extends Component {
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
 		// if the step's order match, I have to update
-		if (nextProps.time.currentStep && nextProps.time.currentStep.id === prevState.id) {
+		
+		if (nextProps.time.currentStep && nextProps.time.currentStep.order === prevState.order) {
 			
 			if (prevState.progressBarRef.current)
 			{

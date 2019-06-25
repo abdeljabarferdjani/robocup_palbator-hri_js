@@ -1,0 +1,4 @@
+tar xvf /home/nao/.local/share/PackageManager/apps/R2019/build.tar -C /home/nao/.local/share/PackageManager/apps/R2019
+rm -r /home/nao/.local/share/PackageManager/apps/R2019/html
+rm  /home/nao/.local/share/PackageManager/apps/R2019/build.tar
+mv /home/nao/.local/share/PackageManager/apps/R2019/build /home/nao/.local/share/PackageManager/apps/R2019/html

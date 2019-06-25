@@ -43,7 +43,7 @@ class Guest extends React.Component {
 				<p className={"guestDrink"}>{this.state.name} likes: {this.state.drinkObj.name} </p>
 				<Drink
 					name={this.state.drinkObj['name']}
-					alt={this.state.drinkObj["name"]}/>
+					pathOnTablet={this.state.drinkObj["pathOnTablet"]}/>
 			</div>
 		)
 	}

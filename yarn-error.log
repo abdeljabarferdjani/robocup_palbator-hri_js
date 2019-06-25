@@ -1,42 +1,34 @@
 Arguments: 
-  D:\ProgTools\NodeJS\node.exe C:\Users\jonag\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-chart-js-2 chart.js
+  /usr/local/bin/node /usr/local/bin/yarn build
 
 PATH: 
-  W:\robocup\hri-meta\robocup_pepper-hri_js\node_modules\.bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\ProgTools\Paths;C:\Windows\System32\OpenSSH\;D:\ProgTools\NodeJS\;C:\ProgramData\chocolatey\bin;C:\Ide\Microsoft VS Code Insiders\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-12.0.1\bin;C:\Users\jonag\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\jonag\AppData\Local\Programs\Python\Python37\;C:\Users\jonag\AppData\Local\Microsoft\WindowsApps;C:\Users\jonag\AppData\Roaming\npm
+  /home/elyspio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/d/ProgTools/Paths:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/d/ProgTools/NodeJS/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Ide/Microsoft VS Code Insiders/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Java/jdk-12.0.1/bin:/mnt/c/Users/jonag/AppData/Local/Programs/Python/Python37/Scripts/:/mnt/c/Users/jonag/AppData/Local/Programs/Python/Python37/:/mnt/c/Users/jonag/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/jonag/AppData/Roaming/npm:/snap/bin
 
 Yarn version: 
   1.16.0
 
 Node version: 
-  12.2.0
+  12.3.0
 
 Platform: 
-  win32 x64
+  linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-chart-js-2: Not found
-      at Request.params.callback [as _callback] (C:\Users\jonag\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66091:18)
-      at Request.self.callback (C:\Users\jonag\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:129590:22)
-      at Request.emit (events.js:196:13)
-      at Request.<anonymous> (C:\Users\jonag\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130562:10)
-      at Request.emit (events.js:196:13)
-      at IncomingMessage.<anonymous> (C:\Users\jonag\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:130484:12)
-      at Object.onceWrapper (events.js:284:20)
-      at IncomingMessage.emit (events.js:201:15)
-      at endReadableNT (_stream_readable.js:1130:12)
-      at processTicksAndRejections (internal/process/task_queues.js:84:9)
+  Error: EACCES: permission denied, scandir '/mnt/w/robocup/hri-meta/robocup_pepper-hri_js/node_modules/.bin'
 
 npm manifest: 
   {
   	"name": "react-pepper",
+  	"main": ".",
   	"version": "0.1.0",
   	"private": true,
   	"dependencies": {
-  		"core-js": "3.1.2",
-  		"prop-types": "^15.7.2",
+  		"chart.js": "^2.8.0",
+  		"core-js": "3.1.4",
   		"react": "^16.8.6",
+  		"react-chartjs-2": "^2.7.6",
   		"react-dom": "^16.8.6",
-  		"react-redux": "^7.0.3",
+  		"react-redux": "7.1.0",
   		"react-scripts": "^3.0.1",
   		"redux": "^4.0.1",
   		"redux-logger": "^3.0.6"
@@ -47,10 +39,10 @@ npm manifest:
   		"build": "react-scripts build",
   		"build:win32": "rmdir /S /Q build",
   		"build:linux": "rm -rf build",
-  		"build-to-deploy:linux": "yarn run build && node deploy.js",
+  		"build_to_deploy": "npm run build && node deploy.js --ip pepper3.local",
   		"test": "react-scripts test",
   		"eject": "react-scripts eject",
-  		"resetDependency": "rm -rf ./node_modules && yarn install"
+  		"resetDependency": "rm -rf ./node_modules && npm install"
   	},
   	"eslintConfig": {
   		"extends": "react-app"
@@ -64,8 +56,12 @@ npm manifest:
   		]
   	},
   	"devDependencies": {
+  		"argparse": "latest",
+  		"process": "latest",
+  		"prop-types": "^15.7.2",
   		"redux-devtools-extension": "^2.13.8",
-  		"run-script-os": "^1.0.5"
+  		"run-script-os": "1.0.7",
+  		"ssh2": "0.8.4"
   	}
   }
 
@@ -927,7 +923,7 @@ Lockfile:
     dependencies:
       regenerator-runtime "^0.13.2"
   
-  "@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3":
+  "@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.5":
     version "7.4.5"
     resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
     integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
@@ -1702,7 +1698,7 @@ Lockfile:
       delegates "^1.0.0"
       readable-stream "^2.0.6"
   
-  argparse@^1.0.7:
+  argparse@^1.0.7, argparse@latest:
     version "1.0.10"
     resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
     integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
@@ -1806,7 +1802,7 @@ Lockfile:
       inherits "^2.0.1"
       minimalistic-assert "^1.0.0"
   
-  asn1@~0.2.3:
+  asn1@~0.2.0, asn1@~0.2.3:
     version "0.2.4"
     resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.4.tgz#8d2475dfab553bb33e77b54e59e880bb8ce23136"
     integrity sha512-jxwzQpLQjSmWXgwaCZE9Nz+glAG01yF1QnWgbhGwHI5A6FRIEY6IVqtHhIepHqI7/kyEyQEagBC5mBEFlIYvdg==
@@ -2079,7 +2075,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
     integrity sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=
   
-  bcrypt-pbkdf@^1.0.0:
+  bcrypt-pbkdf@^1.0.0, bcrypt-pbkdf@^1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
     integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
@@ -2447,6 +2443,29 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
     integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
   
+  chart.js@^2.8.0:
+    version "2.8.0"
+    resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.8.0.tgz#b703b10d0f4ec5079eaefdcd6ca32dc8f826e0e9"
+    integrity sha512-Di3wUL4BFvqI5FB5K26aQ+hvWh8wnP9A3DWGvXHVkO13D3DSnaSsdZx29cXlEsYKVkn1E2az+ZYFS4t0zi8x0w==
+    dependencies:
+      chartjs-color "^2.1.0"
+      moment "^2.10.2"
+  
+  chartjs-color-string@^0.6.0:
+    version "0.6.0"
+    resolved "https://registry.yarnpkg.com/chartjs-color-string/-/chartjs-color-string-0.6.0.tgz#1df096621c0e70720a64f4135ea171d051402f71"
+    integrity sha512-TIB5OKn1hPJvO7JcteW4WY/63v6KwEdt6udfnDE9iCAZgy+V4SrbSxoIbTw/xkUIapjEI4ExGtD0+6D3KyFd7A==
+    dependencies:
+      color-name "^1.0.0"
+  
+  chartjs-color@^2.1.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/chartjs-color/-/chartjs-color-2.3.0.tgz#0e7e1e8dba37eae8415fd3db38bf572007dd958f"
+    integrity sha512-hEvVheqczsoHD+fZ+tfPUE+1+RbV6b+eksp2LwAhwRTVXEjCSEavvk+Hg3H6SZfGlPh/UfmWKGIvZbtobOEm3g==
+    dependencies:
+      chartjs-color-string "^0.6.0"
+      color-convert "^0.5.3"
+  
   chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.4:
     version "2.1.6"
     resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.6.tgz#b6cad653a929e244ce8a834244164d241fa954c5"
@@ -2576,6 +2595,11 @@ Lockfile:
     dependencies:
       map-visit "^1.0.0"
       object-visit "^1.0.0"
+  
+  color-convert@^0.5.3:
+    version "0.5.3"
+    resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-0.5.3.tgz#bdb6c69ce660fadffe0b0007cc447e1b9f7282bd"
+    integrity sha1-vbbGnOZg+t/+CwAHzER+G59ygr0=
   
   color-convert@^1.9.0, color-convert@^1.9.1:
     version "1.9.3"
@@ -2784,10 +2808,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.0.1.tgz#1343182634298f7f38622f95e73f54e48ddf4738"
     integrity sha512-sco40rF+2KlE0ROMvydjkrVMMG1vYilP2ALoRXcYR4obqbYIuV3Bg+51GEDW+HF8n7NRA+iaA4qD0nD9lo9mew==
   
-  core-js@3.1.2:
-    version "3.1.2"
-    resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.1.2.tgz#2549a2cfb3ca1a5d851c9f7838e8b282cef2f3ba"
-    integrity sha512-3poRGjbu56leCtZCZCzCgQ7GcKOflDFnjWIepaPFUsM0IXUBrne10sl3aa2Bkcz3+FjRdIxBe9dAMhIJmEnQNA==
+  core-js@3.1.4:
+    version "3.1.4"
+    resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.1.4.tgz#3a2837fc48e582e1ae25907afcd6cf03b0cc7a07"
+    integrity sha512-YNZN8lt82XIMLnLirj9MhKDFZHalwzzrL9YLt6eb0T5D0EDl4IQ90IGkua8mHbnxNrkj1d8hbdizMc0Qmg1WnQ==
   
   core-js@^2.4.0:
     version "2.6.8"
@@ -5968,7 +5992,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
     integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
   
-  "lodash@>=3.5 <5", lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
+  "lodash@>=3.5 <5", lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5:
     version "4.17.11"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
     integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -6261,6 +6285,11 @@ Lockfile:
     integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
     dependencies:
       minimist "0.0.8"
+  
+  moment@^2.10.2:
+    version "2.24.0"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+    integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
   
   move-concurrently@^1.0.1:
     version "1.0.1"
@@ -7717,7 +7746,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
     integrity sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==
   
-  process@^0.11.10:
+  process@^0.11.10, process@latest:
     version "0.11.10"
     resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
     integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
@@ -7747,7 +7776,7 @@ Lockfile:
       kleur "^3.0.2"
       sisteransi "^1.0.0"
   
-  prop-types@^15.6.2, prop-types@^15.7.2:
+  prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
     integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -7922,6 +7951,14 @@ Lockfile:
       regenerator-runtime "0.13.2"
       whatwg-fetch "3.0.0"
   
+  react-chartjs-2@^2.7.6:
+    version "2.7.6"
+    resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-2.7.6.tgz#b8cd29bed00bf55b9e8172b06466b4ecf2b86bfb"
+    integrity sha512-xDr0jhgt/o26atftXxTVsepz+QYZI2GNKBYpxtLvYgwffLUm18a9n562reUJAHvuwKsy2v+qMlK5HyjFtSW0mg==
+    dependencies:
+      lodash "^4.17.4"
+      prop-types "^15.5.8"
+  
   react-dev-utils@^9.0.1:
     version "9.0.1"
     resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.0.1.tgz#5c03d85a0b2537d0c46af7165c24a7dfb274bef2"
@@ -7973,12 +8010,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
     integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
   
-  react-redux@^7.0.3:
-    version "7.0.3"
-    resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.0.3.tgz#983c5a6de81cb1e696bd1c090ba826545f9170f1"
-    integrity sha512-vYZA7ftOYlDk3NetitsI7fLjryt/widNl1SLXYvFenIpm7vjb4ryK0EeFrgn62usg5fYkyIAWNUPKnwWPevKLg==
+  react-redux@7.1.0:
+    version "7.1.0"
+    resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.1.0.tgz#72af7cf490a74acdc516ea9c1dd80e25af9ea0b2"
+    integrity sha512-hyu/PoFK3vZgdLTg9ozbt7WF3GgX5+Yn3pZm5/96/o4UueXA+zj08aiSC9Mfj2WtD1bvpIb3C5yvskzZySzzaw==
     dependencies:
-      "@babel/runtime" "^7.4.3"
+      "@babel/runtime" "^7.4.5"
       hoist-non-react-statics "^3.3.0"
       invariant "^2.2.4"
       loose-envify "^1.4.0"
@@ -8440,10 +8477,10 @@ Lockfile:
     dependencies:
       aproba "^1.1.1"
   
-  run-script-os@^1.0.5:
-    version "1.0.5"
-    resolved "https://registry.yarnpkg.com/run-script-os/-/run-script-os-1.0.5.tgz#2cf188122bc6ee2ad8faa4f2e53d0aa8be08116f"
-    integrity sha512-uDMVaOAB9M4Q8KcQRVgt7jTZlGNIrlTPbEO+wEA+7kTTMsrL6/JYTkrRWuGF7VpZHHKLreTd/FN7J+EYEaUvhQ==
+  run-script-os@1.0.7:
+    version "1.0.7"
+    resolved "https://registry.yarnpkg.com/run-script-os/-/run-script-os-1.0.7.tgz#7cd51144a19c6ca364fe668433f55b47babf4749"
+    integrity sha512-H4NAhP9PiseQQm3Vpen7CHksfKGqC4dmwoVu/9th97r3XyBrMtkg4jIUiy/8dgzuI9MGwmK/7vf13Wncx+Y4bw==
   
   rxjs@^6.4.0:
     version "6.5.2"
@@ -8889,6 +8926,22 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
     integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
   
+  ssh2-streams@~0.4.4:
+    version "0.4.4"
+    resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.4.4.tgz#7f07464c4b19ee93324995ec7164f110c5a13658"
+    integrity sha512-yNfPZgJO/N69TvYkpDHZBkXAXQzTpfzRkOphQu3PeUpZnrjp9VNa8RKDZkZDpjsWItay+I4NMAbZZ7DqHRt0AQ==
+    dependencies:
+      asn1 "~0.2.0"
+      bcrypt-pbkdf "^1.0.2"
+      streamsearch "~0.1.2"
+  
+  ssh2@0.8.4:
+    version "0.8.4"
+    resolved "https://registry.yarnpkg.com/ssh2/-/ssh2-0.8.4.tgz#0a657d9371c1fe9f9e349bcff6144febee256aa6"
+    integrity sha512-qztb9t4b34wJSiWVpeTMVVN/5KCuBoyctBc2BcSe/Uq4NRnF0gB16Iu5p72ILhdYATcMNwB5WppzPIEs/3wB8Q==
+    dependencies:
+      ssh2-streams "~0.4.4"
+  
   sshpk@^1.7.0:
     version "1.16.1"
     resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"
@@ -8970,6 +9023,11 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
     integrity sha1-1cdSgl5TZ+eG944Y5EXqIjoVWVI=
+  
+  streamsearch@~0.1.2:
+    version "0.1.2"
+    resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+    integrity sha1-gIudDlb8Jz2Am6VzOOkpkZoanxo=
   
   string-length@^2.0.0:
     version "2.0.0"

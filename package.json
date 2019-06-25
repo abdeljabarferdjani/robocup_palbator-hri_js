@@ -1,14 +1,15 @@
 {
 	"name": "react-pepper",
+	"main": ".",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
 		"chart.js": "^2.8.0",
-		"core-js": "3.1.2",
+		"core-js": "3.1.4",
 		"react": "^16.8.6",
 		"react-chartjs-2": "^2.7.6",
 		"react-dom": "^16.8.6",
-		"react-redux": "^7.0.3",
+		"react-redux": "7.1.0",
 		"react-scripts": "^3.0.1",
 		"redux": "^4.0.1",
 		"redux-logger": "^3.0.6"
@@ -19,7 +20,7 @@
 		"build": "react-scripts build",
 		"build:win32": "rmdir /S /Q build",
 		"build:linux": "rm -rf build",
-		"build_to_deploy": "npm run build && node deploy.js --ip pepper2.local",
+		"build_to_deploy": "npm run build && node deploy.js --ip pepper3.local",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"resetDependency": "rm -rf ./node_modules && npm install"
@@ -36,10 +37,11 @@
 		]
 	},
 	"devDependencies": {
-		"redux-devtools-extension": "^2.13.8",
-		"run-script-os": "^1.0.5",
-		"prop-types": "^15.7.2",
+		"argparse": "latest",
 		"process": "latest",
-		"argparse": "latest"
+		"prop-types": "^15.7.2",
+		"redux-devtools-extension": "^2.13.8",
+		"run-script-os": "1.0.7",
+		"ssh2": "0.8.4"
 	}
 }

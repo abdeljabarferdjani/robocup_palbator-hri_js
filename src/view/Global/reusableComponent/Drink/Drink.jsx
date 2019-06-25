@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ConfigWrapper from "../../../../controller/ConfigWrapper";
 import './Drink.css'
 
-const {drinks} = ConfigWrapper.get();
 
 class Drink extends Component {
 	
@@ -11,22 +10,18 @@ class Drink extends Component {
 	
 	static propTypes = {
 		name: PropTypes.string.isRequired,
-		alt: PropTypes.string.isRequired
+		pathOnTablet: PropTypes.string.isRequired
 	};
 	
 	render() {
 		
 		return (
 			<img className={"Drink"}
-			     src={Drink.drinksNameToPathMap[this.props.name]}
-			     alt={this.props.alt}/>
+			     src={this.props.pathOnTablet}
+			     alt={this.props.name}/>
 		);
 	}
 }
-
-drinks.forEach(drink => {
-	Drink.drinksNameToPathMap[drink['name']] = drink['pathOnTablet']
-});
 
 export default Drink;
 
