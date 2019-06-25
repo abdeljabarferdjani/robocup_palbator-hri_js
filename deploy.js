@@ -1,17 +1,14 @@
-// import globalConfig from 'src/config/global'
-
 const process = require("process");
 const ArgumentParser = require("argparse").ArgumentParser;
-const Sftp = require("ssh2").Client;
 const fs = require("fs");
 const utils = require("util");
 
 const exec = utils.promisify(require("child_process").exec);
 const spawn = require("child_process").spawn;
-
+const stat = utils.promisify(fs.stat);
 
 const parser = ArgumentParser({
-	version: 1,
+	version: 1.2,
 	addHelp: true,
 	description: "Tool to automaticaly deploy js to Pepper"
 });
@@ -102,8 +99,7 @@ function remoteCommand(user, ip, wd = "~", command) {
 	});
 }
 
-
-async function main() {
+function main() {
 	if (ip) {
 		
 		console.log("Main job started");
@@ -111,33 +107,49 @@ async function main() {
 		console.log(`\nStart to compress ${buildFolder} folder`);
 		console.time("Compressing");
 		const tarEd = `${buildFolder}.tar`;
-		await exec(`tar cf ${tarEd} ${buildFolder}`);
-		console.timeEnd("Compressing");
 		
-		console.log(`\nUpload to ${ip}`);
-		const path = `/home/nao/.local/share/PackageManager/apps/${appName}`;
-		console.log("the build folder will be deployed to " + path);
-		await upload(user, ip, tarEd, path);
+		stat(buildFolder).catch(async e => {
+			if (e.code === 'ENOENT') {
+				console.log("No build folder to send, start to build one");
+				console.time("build");
+				await exec("npm run build");
+				console.timeEnd("build")
+				
+			} else {
+				process.exit(1)
+			}
+		}).finally(async () => {
+			await exec(`tar cf ${tarEd} ${buildFolder}`);
+			console.timeEnd("Compressing");
+			
+			console.log(`\nUpload to ${ip}`);
+			const path = `/home/nao/.local/share/PackageManager/apps/${appName}`;
+			console.log("the build folder will be deployed to " + path);
+			await upload(user, ip, tarEd, path);
+			
+			console.log('\n');
+			console.time(`Extract on ${ip}`);
+			
+			let commands = `tar xvf ${path}/${tarEd} -C ${path}` + '\n' +
+				`rm -r ${path}/html\n` +
+				`rm  ${path}/${tarEd}\n` +
+				`mv ${path}/${buildFolder} ${path}/html`;
+			await fs.writeFileSync("commands", commands);
+			
+			await remoteCommand(user, ip, "", commands);
+			// await remoteCommand(user, ip, "", `tar xvf ${path}/${tarEd} -C ${path}`);
+			// await remoteCommand(user, ip, "", `rm  ${path}/${tarEd}`);
+			// await remoteCommand(user, ip, "",  `rm -r ${path}/html`);
+			// await remoteCommand(user, ip, "", `mv ${path}/${buildFolder} ${path}/html`);
+			
+			fs.unlink(tarEd, () => {
+			});
+			console.timeEnd(`Extract on ${ip}`);
+			
+			console.log("SFTP job completed")
+		});
 		
-		console.log('\n');
-		console.time(`Extract on ${ip}`);
 		
-		let commands = `tar xvf ${path}/${tarEd} -C ${path}` + '\n' +
-			`rm -r ${path}/html\n`+
-			`rm  ${path}/${tarEd}\n` +
-			`mv ${path}/${buildFolder} ${path}/html`;
-		await fs.writeFileSync("commands", commands);
-		
-		await remoteCommand(user, ip, "", commands);
-		// await remoteCommand(user, ip, "", `tar xvf ${path}/${tarEd} -C ${path}`);
-		// await remoteCommand(user, ip, "", `rm  ${path}/${tarEd}`);
-		// await remoteCommand(user, ip, "",  `rm -r ${path}/html`);
-		// await remoteCommand(user, ip, "", `mv ${path}/${buildFolder} ${path}/html`);
-		
-		fs.unlink(tarEd, () => {});
-		console.timeEnd(`Extract on ${ip}`);
-		
-		console.log("SFTP job completed")
 	}
 	
 	
@@ -150,9 +162,6 @@ async function main() {
 	
 }
 
-main().then(() => {
-	console.log("Deploy completed");
-});
-
+main();
 
 
