@@ -1,5 +1,4 @@
 
-
 div.App {
     background-color: #121212;
     display: flex;
@@ -131,9 +130,6 @@ div.component.scenarioTitle {
 /*    display: flex;*/
 /*    flex-direction: row;*/
 /*}*/
-
-
-
 
 
 div#rightPart > div.component {

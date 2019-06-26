@@ -19,6 +19,7 @@ const init = (state, steps) => {
 		return {
 			name: jsonValue.name,
 			eta: jsonValue.eta,
+			id: jsonValue.id
 		}
 	};
 	let order = 0;
@@ -105,7 +106,7 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					
 					const researchedStep = state.allSteps[action.index];
 					
-					stepIndex = clonedState.todoSteps.findIndex(step => step.name === researchedStep.name);
+					stepIndex = clonedState.todoSteps.findIndex(step => step.id === researchedStep.id);
 					
 					console.log("HEY 2", stepIndex);
 					
@@ -147,11 +148,11 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				action.indexes.forEach(index => {
 					const researchedStep = clonedState.allSteps[index];
-					if (clonedState.currentStep.name === researchedStep.name) {
+					if (clonedState.currentStep.id === researchedStep.id) {
 						currentStep = null;
 					}
 					
-					const indexInTodo = todoSteps.findIndex(step => step.name === researchedStep.name);
+					const indexInTodo = todoSteps.findIndex(step => step.id === researchedStep.id);
 					if (indexInTodo > -1) {
 						todoSteps.splice(indexInTodo, 1);
 					}
@@ -173,7 +174,7 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				currentStep = clonedState.currentStep;
 				action.indexes.forEach(index => {
 					const researchedStep = clonedState.allSteps[index];
-					if (clonedState.currentStep.name === researchedStep.name) {
+					if (clonedState.currentStep.id === researchedStep.id) {
 						currentStep = null;
 					}
 					doneSteps.push(clonedState.allSteps[index]);

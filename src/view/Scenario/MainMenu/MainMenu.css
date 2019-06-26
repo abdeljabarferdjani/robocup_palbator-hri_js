@@ -3,6 +3,7 @@ div.MainMenu button {
     margin: 0 2rem 4rem;
     padding: 0.5rem 1rem;
 }
+
 div.MainMenu > div {
     display: flex;
     flex-direction: column;

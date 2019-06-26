@@ -9,13 +9,15 @@ class Drink extends Component {
 	
 	static propTypes = {
 		name: PropTypes.string.isRequired,
-		pathOnTablet: PropTypes.string.isRequired
+		pathOnTablet: PropTypes.string.isRequired,
+		size: PropTypes.oneOf(["sm", "me", "lg"])
 	};
 	
 	render() {
+		let className = "Drink " + this.props.size;
 		
 		return (
-			<img className={"Drink"}
+			<img className={className}
 			     src={this.props.pathOnTablet}
 			     alt={this.props.name}/>
 		);

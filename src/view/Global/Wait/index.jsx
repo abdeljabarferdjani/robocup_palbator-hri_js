@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import QiWrapper from "../../../model/QiWrapper";
-import ConfigWrapper from "../../../controller/ConfigWrapper";
 import {Doughnut} from 'react-chartjs-2'
 import './Wait.css'
 import ComponentTitle from "../reusableComponent/ComponentTitle";
+import {comAction} from "../../../redux/actions/CommunicationAction";
+
+import {connect} from "react-redux";
+
 
 class Wait extends Component {
 	
@@ -32,7 +34,7 @@ class Wait extends Component {
 			}, () => {
 				if (self.state.remainingTime === 0) {
 					clearInterval(intervalId);
-					QiWrapper.raise(ConfigWrapper.get().apis.tabletLM['dataJs']['ALMemory'], JSON.stringify({}))
+					this.props.viewOk();
 				}
 			})
 			
@@ -92,4 +94,20 @@ class Wait extends Component {
 	}
 }
 
-export default Wait;
+const mapStateToProps = (state) => {
+	return {}
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		viewOk: () => {
+			dispatch({
+				type: comAction.dataJs.type,
+				data: {status: 200}
+			})
+		}
+	}
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wait);

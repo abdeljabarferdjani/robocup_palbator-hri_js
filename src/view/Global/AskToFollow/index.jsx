@@ -3,6 +3,9 @@ import ComponentTitle from "../reusableComponent/ComponentTitle";
 import Location from "../reusableComponent/Location";
 import PropTypes from "prop-types";
 import './AskToFollow.css'
+import {comAction} from "../../../redux/actions/CommunicationAction";
+
+import {connect} from "react-redux";
 
 class AskToFollow extends Component {
 	
@@ -11,7 +14,11 @@ class AskToFollow extends Component {
 		location: PropTypes.object.isRequired
 	};
 	
-	render()  {
+	componentDidMount() {
+		this.props.viewOk();
+	}
+	
+	render() {
 		const textToShow = this.props.textToShow || "Please follow me";
 		console.log("AskToFollow props", this.props);
 		return (
@@ -23,4 +30,19 @@ class AskToFollow extends Component {
 	}
 }
 
-export default AskToFollow;
+const mapStateToProps = (state) => {
+	return {}
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		viewOk: () => {
+			dispatch({
+				type: comAction.dataJs.type,
+				data: {status: 200}
+			})
+		}
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AskToFollow);

@@ -5,18 +5,31 @@ div.ShowVideo {
     align-items: center;
 }
 
+div.ShowVideo button {
+    width: 10rem;
+    font-size: larger;
+    padding: 1rem;
+}
+
 div.ShowVideo > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    position: relative;
 }
 
-div.ShowVideo > div > video {
-    width: 70%;
-    margin: 1rem 3rem 1rem 1rem; /*left right top bottom*/
+div.ShowVideo > div > * {
+    margin: 1rem;
+}
+
+div.ShowVideo > div > div.video {
+    width: 65%;
+}
+div.ShowVideo > div > div > video {
+    width: 100%;
+    height: auto;
 }
 
 div.ShowVideo > div > ul {
-    width: 30%;
+    /*width: 30%;*/
 }

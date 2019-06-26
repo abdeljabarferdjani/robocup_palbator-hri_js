@@ -1,6 +1,7 @@
 import React from 'react';
 import './Message.css'
 import PropTypes from 'prop-types'
+
 function Message(props) {
 	return (
 		<div className={"Message"}>

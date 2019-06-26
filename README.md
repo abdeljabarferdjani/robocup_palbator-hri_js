@@ -19,3 +19,8 @@ To deploy the application: `./deploy.sh [IP of Pepper]`
 - 0: Ok
 - 1: No build folder
 - 2: Unsupported node version
+
+## Uses
+- Start the local manager `before` the tablet
+- Scroll is disabled by default on the tablet.
+    - To enable: spam on scenario title until it gets red

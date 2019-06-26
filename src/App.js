@@ -27,17 +27,9 @@ class App extends Component {
 	state = {
 		scenario: this.props.scenario.current
 	};
-	askForDebug = () => {
-		this.nbClickForDebug++;
-		if(this.nbClickForDebug > 10) {
-			// Allow the scroll on tablet
-			document.querySelector("div.scenarioTitle").style.color = "#F00";
-			document.ontouchmove = function() {}
-		}
-	}
-	
+
 	static getDerivedStateFromProps(nextProps, prevState) {
-		// Check if it's a new scenario 
+		// Check if it's a new scenario
 		if (nextProps.scenario.current !== prevState.scenario) {
 			return {
 				scenario: nextProps.scenario.current
@@ -46,6 +38,16 @@ class App extends Component {
 		
 		return null;
 	}
+	
+	askForDebug = () => {
+		this.nbClickForDebug++;
+		if (this.nbClickForDebug > 10) {
+			// Allow the scroll on tablet
+			document.querySelector("div.scenarioTitle").style.color = "#F00";
+			document.ontouchmove = function () {
+			}
+		}
+	};
 	
 	componentDidMount() {
 		document.ontouchmove = (e) => {
@@ -65,7 +67,7 @@ class App extends Component {
 		}
 		
 		return (
-			<div className={"App"} >
+			<div className={"App"}>
 				<div className="component leftPart">
 					{/*List of steps with remaning time for each*/}
 					<TimeBoard/>
@@ -75,7 +77,8 @@ class App extends Component {
 					
 					<div id="header">
 						
-						<div className="component scenarioTitle" onClick={this.askForDebug}>
+						<div className="component scenarioTitle"
+						     onClick={this.askForDebug}>
 							{/*On top left, the name of the scenario (receptionist, take out the garbage, etc.)*/}
 							<h1>{scenarioName}</h1>
 						

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import Guest from "./Guest";
 import './PresentPeople.css'
+import {comAction} from "../../../../redux/actions/CommunicationAction";
 
 function mapStateToProps(state) {
 	return {};
@@ -26,6 +27,10 @@ export class PresentPerson extends Component {
 	constructor(props) {
 		super(props);
 		console.log("Present People ", props)
+	}
+	
+	componentDidMount() {
+		this.props.viewOk()
 	}
 	
 	render() {
@@ -52,6 +57,15 @@ export class PresentPerson extends Component {
 	}
 }
 
-export default connect(
-	mapStateToProps,
-)(PresentPerson);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		viewOk: () => {
+			dispatch({
+				type: comAction.dataJs.type,
+				data: {status: 200}
+			})
+		}
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PresentPerson);
