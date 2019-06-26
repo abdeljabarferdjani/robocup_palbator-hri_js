@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const process = require("process");
 const ArgumentParser = require("argparse").ArgumentParser;
 const fs = require("fs");

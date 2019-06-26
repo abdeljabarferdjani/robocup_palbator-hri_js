@@ -5,7 +5,7 @@ import {comAction} from "../../../redux/actions/CommunicationAction";
 import ComponentTitle from "../../Global/reusableComponent/ComponentTitle";
 import {SpeakableButton} from "../../Global/reusableComponent/Button/SpeakableButton";
 import './MainMenu.css'
-
+import PropTypes from 'prop-types'
 const mapDispatchToProps = (dispatch) => {
 	return {
 		
@@ -27,12 +27,15 @@ const mapStateToProps = (state) => {
 
 class MainMenu extends Component {
 	
+	static propTypes = {
+		scenarios :PropTypes.arrayOf(String)
+	}
 	
 	render() {
 		
 		const buttons = [];
 		
-		comAction.askToChangeScenario.scenario.forEach(scenario => {
+		(this.props.scenarios || comAction.askToChangeScenario.scenario).forEach(scenario => {
 			buttons.push(
 				<SpeakableButton className={"btn btn-info"}
 				                 onClick={() => this.props.askToChangeScenario(scenario)}>

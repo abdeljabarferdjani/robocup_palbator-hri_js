@@ -1,18 +1,21 @@
 # robocup_pepper-HRI_JS
-## Dependances 
-need npm unstable version
-`sudo npm install -g n`
-then 
-` sudo n lts`
 
-## Installation
+## Dependencies
+You need node atleast version 10 to build and deploy
 
-`npm install`
+You can install it with `sudo install.sh`
+
+To check node version use `node -v`
 
 ## Build
 
-Build the application:`npm run build`
+To build the application:`npm run build`
 
 ## Deploy
 
-Deploy the application: `node deploy.js --ip [IP of Pepper]`
+To deploy the application: `./deploy.sh [IP of Pepper]`
+
+### Exit code:
+- 0: Ok
+- 1: No build folder
+- 2: Unsupported node version

@@ -31,7 +31,7 @@ class App extends Component {
 		this.nbClickForDebug++;
 		if(this.nbClickForDebug > 10) {
 			// Allow the scroll on tablet
-			document.querySelector("scenarioTitle").style.color = "#F00";
+			document.querySelector("div.scenarioTitle").style.color = "#F00";
 			document.ontouchmove = function() {}
 		}
 	}
