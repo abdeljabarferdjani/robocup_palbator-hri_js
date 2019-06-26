@@ -23,12 +23,21 @@ class App extends Component {
 	
 	static logger = new Logger(logConfig.App, "App");
 	
-	
+	nbClickForDebug = 0;
 	state = {
 		scenario: this.props.scenario.current
 	};
+	askForDebug = () => {
+		this.nbClickForDebug++;
+		if(this.nbClickForDebug > 10) {
+			// Allow the scroll on tablet
+			document.querySelector("scenarioTitle").style.color = "#F00";
+			document.ontouchmove = function() {}
+		}
+	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
+		// Check if it's a new scenario 
 		if (nextProps.scenario.current !== prevState.scenario) {
 			return {
 				scenario: nextProps.scenario.current
@@ -40,10 +49,9 @@ class App extends Component {
 	
 	componentDidMount() {
 		document.ontouchmove = (e) => {
+			// prevent scroll on tablet
 			e.preventDefault()
 		}
-		
-		// todo Check if desktop version send "touchMove event"
 	}
 	
 	render() {
@@ -57,8 +65,9 @@ class App extends Component {
 		}
 		
 		return (
-			<div className={"App"}>
+			<div className={"App"} >
 				<div className="component leftPart">
+					{/*List of steps with remaning time for each*/}
 					<TimeBoard/>
 				</div>
 				
@@ -66,20 +75,24 @@ class App extends Component {
 					
 					<div id="header">
 						
-						<div className="component scenarioTitle">
+						<div className="component scenarioTitle" onClick={this.askForDebug}>
+							{/*On top left, the name of the scenario (receptionist, take out the garbage, etc.)*/}
 							<h1>{scenarioName}</h1>
 						
 						</div>
 						
 						<div className="component">
+							{/*On top center, the differents problem that affect Pepper (voice mute, ROS dead, etc.)*/}
 							<Toolbar/>
 						</div>
 						<div className={"component logo"}>
+							{/*The Logos of organisations that form LyonTech*/}
 							<Logo/>
 						</div>
 					</div>
 					
 					<div className="component">
+						{/*Component that create the view in function of LM orders*/}
 						<ViewManager/>
 					</div>
 				

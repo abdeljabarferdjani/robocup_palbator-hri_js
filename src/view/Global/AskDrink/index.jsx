@@ -43,7 +43,8 @@ class AskName extends Component {
 		drinks.forEach(drink => {
 			displayed.push(<div>
 				<SpeakableButton
-					image={<Drink name={drink['name']} pathOnTablet={drink['pathOnTablet']}/>}
+					image={<Drink name={drink['name']}
+					              pathOnTablet={drink['pathOnTablet']}/>}
 					onClick={() => this.props.sendName(this.props.dispatch, drink['name'])}
 				>
 					{drink['name']}

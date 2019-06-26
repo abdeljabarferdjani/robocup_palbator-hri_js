@@ -57,14 +57,14 @@ export default class ALMemoryBridge {
 			QiWrapper.listen(generalManagerHRI.currentScenario["ALMemory"], this.handleChangeCurrentScenario()),
 			QiWrapper.listen(tabletLM.currentView["ALMemory"], this.handleChangeCurrentView())
 		
-		]).then(() => QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {time: Date.now()}))
+		]).then(async () => await QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {'time': Date.now()}))
 			.then(() => {
 				setInterval(async () => {
-					await QiWrapper.raise(common.jsHeartbeat["ALMemory"], {time: Date.now()});
+					await QiWrapper.raise(common.jsHeartbeat["ALMemory"], {'time': Date.now()});
 					
 					dispatch({
-						type: comAction.extHeartbeat.type,
-						time: {
+						'type': comAction.extHeartbeat.type,
+						'time': {
 							lm: JSON.parse(await QiWrapper.getALValue(common["localManagerHeartbeat"]["ALMemory"])).time,
 							// gm: JSON.parse(await QiWrapper.getALValue(common.generalManagerHeartbeat.ALMemory)).time
 						}
@@ -134,7 +134,7 @@ export default class ALMemoryBridge {
 			type: timeAction.currentStep.type,
 			index: data.index
 		})
-
+		
 	};
 	
 	static handleToolbarChange = changeToolbar => data => {

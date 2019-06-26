@@ -1,0 +1,12 @@
+div.MainMenu button {
+    font-size: xx-large;
+    margin: 0 2rem;
+}
+div.MainMenu > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 65vh
+}

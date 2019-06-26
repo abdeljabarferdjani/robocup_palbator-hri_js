@@ -9,14 +9,22 @@ import ConfigWrapper from "./controller/ConfigWrapper";
 
 
 async function initApp() {
+	
+	// if(!navigator.userAgent.includes("chrome/44.0.2403.157")) {
+	// 	document.addEventListener("click",handler,true);
+	// 	function handler(e){
+	// 		e.stopPropagation();ff
+	// 		e.preventDefault();
+	// 	}
+	// }
+	
+	
 	const qi = await QiWrapper.createInstance();
-	console.log(qi);
 	await ConfigWrapper.setConfigFromALMemory();
 	
 	const ALMemoryBridge = require("./controller/ALMemoryBridge").default;
 	
 	ALMemoryBridge.initBridge(qi);
-	
 	const App = require("./App").default;
 	const Provider = require("react-redux").Provider;
 	const getStore = require("./redux/Store").default;

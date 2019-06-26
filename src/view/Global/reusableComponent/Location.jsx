@@ -1,30 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from "prop-types";
-import ConfigWrapper from "../../../controller/ConfigWrapper";
 import './Location.css'
 
-const {locations} = ConfigWrapper.get();
-
-class Location extends Component {
+function Location(props) {
 	
-	static propTypes = {
-		id: PropTypes.string.isRequired
-	};
-	
-	render() {
-		
-		const ind = locations.findIndex(step => step.id === this.props.id);
-		
-		if (ind === undefined) {
-			console.warn(`Care: location ${this.props.id} not found in 'steps'`)
-		}
-		
-		return (
-			<img
-				src={locations[ind]["pathOnTablet"]}
-				alt={this.props.id}/>
-		);
-	}
+	return (
+		<img className={"Location"}
+		     src={props.obj["pathOnTablet"]}
+		     alt={props.obj["name"]}/>
+	);
 }
+
+Location.propTypes = {
+	obj: PropTypes.object.isRequired
+};
 
 export default Location;

@@ -13,12 +13,12 @@ const peopleProps = PropTypes.shape({
 	drink: PropTypes.number.isRequired
 });
 
-export class PresentPeople extends Component {
+export class PresentPerson extends Component {
 	
 	static propTypes = {
 		people: PropTypes.shape({
 			who: peopleProps.isRequired,
-			to:  PropTypes.arrayOf(peopleProps).isRequired
+			to: PropTypes.arrayOf(peopleProps).isRequired
 		})
 	};
 	
@@ -34,19 +34,19 @@ export class PresentPeople extends Component {
 		if (this.props.people.to.length !== undefined) {
 			// Their is an array of people
 			let peoples = [];
-			console.log("People TO array : ", this.props.people.to)
+			console.log("People TO array : ", this.props.people.to);
 			this.props.people.to.forEach(guy => {
-				peoples.push(<Guest drinkName={guy["drink"]}
-				                    name={guy["obj"]}/>)
+				console.log("39", guy);
+				peoples.push(<Guest name={guy}/>)
 			});
 			toDiv = <div>{peoples}</div>
 		}
 		
 		return (
-			<div className={"PresentPeople"}>
-				<Guest drinkName={this.props.people.who.drink}
+			<div className={"PresentPerson"}>
+				<Guest drinkObj={this.props.people.who.drink}
 				       name={this.props.people.who.name}/>
-				{toDiv}>
+				{toDiv}
 			</div>
 		);
 	}
@@ -54,4 +54,4 @@ export class PresentPeople extends Component {
 
 export default connect(
 	mapStateToProps,
-)(PresentPeople);
+)(PresentPerson);

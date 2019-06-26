@@ -55,15 +55,11 @@ export default class ConfigWrapper
 			);
 			
 			
-	
-			
-		
-			
 			ConfigWrapper.#_images = JSON.parse(
 				await QiWrapper.getALValue(
 					ConfigWrapper.#_apis.common['AL_VALUE']['images']
 				)
-			)
+			);
 			
 			ConfigWrapper.#_locations = JSON.parse(
 				await QiWrapper.getALValue(
@@ -82,7 +78,7 @@ export default class ConfigWrapper
 				ConfigWrapper.#_videos[video["id"]] = video['pathOnTablet']
 			});
 			
-			deepFreeze(ConfigWrapper.get())
+			deepFreeze(ConfigWrapper.get());
 			console.log("CONFIG", ConfigWrapper.get())
 		} catch (e) {
 			console.error("Error in ConfigWrapper", e);
@@ -116,7 +112,7 @@ export default class ConfigWrapper
 		return {
 			locations: ConfigWrapper.#_locations,
 			videos: ConfigWrapper.#_videos,
-			images : ConfigWrapper.#_images,
+			images: ConfigWrapper.#_images,
 			apis: {
 				common: ConfigWrapper.#_apis.common,
 				tabletLM: ConfigWrapper.#_apis.tabletLM,

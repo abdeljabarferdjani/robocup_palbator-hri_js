@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import ConfigWrapper from "../../../controller/ConfigWrapper";
 import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import './AskName.css'
 import {UserComponentPropTypes} from "../../../dev/types";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
-
 
 
 const mapDispatchToProps = (dispatch) => {

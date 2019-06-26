@@ -4,8 +4,7 @@ import ConfigWrapper from "../../../controller/ConfigWrapper";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import ComponentTitle from "../../Global/reusableComponent/ComponentTitle";
 import {SpeakableButton} from "../../Global/reusableComponent/Button/SpeakableButton";
-
-const {apis: {generalManagerHRI}} = ConfigWrapper.get();
+import './MainMenu.css'
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -36,7 +35,7 @@ class MainMenu extends Component {
 		comAction.askToChangeScenario.scenario.forEach(scenario => {
 			buttons.push(
 				<SpeakableButton className={"btn btn-info"}
-				        onClick={() => this.props.askToChangeScenario(scenario)}>
+				                 onClick={() => this.props.askToChangeScenario(scenario)}>
 					{scenario}
 				</SpeakableButton>
 			)
@@ -44,14 +43,11 @@ class MainMenu extends Component {
 		
 		
 		return (
-			<div>
-				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
-				{buttons}
-				{/*<Button color={"info"}*/}
-				{/*        onClick={() => this.props.currentScenario(scenario.mainMenu)}*/}
-				{/*        size={"lg"}>*/}
-				{/*	Main Menu*/}
-				{/*</Button>*/}
+			<div className={"MainMenu"}>
+				<ComponentTitle>{this.props.textToShow || this.props.children}</ComponentTitle>
+				<div>
+					{buttons}
+				</div>
 			</div>
 		);
 	}

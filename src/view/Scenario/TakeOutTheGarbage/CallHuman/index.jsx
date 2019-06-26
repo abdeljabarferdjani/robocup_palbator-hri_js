@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import PropTypes from 'prop-types'
 import './CallHuman.css'
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		humanIsHere: () => {

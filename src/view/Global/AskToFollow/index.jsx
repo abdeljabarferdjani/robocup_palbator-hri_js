@@ -8,17 +8,16 @@ class AskToFollow extends Component {
 	
 	static propTypes = {
 		textToShow: PropTypes.string,
-		location: PropTypes.string.isRequired
+		location: PropTypes.object.isRequired
 	};
 	
-	render() {
-		
+	render()  {
 		const textToShow = this.props.textToShow || "Please follow me";
-		console.log(this.props);
+		console.log("AskToFollow props", this.props);
 		return (
 			<div className={"AskToFollow"}>
 				<ComponentTitle>{textToShow}</ComponentTitle>
-				<Location id={this.props.location}/>
+				<Location obj={this.props.location}/>
 			</div>
 		);
 	}

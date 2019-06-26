@@ -4,17 +4,18 @@ import Icon from "../reusableComponent/Icon";
 
 import './Logo.css'
 
-const {images} = ConfigWrapper.get() || []
+const {images} = ConfigWrapper.get() || [];
 
 class Logo extends Component {
 	render() {
 		const logos = [];
 		
 		images.forEach(logo => {
-			logos.push(<Icon image={logo['pathOnTablet']} description={logo['obj']}/>);
-		})
+			logos.push(<Icon image={logo['pathOnTablet']}
+			                 description={logo['obj']}/>);
+		});
 		
-		console.log("Update")
+		console.log("Update");
 		
 		return (
 			<div className={"Logo"}>

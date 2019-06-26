@@ -3,7 +3,7 @@ import {scenarioAction} from '../actions/ScenarioAction'
 
 const INITIAL_STATE = {
 	current: {
-		name : "None"
+		name: "None"
 	}
 };
 
@@ -17,7 +17,7 @@ export const scenarioReducer = (state = INITIAL_STATE, action) => {
 			...state,
 			
 			current: {
-				name : action.scenarioName
+				name: action.scenarioName
 			}
 		};
 		

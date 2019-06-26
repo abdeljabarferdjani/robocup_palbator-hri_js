@@ -1,7 +1,7 @@
 import AskName from "../view/Global/AskName";
 import AskAge from "../view/Scenario/Receptionist/AskInformations/AskAge";
 import AskDrink from "../view/Global/AskDrink";
-import {PresentPeople} from "../view/Scenario/Receptionist/PresentPeople";
+import {PresentPerson} from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";
 import DetailDrinks from "../view/Scenario/ServingDrinks/DetailDrinks";
 import GoTo from '../view/Global/GoTo/'
@@ -18,6 +18,7 @@ import Wait from "../view/Global/Wait";
 import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
 import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
 import ShowVideo from '../view/Scenario/TakeOutTheGarbage/ShowVideo'
+import Message from "../view/Global/Message/Index";
 
 const getClassFromView = (view) => {
 	return viewClassMap[view] || MainMenu;
@@ -33,7 +34,7 @@ const viewClassMap = {
 	"askAge": AskAge,
 	"confirm": Confirm,
 	"detailDrinks": DetailDrinks,
-	"presentPerson": PresentPeople,
+	"presentPerson": PresentPerson,
 	"goTo": GoTo,
 	"findAvailableDrinks": FindAvailableDrinks,
 	"openDoor": OpenDoor,
@@ -43,6 +44,7 @@ const viewClassMap = {
 	"askToFollow": AskToFollow,
 	"mainMenu": MainMenu,
 	"wait": Wait,
+	"message": Message,
 	"askOpenDoor": AskOpenDoor,
 	"callHuman": CallHuman,
 	"showVideo": ShowVideo

@@ -68,7 +68,7 @@ Object.keys(timeAction).forEach(key => {
 
 const timeReducer = (state = INITIAL_STATE, action) => {
 	
-	let clonedState = {...state}, stepIndex, todoStep;
+	let clonedState = {...state}, stepIndex, todoSteps;
 	
 	// Dont allow other reducer's action to interact with this reducer
 	
@@ -111,13 +111,13 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					
 					clonedState.stepElapsedTime = 0;
 					
-					todoStep = [...state.todoSteps];
-					const step = todoStep.splice(stepIndex, 1)[0];
+					todoSteps = [...state.todoSteps];
+					const step = todoSteps.splice(stepIndex, 1)[0];
 					
 					// console.log("HEY 2.5", step);
 					// if (clonedState.currentStep !== null) {
 					// 	console.log("HEY 3");
-					// 	todoStep.push(clonedState.currentStep);
+					// 	todoSteps.push(clonedState.currentStep);
 					// }
 					
 					clonedState = {
@@ -125,7 +125,7 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 						currentStep: {
 							...step
 						},
-						todoSteps: todoStep
+						todoSteps: todoSteps
 					};
 					
 					console.warn("HEY 4", clonedState)
@@ -147,13 +147,13 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				action.indexes.forEach(index => {
 					const researchedStep = clonedState.allSteps[index];
-					if(clonedState.currentStep.name === researchedStep.name) {
+					if (clonedState.currentStep.name === researchedStep.name) {
 						currentStep = null;
 					}
 					
 					const indexInTodo = todoSteps.findIndex(step => step.name === researchedStep.name);
 					if (indexInTodo > -1) {
-						todoStep.splice(indexInTodo, 1);
+						todoSteps.splice(indexInTodo, 1);
 					}
 					doneSteps.push(researchedStep);
 				});
@@ -170,10 +170,10 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 			case timeAction.stepSkipped.type:
 				// action.index
 				doneSteps = [...clonedState.doneSteps];
-				currentStep = clonedState.currentStep
+				currentStep = clonedState.currentStep;
 				action.indexes.forEach(index => {
 					const researchedStep = clonedState.allSteps[index];
-					if(clonedState.currentStep.name === researchedStep.name) {
+					if (clonedState.currentStep.name === researchedStep.name) {
 						currentStep = null;
 					}
 					doneSteps.push(clonedState.allSteps[index]);

@@ -139,16 +139,16 @@ class QiWrapper {
 	 * @param callback {function} the callback to do something when event is raised
 	 * @return {Promise<null>}
 	 */
-		listen(event, callback) {
-			return new Promise(resolve =>
-				this.#AlMemory.subscriber(event).then(subscriber => {
-					subscriber.signal.connect(state => {
-						resolve(callback(JSON.parse(state)));
-					});
-					QiWrapper.logger.event("Listen at", event);
-					
-				}));
-		}
+	listen(event, callback) {
+		return new Promise(resolve =>
+			this.#AlMemory.subscriber(event).then(subscriber => {
+				subscriber.signal.connect(state => {
+					resolve(callback(JSON.parse(state)));
+				});
+				QiWrapper.logger.event("Listen at", event);
+				
+			}));
+	}
 	
 	/**
 	 * @description Set the value in a ALMemory

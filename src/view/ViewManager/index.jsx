@@ -37,16 +37,14 @@ class ViewManager extends Component {
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
-		console.log("Here", nextProps.view.currentView !== prevState.currentView, nextProps.view.currentData !== prevState.currentData);
-		console.log("Here2 P S", nextProps, prevState);
+		// Checks if we need to change the current view (if new view or data (nextprops) are differents from the previous one (prevState))
 		if (nextProps.view.currentView !== prevState.currentView || nextProps.view.currentData !== prevState.currentData) {
-			
 			return {
 				currentView: nextProps.view.currentView,
-				// currentData: nextProps.view.currentData || {textToShow: "", choices: []}
 				currentData: nextProps.view.currentData
 			}
 		}
+		// Check if it's a new scenario
 		if (nextProps.scenario.current !== prevState.currentScenario) {
 			return {
 				currentScenario: nextProps.scenario.current
@@ -56,20 +54,23 @@ class ViewManager extends Component {
 		return null;
 	}
 	
+	componentDidCatch(error, errorInfo) {
+		console.error("Error in ViewManager", error, errorInfo)
+	}
+	
 	render() {
 		
 		let comp;
-		
-		if (this.state.currentView === null) {	
-			comp = <MainMenu/>
+		// Default view
+		if (this.state.currentView === null) {
+			comp = <MainMenu>Please click on the scenario</MainMenu>
 		} else {
-			
+			// Create the center view in function of view in state and send their props
 			comp = React.createElement(getClassFromView(this.state.currentView), {
 					...this.state.currentData
 				}
 			)
 		}
-		
 		
 		ViewManager.logger.log("render", comp);
 		
@@ -79,7 +80,6 @@ class ViewManager extends Component {
 		return (
 			<div className={className}>
 				{comp}
-			
 			</div>
 		
 		);

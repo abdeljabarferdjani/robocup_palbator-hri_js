@@ -131,12 +131,12 @@ class Debug extends Component {
 	
 	handleImageClick = () => {
 	
-	}
+	};
 	
 	
 	handleVideoClick = () => {
 	
-	}
+	};
 	
 	render() {
 		
@@ -150,15 +150,15 @@ class Debug extends Component {
 				imagesOptions.push(<option
 					value={img['pathOnTablet']}>{img['obj']}</option>)
 			}
-		})
+		});
 		
-		let videosOptions = []
+		let videosOptions = [];
 		new Array(videos).forEach(video => {
 			if (video !== undefined) {
 				videosOptions.push(<option
 					value={video['pathOnTablet']}>{video['obj']}</option>)
 			}
-		})
+		});
 		
 		
 		let scenarioDebug = null;
@@ -288,7 +288,7 @@ class Debug extends Component {
 	
 	handleVideoInputChange = (evt) => {
 		
-		console.log(evt.target.value)
+		console.log(evt.target.value);
 		
 		this.setState(prev => {
 			return {

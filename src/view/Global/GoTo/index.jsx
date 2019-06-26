@@ -6,7 +6,7 @@ import Location from "../reusableComponent/Location";
 
 class Goto extends Component {
 	static propTypes = {
-		location: PropTypes.string.isRequired,
+		location: PropTypes.object.isRequired,
 		textToShow: PropTypes.string,
 	};
 	
@@ -17,7 +17,7 @@ class Goto extends Component {
 			<div className={"Goto"}>
 				<ComponentTitle>{textToShow}</ComponentTitle>
 				{/*<Icon image={this.props.location} description={this.props.location}/>*/}
-				<Location id={this.props.location}/>
+				<Location obj={this.props.location}/>
 			</div>
 		);
 	}
