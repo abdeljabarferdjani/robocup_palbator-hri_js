@@ -10,8 +10,7 @@ class ShowVideo extends Component {
 			title: PropTypes.string.isRequired,
 			description: PropTypes.arrayOf(PropTypes.string).isRequired
 		}),
-		video: PropTypes.string.isRequired,
-		description: PropTypes.string.isRequired
+		video: PropTypes.object.isRequired,
 	};
 	
 	render() {
@@ -23,7 +22,7 @@ class ShowVideo extends Component {
 			<div className={"ShowVideo"}>
 				<ComponentTitle>{textToShow.title}</ComponentTitle>
 				<div>
-					<video autoPlay loop muted src={this.props.video}/>
+					<video autoPlay loop muted src={this.props.video['pathOnTablet']}/>
 					<ol className={"description"}
 					    id="steps">{textToShow.description.map(str =>
 						<li>{str}</li>)}</ol>
