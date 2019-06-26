@@ -6,7 +6,7 @@ import logConfig from '../../config/log'
 
 import './index.css'
 import {getClassFromView} from "../../controller/ViewStepBridge";
-import MainMenu from "../Scenario/MainMenu";
+import MainMenu from "../Global/MainMenu";
 
 
 function mapStateToProps(state) {

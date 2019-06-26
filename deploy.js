@@ -8,7 +8,7 @@ const utils = require("util");
 const exec = utils.promisify(require("child_process").exec);
 const spawn = require("child_process").spawn;
 const stat = utils.promisify(fs.stat);
-
+const unlink = utils.promisify(fs.unlink);
 const parser = ArgumentParser({
 	version: 1.2,
 	addHelp: true,
@@ -104,7 +104,6 @@ function remoteCommand(user, ip, wd = "~", command) {
 function main() {
 	if (ip) {
 		
-		console.log("Main job started");
 		
 		console.log(`\nStart to compress ${buildFolder} folder`);
 		console.time("Compressing");
@@ -114,7 +113,8 @@ function main() {
 			if (e.code === 'ENOENT') {
 				console.log("No build folder to send, start to build one");
 				console.time("build");
-				await exec("npm run build");
+				let build = spawn("npm run build");
+				await parseIO(build)
 				console.timeEnd("build")
 				
 			} else {
@@ -139,16 +139,13 @@ function main() {
 			await fs.writeFileSync("commands", commands);
 			
 			await remoteCommand(user, ip, "", commands);
-			// await remoteCommand(user, ip, "", `tar xvf ${path}/${tarEd} -C ${path}`);
-			// await remoteCommand(user, ip, "", `rm  ${path}/${tarEd}`);
-			// await remoteCommand(user, ip, "",  `rm -r ${path}/html`);
-			// await remoteCommand(user, ip, "", `mv ${path}/${buildFolder} ${path}/html`);
+
+			await unlink('commands');
+			await unlink(tarEd);
 			
-			fs.unlink(tarEd, () => {
-			});
 			console.timeEnd(`Extract on ${ip}`);
 			
-			console.log("SFTP job completed")
+			console.log("Everything is ok");
 		});
 		
 		

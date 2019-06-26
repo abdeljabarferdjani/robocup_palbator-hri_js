@@ -13,7 +13,7 @@ import FindWhoWantsDrinks
 import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
 import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
-import MainMenu from '../view/Scenario/MainMenu/'
+import MainMenu from '../view/Global/MainMenu/'
 import Wait from "../view/Global/Wait";
 import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
 import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'

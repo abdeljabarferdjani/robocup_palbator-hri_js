@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {comAction} from "../../../redux/actions/CommunicationAction";
-import ComponentTitle from "../../Global/reusableComponent/ComponentTitle";
-import {SpeakableButton} from "../../Global/reusableComponent/Button/SpeakableButton";
+import ComponentTitle from "../reusableComponent/ComponentTitle";
+import {SpeakableButton} from "../reusableComponent/Button/SpeakableButton";
 import './MainMenu.css'
 import PropTypes from 'prop-types'
 
@@ -37,9 +37,9 @@ class MainMenu extends Component {
 		
 		(this.props.scenarios || comAction.askToChangeScenario.scenario).forEach(scenario => {
 			buttons.push(
-				<SpeakableButton className={"btn btn-info"}
-				                 onClick={() => this.props.askToChangeScenario(scenario)}>
-					{scenario}
+				<SpeakableButton
+					onClick={() => this.props.askToChangeScenario(scenario['id'])}>
+					{scenario['name']}
 				</SpeakableButton>
 			)
 		});

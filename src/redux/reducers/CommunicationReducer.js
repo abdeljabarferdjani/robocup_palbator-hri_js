@@ -3,7 +3,8 @@ import Logger from "../../dev/Logger";
 import logConfig from '../../config/log'
 import QiWrapper from "../../model/QiWrapper";
 import ConfigQiWrapper from "../../controller/ConfigWrapper";
-
+import {toolbarAction} from "../actions/ToolbarAction";
+import {dispatch} from '../Store'
 const {apis: {generalManagerHRI, common, tabletLM},} = ConfigQiWrapper.get();
 
 const INITIAL_STATE = {
@@ -24,8 +25,8 @@ const comReducer = (state = INITIAL_STATE, action) => {
 		
 		if (possibleActionType.includes(action.type)) {
 			
-			
 			switch (action.type) {
+			
 				case comAction.stepReceived.type:
 					
 					QiWrapper.raise(generalManagerHRI.stepReceived.ALMemory, null);
@@ -80,19 +81,19 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					const GMStr = "No heartbeats from LocalManager since " + diffGM;
 					if (diffGM > 10) {
 						logger.error(GMStr)
-						// dispatch({
-						// 	type: toolbarAction.toolbarState.type,
-						// 	system: toolbarAction.toolbarState.system.pcConnection,
-						// 	state: toolbarAction.toolbarState.state.error
-						// })
+						dispatch({
+							type: toolbarAction.toolbarState.type,
+							system: toolbarAction.toolbarState.system.pcConnection,
+							state: toolbarAction.toolbarState.state.error
+						})
 					} else if (diffGM > 5) {
 						logger.warn(GMStr)
 					} else {
-						// dispatch({
-						// 	type: toolbarAction.toolbarState.type,
-						// 	system: toolbarAction.toolbarState.system.pcConnection,
-						// 	state: toolbarAction.toolbarState.state.ok
-						// })
+						dispatch({
+							type: toolbarAction.toolbarState.type,
+							system: toolbarAction.toolbarState.system.pcConnection,
+							state: toolbarAction.toolbarState.state.ok
+						})
 					}
 					
 					logger.debug(currentTime);

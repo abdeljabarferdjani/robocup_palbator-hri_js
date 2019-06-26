@@ -32,7 +32,20 @@ export const comAction = {
 	
 	askToChangeScenario: {
 		type: generalManagerHRI.askToChangeScenario.reduxKey,
-		scenario: ["receptionist", "takeOutGarbage", "mainMenu"]
+		scenario: [
+			{
+				"id": "receptionist",
+				"name": "Receptionist"
+			},
+			{
+				"id": "take_out_the_garbage",
+				"name": "Take out the garbage"
+			},
+			{
+				"id": "inspection",
+				"name": "Inspection"
+			}
+		]
 	},
 	
 	

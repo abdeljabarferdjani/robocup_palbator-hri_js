@@ -30,6 +30,7 @@ class Guest extends React.Component {
 		let drink = this.props.drinkObj !== undefined ? <>
 			<p className={"guestDrink"}>{this.state.name} likes: {this.state.drinkObj.name} </p>
 			<Drink
+				size={"lg"}
 				name={this.state.drinkObj['name']}
 				pathOnTablet={this.state.drinkObj["pathOnTablet"]}/>
 		</> : null;
