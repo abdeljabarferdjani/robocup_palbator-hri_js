@@ -11,15 +11,6 @@ import {unregister} from "./serviceWorker.js";
 
 async function initApp() {
 	
-	// if(!navigator.userAgent.includes("chrome/44.0.2403.157")) {
-	// 	document.addEventListener("click",handler,true);
-	// 	function handler(e){
-	// 		e.stopPropagation();ff
-	// 		e.preventDefault();
-	// 	}
-	// }
-	
-	
 	const qi = await QiWrapper.createInstance();
 	await ConfigWrapper.setConfigFromALMemory();
 	

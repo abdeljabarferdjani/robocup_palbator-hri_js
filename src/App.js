@@ -94,7 +94,7 @@ class App extends Component {
 						</div>
 					</div>
 					
-					<div className="component">
+					<div className="component main">
 						{/*Component that create the view in function of LM orders*/}
 						<ViewManager/>
 					</div>

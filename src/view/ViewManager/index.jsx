@@ -65,7 +65,7 @@ class ViewManager extends Component {
 		if (this.state.currentView === null) {
 			comp = <MainMenu>Please click on the scenario</MainMenu>
 		} else {
-			// Create the center view in function of view in state and send their props
+			// Create the center headerview in function of view in state and send their props
 			comp = React.createElement(getClassFromView(this.state.currentView), {
 					...this.state.currentData
 				}

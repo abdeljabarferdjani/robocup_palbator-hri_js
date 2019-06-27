@@ -33,7 +33,8 @@ class ShowVideo extends Component {
 			
 			
 			case "16/9":
-				layout = <>
+				layout = <div className={"ShowVideo large"}>
+					
 					<ComponentTitle>{textToShow.title}</ComponentTitle>
 					<SpeakableButton onClick={this.props.viewOk}>I'm
 						done</SpeakableButton>
@@ -44,33 +45,30 @@ class ShowVideo extends Component {
 						
 						<ol className={"description"}
 						    id="steps">{textToShow.description.map(str =>
-							<li>{str}</li>)}</ol>
+							<li>{str}</li>)}
+						</ol>
 					</div>
-				</>;
+				</div>;
 				break;
 			case "4/3":
-				layout = <>
-					<div className="video tall">
+				layout = <div className={"ShowVideo tail"}>
+					<div className={"video tail"}>
 						{video}
 					</div>
 					<div className="text tall">
 						<ComponentTitle>{textToShow.title}</ComponentTitle>
-							<SpeakableButton onClick={this.props.viewOk}>I'm
+						<SpeakableButton onClick={this.props.viewOk}>I'm
 							done</SpeakableButton>
 						<ol className={"description"}
 						    id="steps">{textToShow.description.map(str =>
 							<li>{str}</li>)}</ol>
 					</div>
-				</>;
+				</div>
 				break;
 		}
 		
 		
-		return (
-			<div className={"ShowVideo"}>
-				{layout}
-			</div>
-		);
+		return layout
 	}
 }
 
@@ -88,4 +86,5 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowVideo);
+export default connect(mapStateToProps,
+	mapDispatchToProps)(ShowVideo);

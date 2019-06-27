@@ -1,43 +1,55 @@
+div.ShowVideo.large {
+    flex-direction: column;
+
+}
+
+div.ShowVideo.tail {
+    flex-direction: row;
+}
+
 div.ShowVideo {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-div.ShowVideo button {
-    width: 10rem;
-    font-size: larger;
-    padding: 1rem;
+div.ShowVideo > * {
+    width: 50%;
 }
 
-div.ShowVideo > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-}
+/*div.ShowVideo button {*/
+/*    width: 10rem;*/
+/*    font-size: larger;*/
+/*    padding: 1rem;*/
+/*}*/
+
+/*div.ShowVideo > div {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-between;*/
+/*    position: relative;*/
+/*}*/
 
 div.ShowVideo > div > * {
     margin: 1rem;
 }
 
- div.video.large {
-    width: 65%;
-}
-div.ShowVideo > div > div > video {
-    width: 100%;
-    height: auto;
-}
+/* div.video.large {*/
+/*    width: 65%;*/
+/*}*/
+/*div.ShowVideo > div > div > video {*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*}*/
 
-div.ShowVideo > div > ul {
-    /*width: 30%;*/
-}
+/*div.ShowVideo > div > ul {*/
+/*    !*width: 30%;*!*/
+/*}*/
 div.text {
     display: flex;
     flex-direction: column;
 }
 
 div.video.tall {
-    width: 50%;
+    /*width: 50%;*/
 }
