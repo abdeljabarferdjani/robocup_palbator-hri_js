@@ -1,6 +1,7 @@
 import logConfig from '../config/log'
 import globalConfig from '../config/global'
 import Logger from "../dev/Logger";
+import ConfigWrapper from "../controller/ConfigWrapper";
 
 
 /**
@@ -106,8 +107,10 @@ class QiWrapper {
 	}
 	
 	static setALValue(event, value) {
-		QiWrapper.getInstanceSync().setALValue(event, value)
 		
+		if(ConfigWrapper.get().imPepper) {
+			QiWrapper.getInstanceSync().setALValue(event, value)
+		}
 	}
 	
 	
@@ -128,7 +131,12 @@ class QiWrapper {
 	 * @return {Promise} a promise that is resolved when event is raised.
 	 */
 	static raise(event, value) {
-		return QiWrapper.getInstanceSync().raise(event, value)
+		if(ConfigWrapper.get().imPepper) {
+			
+			return QiWrapper.getInstanceSync().raise(event, value)
+		}
+		return Promise.resolve()
+		
 	}
 	
 	

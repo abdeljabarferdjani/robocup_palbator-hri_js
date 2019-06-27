@@ -25,15 +25,33 @@ export default class ConfigWrapper
 	static #_images;
 	static #_apis;
 	
+	static #_imPepper = false;
+	
 	
 	static logger = new Logger(true, "ConfigWrapper");
 	
 	// static #_AlMemoryEvent ;
 	
+	static init() {
+		const agent = navigator.userAgent
+		
+		// todo to get Navigator version
+		// alert(agent);
+		
+		const allowedVersion = [
+			"Chrome/44.0.2409.157",
+			"Chrome/39.0.2171.71"
+		];
+		allowedVersion.forEach(v => {
+			ConfigWrapper.#_imPepper = ConfigWrapper.#_imPepper || agent.includes(v);
+		})
+		console.log("init done", ConfigWrapper.#_imPepper)
+	}
+	
 	static async setConfigFromALMemory() {
 		
+		ConfigWrapper.init()
 		
-		ConfigWrapper.logger.log("ConfigWrapper logged from Naoqi");
 		
 		try {
 			ConfigWrapper.#_apis = {
@@ -44,7 +62,7 @@ export default class ConfigWrapper
 			
 			ConfigWrapper.#_apis.tabletLM = JSON.parse(
 				await QiWrapper.getALValue(
-					ConfigWrapper.#_apis.common.AL_VALUE.apis.tabletLM
+					ConfigWrapper.#_apis.common["AL_VALUE"]["apis"]["tabletLM"]
 				)
 			);
 			
@@ -77,9 +95,10 @@ export default class ConfigWrapper
 			rawVideos.forEach(video => {
 				ConfigWrapper.#_videos[video["id"]] = video['pathOnTablet']
 			});
+			const got = ConfigWrapper.get()
+			deepFreeze(got);
+			ConfigWrapper.logger.log("ConfigWrapper logged from Naoqi", got);
 			
-			deepFreeze(ConfigWrapper.get());
-			console.log("CONFIG", ConfigWrapper.get())
 		} catch (e) {
 			console.error("Error in ConfigWrapper", e);
 			const style = {
@@ -104,15 +123,17 @@ export default class ConfigWrapper
 	
 	/**
 	 *
-	 * @return {{apis : {common, tabletLM, generalManagerHRI},  images, locations,  videos}}
+	 * @return {{apis : {common, tabletLM, generalManagerHRI}, imPepper, images, locations,  videos}}
 	 */
 	static get() {
 		
+		console.log("GET", ConfigWrapper.#_locations)
 		
 		return {
 			locations: ConfigWrapper.#_locations,
 			videos: ConfigWrapper.#_videos,
 			images: ConfigWrapper.#_images,
+			imPepper: ConfigWrapper.#_imPepper,
 			apis: {
 				common: ConfigWrapper.#_apis.common,
 				tabletLM: ConfigWrapper.#_apis.tabletLM,

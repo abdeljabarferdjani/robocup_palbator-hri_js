@@ -38,7 +38,7 @@ class ShowVideo extends Component {
 					<ComponentTitle>{textToShow.title}</ComponentTitle>
 					<SpeakableButton onClick={this.props.viewOk}>I'm
 						done</SpeakableButton>
-					<div>
+					<div className={"bottom"}>
 						<div className={"video large"}>
 							{video}
 						</div>

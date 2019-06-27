@@ -11,7 +11,6 @@ div#ages p.value {
 
 div#digits {
     display: flex;
-    height: 45vh;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
@@ -22,8 +21,7 @@ div#digits {
 div#digits > button.btn {
     margin: 1rem;
     width: calc(100% / 3.5 - 1rem);
-    height: calc(35% - 3rem);
     font-size: calc(1vw + 0.75rem);
-
+    padding: 1rem;
 
 }

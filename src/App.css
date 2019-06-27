@@ -10,6 +10,7 @@ p, h1, h2, h3, h4, h5, h6, span {
 /*Prevent selection*/
 * {
     user-select: none;
+
 }
 
 html, body, div#root, div.App {
@@ -46,12 +47,9 @@ div.component {
 }
 
 div.component.leftPart {
-    width: 30% !important;
+    max-width: 26% !important;
 }
 
-div.component.main {
-    height: 79vh;
-}
 
 button.ok, button.btn-ok {
     background: rgb(81, 156, 81);
@@ -71,6 +69,7 @@ button.warn {
 div.component.scenarioTitle {
     margin: 0;
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
@@ -81,6 +80,7 @@ div.App {
     background-color: #EFF0F1;
     display: flex;
     flex-direction: row;
+    justify-content: center ;
 }
 
 

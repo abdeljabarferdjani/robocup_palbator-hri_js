@@ -72,16 +72,12 @@ class TimeBoard extends Component {
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
-		if(nextProps.time.haveToReset === true) {
-			TimeBoard.stepsElems.forEach(step => {
-				step.reset()
-			});
+		if (nextProps.time.haveToReset === true) {
 			dispatch({
 				type: timeAction.resetStepsProgression.type,
 				state: false
 			})
 		}
-		
 		
 		
 		if (prevState.visible !== nextProps.view.componentVisibility.timeBoard) {
@@ -159,7 +155,10 @@ class TimeBoard extends Component {
 			return stepA['order'] < stepB['order'] ? -1 : 1
 		});
 	}
-
+	componentDidMount() {
+		console.log(TimeBoard.stepsElems);
+	}
+	
 	render()
 	{
 		let className = "TimeBoard ";
@@ -176,12 +175,15 @@ class TimeBoard extends Component {
 		}
 		
 		const steps = [];
+		TimeBoard.stepsElems.length = 0;
 		
 		this.state.sortedSteps.forEach(((step, index) => {
-			steps.push(<Step step={step} key={index}/>);
+			// let ref = React.createRef();
+			steps.push(<Step  step={step} key={index}/>);
+			// TimeBoard.stepsElems.push(ref)
 		}));
 		
-		TimeBoard.stepsElems = [...steps];
+		// TimeBoard.stepsElems = [...steps];
 		
 		if (steps.length > 0) {
 			return (

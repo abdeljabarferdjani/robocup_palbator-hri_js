@@ -5,6 +5,8 @@ import ProgressBar from "../reusableComponent/ProgressBar";
 import {connect} from "react-redux";
 import logConfig from '../../../config/log'
 import Logger from "../../../dev/Logger";
+import {dispatch} from "../../../redux/Store";
+import {timeAction} from "../../../redux/actions/TimeAction";
 
 const mapStateToProps = (state) => {
 	return {
@@ -36,13 +38,18 @@ class Step extends Component {
 	static logger = new Logger(logConfig.Step, "Step");
 	
 	reset() {
-		this.setState(prev => {
-			return {
-				...prev,
-				progressBarKey: Date.now(),
-				currentTime: 0
-			}
-		})
+		return {
+			...this.state,
+			progressBarKey: Date.now(),
+			currentTime: 0
+		}
+			// this.setState(prev => {
+			// 	return {
+			// 		...prev,
+			// 		progressBarKey: Date.now(),
+			// 		currentTime: 0
+			// 	}
+			// })
 	}
 	
 	constructor(props) {
@@ -53,7 +60,8 @@ class Step extends Component {
 			order: props.step.order,
 			currentTime: props.time.stepElapsedTime,
 			progressBarRef: React.createRef(),
-			progressBarKey: Date.now()
+			progressBarKey: Date.now(),
+			resetFunc : this.reset
 		};
 		
 		
@@ -66,6 +74,10 @@ class Step extends Component {
 	static getDerivedStateFromProps(nextProps, prevState) {
 		
 		// if the step's order match, I have to update
+		
+		if (nextProps.time.haveToReset === true) {
+			prevState.resetFunc();
+		}
 		
 		if (nextProps.time.currentStep && nextProps.time.currentStep.order === prevState.order) {
 			

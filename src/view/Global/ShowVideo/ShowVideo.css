@@ -7,6 +7,13 @@ div.ShowVideo.tail {
     flex-direction: row;
 }
 
+div.bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 div.ShowVideo {
     display: flex;
     justify-content: space-between;
@@ -17,11 +24,11 @@ div.ShowVideo > * {
     width: 50%;
 }
 
-/*div.ShowVideo button {*/
-/*    width: 10rem;*/
-/*    font-size: larger;*/
-/*    padding: 1rem;*/
-/*}*/
+div.ShowVideo button {
+    width: 10rem;
+    font-size: larger;
+    padding: 1rem;
+}
 
 /*div.ShowVideo > div {*/
 /*    display: flex;*/
@@ -33,7 +40,9 @@ div.ShowVideo > * {
 div.ShowVideo > div > * {
     margin: 1rem;
 }
-
+div.video video {
+    width: 95%;
+}
 /* div.video.large {*/
 /*    width: 65%;*/
 /*}*/
@@ -47,6 +56,7 @@ div.ShowVideo > div > * {
 /*}*/
 div.text {
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 

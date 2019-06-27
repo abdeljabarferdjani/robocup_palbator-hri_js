@@ -1,3 +1,11 @@
+
+div.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
 div.Logo {
     display: flex;
     align-items: center;
@@ -8,7 +16,8 @@ div.Logo {
 
 div.Logo > img {
     margin-right: 1rem;
-    width: 2.2rem;
+    height: 2.2rem;
+    width: auto;
 }
 
 div.logo {
