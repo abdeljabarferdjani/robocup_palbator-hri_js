@@ -50,12 +50,13 @@ export default class ALMemoryBridge {
 		Promise.all([
 			
 			QiWrapper.listen(toolbarState["ALMemory"], this.handleToolbarChange(toolbarState)),
-			QiWrapper.listen(generalManagerHRI.currentStep["ALMemory"], this.handleChangeCurrentStep()),
-			QiWrapper.listen(generalManagerHRI.stepCompleted["ALMemory"], this.handleStepCompleted()),
-			QiWrapper.listen(generalManagerHRI.stepSkipped["ALMemory"], this.handleSetStepSkipped()),
-			QiWrapper.listen(generalManagerHRI.timerState["ALMemory"], this.handleToggleTimer()),
-			QiWrapper.listen(generalManagerHRI.currentScenario["ALMemory"], this.handleChangeCurrentScenario()),
-			QiWrapper.listen(tabletLM.currentView["ALMemory"], this.handleChangeCurrentView())
+			QiWrapper.listen(generalManagerHRI["currentStep"]["ALMemory"], this.handleChangeCurrentStep()),
+			QiWrapper.listen(generalManagerHRI["stepCompleted"]["ALMemory"], this.handleStepCompleted()),
+			QiWrapper.listen(generalManagerHRI["stepSkipped"]["ALMemory"], this.handleSetStepSkipped()),
+			QiWrapper.listen(generalManagerHRI["timerState"]["ALMemory"], this.handleToggleTimer()),
+			QiWrapper.listen(generalManagerHRI["currentScenario"]["ALMemory"], this.handleChangeCurrentScenario()),
+			QiWrapper.listen(tabletLM["currentView"]["ALMemory"], this.handleChangeCurrentView()),
+			QiWrapper.listen(generalManagerHRI["resetSteps"]["ALMemory"], this.handleResetSteps())
 		
 		]).then(async () => await QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {'time': Date.now()}))
 			.then(() => {
@@ -79,6 +80,7 @@ export default class ALMemoryBridge {
 	
 	static handleChangeCurrentView = () => data => {
 		
+		ALMemoryBridge.logger.log("handleChangeCurrentView", data)
 		if (data.view !== undefined || data.data !== undefined) {
 			dispatch({
 				type: viewAction.changeView.type,
@@ -92,6 +94,7 @@ export default class ALMemoryBridge {
 	
 	static handleChangeCurrentScenario = () => (data) => {
 		
+		ALMemoryBridge.logger.log("handleChangeCurrentScenario", data)
 		dispatch({
 			type: scenarioAction.currentScenario.type,
 			scenarioName: data["scenarioName"]
@@ -115,6 +118,7 @@ export default class ALMemoryBridge {
 	};
 	
 	static handleSetStepSkipped = () => (data) => {
+		ALMemoryBridge.logger.log("handleSetStepSkipped", data)
 		dispatch({
 			type: timeAction.stepSkipped.type,
 			indexes: data.indexes
@@ -122,6 +126,7 @@ export default class ALMemoryBridge {
 	};
 	
 	static handleStepCompleted = () => (data) => {
+		ALMemoryBridge.logger.log("handleStepCompleted", data)
 		dispatch({
 			type: timeAction.stepCompleted.type,
 			indexes: data.indexes
@@ -130,6 +135,7 @@ export default class ALMemoryBridge {
 	};
 	
 	static handleChangeCurrentStep = () => (data) => {
+		ALMemoryBridge.logger.log("handleStepCompleted", data)
 		dispatch({
 			type: timeAction.currentStep.type,
 			index: data.index
@@ -138,6 +144,7 @@ export default class ALMemoryBridge {
 	};
 	
 	static handleToolbarChange = changeToolbar => data => {
+		ALMemoryBridge.logger.log("handleToolbarChange", data)
 		
 		const possibleState = [changeToolbar.state.ok, changeToolbar.state.error];
 		
@@ -161,4 +168,12 @@ export default class ALMemoryBridge {
 			ALMemoryBridge.logger.warn("Listen toolbarState", "Unknown data.state")
 		}
 	};
+	
+	static handleResetSteps = () => data =>  {
+		ALMemoryBridge.logger.log("handleResetSteps", data)
+		dispatch({
+			type: timeAction.resetStepsProgression.type,
+			state: true
+		})
+	}
 }

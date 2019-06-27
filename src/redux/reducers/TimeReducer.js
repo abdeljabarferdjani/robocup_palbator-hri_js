@@ -46,7 +46,8 @@ const DEFAULT_STATE = {
 	skippedSteps: [],
 	allSteps: [],
 	globalElapsedTime: 0,
-	stepElapsedTime: 0
+	stepElapsedTime: 0,
+	haveToReset: false
 	
 };
 
@@ -98,6 +99,10 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				
 				break;
 			
+			case timeAction.resetStepsProgression.type:
+				clonedState.haveToReset = action.state;
+				break;
+				
 			case timeAction.currentStep.type:
 				
 				

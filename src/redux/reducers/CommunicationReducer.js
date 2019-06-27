@@ -106,6 +106,7 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					});
 					break;
 				
+					
 				
 				default:
 					// console.warn("Unknown action on commmunication reducer", action);

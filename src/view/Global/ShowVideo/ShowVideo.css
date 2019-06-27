@@ -22,7 +22,7 @@ div.ShowVideo > div > * {
     margin: 1rem;
 }
 
-div.ShowVideo > div > div.video {
+ div.video.large {
     width: 65%;
 }
 div.ShowVideo > div > div > video {
@@ -32,4 +32,12 @@ div.ShowVideo > div > div > video {
 
 div.ShowVideo > div > ul {
     /*width: 30%;*/
+}
+div.text {
+    display: flex;
+    flex-direction: column;
+}
+
+div.video.tall {
+    width: 50%;
 }

@@ -7,6 +7,8 @@ import debug from '../../../config/log'
 import './TimeBoard.css'
 import {viewAction} from "../../../redux/actions/ViewAction";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
+import {dispatch} from "../../../redux/Store";
+import {timeAction} from "../../../redux/actions/TimeAction";
 
 function mapStateToProps(state) {
 	return {
@@ -23,6 +25,8 @@ class TimeBoard extends Component {
 	static propTypes = {
 		className: PropTypes.string,
 	};
+	
+	static stepsElems = [];
 	
 	constructor(props) {
 		super(props);
@@ -67,6 +71,17 @@ class TimeBoard extends Component {
 	}
 	
 	static getDerivedStateFromProps(nextProps, prevState) {
+		
+		if(nextProps.time.haveToReset === true) {
+			TimeBoard.stepsElems.forEach(step => {
+				step.reset()
+			});
+			dispatch({
+				type: timeAction.resetStepsProgression.type,
+				state: false
+			})
+		}
+		
 		
 		
 		if (prevState.visible !== nextProps.view.componentVisibility.timeBoard) {
@@ -144,12 +159,7 @@ class TimeBoard extends Component {
 			return stepA['order'] < stepB['order'] ? -1 : 1
 		});
 	}
-	
-	componentDidMount()
-	{
-	
-	}
-	
+
 	render()
 	{
 		let className = "TimeBoard ";
@@ -170,6 +180,8 @@ class TimeBoard extends Component {
 		this.state.sortedSteps.forEach(((step, index) => {
 			steps.push(<Step step={step} key={index}/>);
 		}));
+		
+		TimeBoard.stepsElems = [...steps];
 		
 		if (steps.length > 0) {
 			return (

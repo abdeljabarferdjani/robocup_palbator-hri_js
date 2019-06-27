@@ -17,7 +17,7 @@ import MainMenu from '../view/Global/MainMenu/'
 import Wait from "../view/Global/Wait";
 import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
 import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
-import ShowVideo from '../view/Scenario/TakeOutTheGarbage/ShowVideo'
+import ShowVideo from '../view/Global/ShowVideo'
 import Message from "../view/Global/Message/Index";
 
 const getClassFromView = (view) => {

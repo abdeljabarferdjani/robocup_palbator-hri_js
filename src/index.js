@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import QiWrapper from "./model/QiWrapper";
 import ConfigWrapper from "./controller/ConfigWrapper";
-import serviceWorker from "@jest/core/build/ReporterDispatcher";
+import {unregister} from "./serviceWorker.js";
 
 
 async function initApp() {
@@ -47,4 +47,4 @@ initApp().then(() => {
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+unregister();

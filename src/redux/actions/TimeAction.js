@@ -25,6 +25,10 @@ export const timeAction = {
 		state: generalManagerHRI.timerState.state,
 	},
 	
+	resetStepsProgression: {
+		type: "R2019/Timeboard/ResetStepsProgression",
+	},
+	
 	replaceAllSteps: {
 		type: "REPLACE_ALL_STEPS",
 		steps: ["Steps"]

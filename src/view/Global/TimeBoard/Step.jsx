@@ -35,6 +35,15 @@ class Step extends Component {
 	
 	static logger = new Logger(logConfig.Step, "Step");
 	
+	reset() {
+		this.setState(prev => {
+			return {
+				...prev,
+				progressBarKey: Date.now(),
+				currentTime: 0
+			}
+		})
+	}
 	
 	constructor(props) {
 		super(props);
@@ -43,7 +52,8 @@ class Step extends Component {
 			id: props.step.id,
 			order: props.step.order,
 			currentTime: props.time.stepElapsedTime,
-			progressBarRef: React.createRef()
+			progressBarRef: React.createRef(),
+			progressBarKey: Date.now()
 		};
 		
 		
@@ -91,6 +101,7 @@ class Step extends Component {
 				
 				<ProgressBar ref={this.state.progressBarRef}
 				             current={currentTime}
+				             key={this.state.progressBarKey}
 				             max={this.props.step.eta}/>
 			
 			</div>
