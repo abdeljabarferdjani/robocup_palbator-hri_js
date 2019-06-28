@@ -42,11 +42,11 @@ class Confirm extends Component {
 		
 		const textToShow = this.props.textToShow || "Are you sure that you want X?";
 		let img = null;
-		if (this.props.imagePath !== undefined) {
-			
-			img = <img src={process.env.PUBLIC_URL + "/" + this.props.imagePath}
-			           alt=""/>
-		}
+		// if (this.props.imagePath !== undefined) { // todo implement it for the next robocup
+		//
+		// 	img = <img src={this.props.imagePath}
+		// 	           alt=""/>
+		// }
 		
 		
 		return (

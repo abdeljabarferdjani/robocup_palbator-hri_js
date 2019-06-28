@@ -3,8 +3,14 @@ div.Goto {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 76vh;
 }
 
+div.Goto.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 div.Goto img {
     max-height: 50vh;
     /*width: 100%;*/

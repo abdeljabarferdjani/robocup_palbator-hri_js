@@ -19,11 +19,12 @@ class Goto extends Component {
 	
 	render() {
 		
-		const textToShow = this.props.textToShow || "I'm going to the ";
+		const textToShow = this.props.textToShow || "I'm going to the " ;
 		return (
 			<div className={"Goto"}>
 				<ComponentTitle>{textToShow}</ComponentTitle>
-				<Location obj={this.props.location}/>
+				<div><Location obj={this.props.location}/></div>
+			
 			</div>
 		);
 	}
