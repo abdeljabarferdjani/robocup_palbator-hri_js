@@ -55,11 +55,21 @@ button.ok, button.btn-ok {
     background: rgb(81, 156, 81);
     color: white
 }
-
+button.ok:active, button.btn-ok:active {
+    background: #22ff70;
+    color: #1b1b1b
+}
 button.no, button.btn-no {
     background: #B67373;
     color: white
 }
+button.no:active, button.btn-no:active {
+    background: #ff2f34;
+    color: white
+}
+
+
+
 
 button.warn {
     background: #b49124;
