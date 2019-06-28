@@ -114,7 +114,7 @@ function main() {
 				console.log("No build folder to send, start to build one");
 				console.time("build");
 				let build = spawn("npm run build");
-				await parseIO(build)
+				await parseIO(build);
 				console.timeEnd("build")
 				
 			} else {
@@ -127,6 +127,7 @@ function main() {
 			console.log(`\nUpload to ${ip}`);
 			const path = `/home/nao/.local/share/PackageManager/apps/${appName}`;
 			console.log("the build folder will be deployed to " + path);
+			await remoteCommand(user, ip, "", `mkdir ${path}`);
 			await upload(user, ip, tarEd, path);
 			
 			console.log('\n');

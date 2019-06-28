@@ -39,19 +39,18 @@ export default class ConfigWrapper
 		// alert(agent);
 		
 		const allowedVersion = [
-			"Chrome/44.0.2409.157",
-			"Chrome/39.0.2171.71"
+			"Chrome/44.0.2403.157", // Pepper 1.8a
+			"Chrome/39.0.2171.71"   // Pepper 1.6
 		];
 		allowedVersion.forEach(v => {
 			ConfigWrapper.#_imPepper = ConfigWrapper.#_imPepper || agent.includes(v);
-		})
+		});
 		console.log("init done", ConfigWrapper.#_imPepper)
 	}
 	
 	static async setConfigFromALMemory() {
 		
-		ConfigWrapper.init()
-		
+		ConfigWrapper.init();
 		
 		try {
 			ConfigWrapper.#_apis = {

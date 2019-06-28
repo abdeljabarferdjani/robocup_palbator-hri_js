@@ -96,7 +96,7 @@ class TimeBoard extends Component {
 			const offset = 3;
 			if (nbStepsDone > offset) {
 				const aStep = document.querySelector(".Step");
-				console.log("Scrolling to ", nbStepsDone - offset);
+				console.log("Scrolling to ", nbStepsDone - offset, (nbStepsDone - offset) * aStep.clientHeight);
 				document.querySelector("div#steps").scrollTop = (nbStepsDone - offset) * aStep.clientHeight
 				
 				

@@ -23,7 +23,6 @@ class Goto extends Component {
 		return (
 			<div className={"Goto"}>
 				<ComponentTitle>{textToShow}</ComponentTitle>
-				{/*<Icon image={this.props.location} description={this.props.location}/>*/}
 				<Location obj={this.props.location}/>
 			</div>
 		);
