@@ -27,7 +27,7 @@ class App extends Component {
 	state = {
 		scenario: this.props.scenario.current
 	};
-
+	
 	static getDerivedStateFromProps(nextProps, prevState) {
 		// Check if it's a new scenario
 		if (nextProps.scenario.current !== prevState.scenario) {
@@ -88,7 +88,7 @@ class App extends Component {
 							{/*On top center, the differents problem that affect Pepper (voice mute, ROS dead, etc.)*/}
 							<Toolbar/>
 						</div>
-						<div className={"component logo"}>
+						<div className={"component logos"}>
 							{/*The Logos of organisations that form LyonTech*/}
 							<Logo/>
 						</div>

@@ -126,7 +126,6 @@ export default class ConfigWrapper
 	 */
 	static get() {
 		
-		console.log("GET", ConfigWrapper.#_locations)
 		
 		return {
 			locations: ConfigWrapper.#_locations,

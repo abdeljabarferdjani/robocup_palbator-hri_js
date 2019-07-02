@@ -58,22 +58,20 @@ export default class ALMemoryBridge {
 			QiWrapper.listen(tabletLM["currentView"]["ALMemory"], this.handleChangeCurrentView()),
 			QiWrapper.listen(generalManagerHRI["resetSteps"]["ALMemory"], this.handleResetSteps())
 		
-		]).then(async () => await QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {'time': Date.now()}))
-			.then(() => {
-				setInterval(async () => {
-					await QiWrapper.raise(common.jsHeartbeat["ALMemory"], {'time': Date.now()});
-					
-					dispatch({
-						'type': comAction.extHeartbeat.type,
-						'time': {
-							lm: JSON.parse(await QiWrapper.getALValue(common["localManagerHeartbeat"]["ALMemory"])).time,
-							// gm: JSON.parse(await QiWrapper.getALValue(common.generalManagerHeartbeat.ALMemory)).time
-						}
-					})
-					
-					
-				}, 1000)
-			})
+		]).then(() => {
+			setInterval(async () => {
+				await QiWrapper.raise(common.jsHeartbeat["ALMemory"], {'time': Date.now()});
+				dispatch({
+					'type': comAction.extHeartbeat.type,
+					'time': {
+						lm: JSON.parse(await QiWrapper.getALValue(common["localManagerHeartbeat"]["ALMemory"])).time,
+						// gm: JSON.parse(await QiWrapper.getALValue(common.generalManagerHeartbeat.ALMemory)).time
+					}
+				})
+				
+				
+			}, 1000)
+		})
 		
 		
 	};
@@ -169,7 +167,7 @@ export default class ALMemoryBridge {
 		}
 	};
 	
-	static handleResetSteps = () => data =>  {
+	static handleResetSteps = () => data => {
 		ALMemoryBridge.logger.log("handleResetSteps", data)
 		dispatch({
 			type: timeAction.resetStepsProgression.type,

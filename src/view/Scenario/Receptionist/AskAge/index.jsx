@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class AskName extends Component {
+class AskAge extends Component {
 	
 	
 	constructor(props) {
@@ -92,4 +92,4 @@ class AskName extends Component {
 }
 
 
-export default connect(mapDispatchToProps)(AskName);
+export default connect(mapDispatchToProps)(AskAge);

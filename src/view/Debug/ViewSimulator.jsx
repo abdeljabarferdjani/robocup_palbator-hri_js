@@ -15,10 +15,7 @@ class ViewSimulator extends Component {
 			currentViewSelected: null,
 			
 			currentJson: JSON.stringify({
-				textToShow: {
-					title: "[PLACEHOLDER] dazdiaz",
-					description: ["[PLACEHOLDER] A", "[PLACEHOLDER] B", "[PLACEHOLDER] C", "[PLACEHOLDER] D"],
-				},
+				textToShow: "",
 				imagePath: "",
 				choices: [],
 				people: {
@@ -64,10 +61,9 @@ class ViewSimulator extends Component {
 		e.preventDefault();
 		
 		let json = this.state.currentJson.replaceAll("[\n\t]", "");
-		json = JSON.parse(json);
 		
-		QiWrapper.raise(tabletLM.currentView.ALMemory, {
-			data: json,
+		QiWrapper.raise(tabletLM["currentView"]["ALMemory"], {
+			data: JSON.parse(json),
 			view: this.state.currentViewSelected
 		});
 	};

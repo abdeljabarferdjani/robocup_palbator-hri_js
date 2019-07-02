@@ -15,7 +15,6 @@ class Logo extends Component {
 			                 description={logo['obj']}/>);
 		});
 		
-		console.log("Update");
 		
 		return (
 			<div className={"Logo"}>

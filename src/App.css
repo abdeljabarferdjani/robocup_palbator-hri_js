@@ -55,20 +55,21 @@ button.ok, button.btn-ok {
     background: rgb(81, 156, 81);
     color: white
 }
+
 button.ok:active, button.btn-ok:active {
     background: #22ff70;
     color: #1b1b1b
 }
+
 button.no, button.btn-no {
     background: #B67373;
     color: white
 }
+
 button.no:active, button.btn-no:active {
     background: #ff2f34;
     color: white
 }
-
-
 
 
 button.warn {
@@ -79,10 +80,10 @@ button.warn {
 div.component.scenarioTitle {
     margin: 0;
     display: flex;
-    width: 100%;
     justify-content: center;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 0 1rem;
+    height: 106px;
 }
 
 
@@ -90,7 +91,7 @@ div.App {
     background-color: #EFF0F1;
     display: flex;
     flex-direction: row;
-    justify-content: center ;
+    justify-content: center;
 }
 
 
@@ -109,11 +110,17 @@ div#rightPart > div.component {
 div#rightPart > div#header {
     display: flex;
     flex-direction: row;
-    /*align-items: center;*/
+    align-items: center;
     padding: 0;
-    margin: 1rem;
+    margin: 1rem 1rem 0;
+    height: 7rem;
 }
 
+
+div#header > div {
+    max-height: 106px !important;
+    overflow: hidden;
+}
 
 div.component > div {
     padding: 1rem;

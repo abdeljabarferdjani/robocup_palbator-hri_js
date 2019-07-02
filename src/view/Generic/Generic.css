@@ -1,0 +1,19 @@
+div.Generic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+div.Generic div.medias {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.Generic li {
+    font-size: large;
+}

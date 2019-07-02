@@ -1,13 +1,10 @@
 img.Icon {
-
-    height: 42px;
-    width: 42px;
-
+    min-height: 42px !important;
+    min-width: 42px !important;
 }
 
 img.Icon.animated {
     animation: 1.5s ease-in-out infinite iconAnimation;
-    /*animation: 1.5s cubic-bezier(0, 1, 1, 0) infinite iconAnimation;*/
 }
 
 @keyframes iconAnimation {

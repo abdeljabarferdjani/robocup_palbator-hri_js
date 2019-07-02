@@ -11,28 +11,6 @@
     font-style: normal;
 }
 
-/* Roboto italic */
-
-/*@font-face {*/
-/*    font-family: "Roboto";*/
-/*    src: url('/apps/R2019/fonts/Roboto-Italic.eot');*/
-/*    src: url('/apps/R2019/fonts/Roboto-Italic.eot?#iefix') format('embedded-opentype'),*/
-/*    url('/apps/R2019/fonts/Roboto-Italic.ttf') format('truetype');*/
-/*    font-weight: 400;*/
-/*    font-style: italic;*/
-/*}*/
-
-/*!* Roboto bold *!*/
-
-/*@font-face {*/
-/*    font-family: "Roboto";*/
-/*    src: url('/apps/R2019/fonts/Roboto-Bold.eot');*/
-/*    src: url('/apps/R2019/fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),*/
-/*    url('/apps/R2019/fonts/Roboto-Bold.ttf') format('truetype');*/
-/*    font-weight: 700;*/
-/*    font-style: normal;*/
-/*}*/
-
 .btn, button {
     display: inline-block;
     font-weight: 400;
@@ -94,7 +72,6 @@
     background: red;
     color: white;
 }
-
 
 .btn-classic:active {
     background: #51ff95;

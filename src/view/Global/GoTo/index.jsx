@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import ComponentTitle from "../reusableComponent/ComponentTitle";
 import "./Goto.css"
-import Location from "../reusableComponent/Location";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
+import Generic from "../../Generic";
 
 
 class Goto extends Component {
 	static propTypes = {
 		location: PropTypes.object.isRequired,
-		textToShow: PropTypes.string,
+		textToShow: PropTypes.string.isRequired,
 	};
 	
 	componentDidMount() {
@@ -19,14 +18,22 @@ class Goto extends Component {
 	
 	render() {
 		
-		const textToShow = this.props.textToShow || "I'm going to the " ;
+		const textToShow = this.props.textToShow || "I'm going to the ";
 		return (
-			<div className={"Goto"}>
-				<ComponentTitle>{textToShow}</ComponentTitle>
-				<div><Location obj={this.props.location}/></div>
-			
+			<div className="Goto">
+				<Generic image={this.props.location}
+				         title={this.props.textToShow}
+				/>
 			</div>
-		);
+		
+		)
+		// return (
+		// 	<div className={"Goto"}>
+		// 		<ComponentTitle>{textToShow}</ComponentTitle>
+		// 		<div><Location obj={this.props.location}/></div>
+		//
+		// 	</div>
+		// );
 	}
 }
 

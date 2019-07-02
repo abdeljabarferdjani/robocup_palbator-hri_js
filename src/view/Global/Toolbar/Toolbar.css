@@ -8,3 +8,7 @@ div#icons {
 div#icons img {
     margin: 1rem;
 }
+
+div.Toolbar {
+    height: 100%;
+}

@@ -155,6 +155,7 @@ class TimeBoard extends Component {
 			return stepA['order'] < stepB['order'] ? -1 : 1
 		});
 	}
+	
 	componentDidMount() {
 		console.log(TimeBoard.stepsElems);
 	}
@@ -179,7 +180,7 @@ class TimeBoard extends Component {
 		
 		this.state.sortedSteps.forEach(((step, index) => {
 			// let ref = React.createRef();
-			steps.push(<Step  step={step} key={index}/>);
+			steps.push(<Step step={step} key={index}/>);
 			// TimeBoard.stepsElems.push(ref)
 		}));
 		

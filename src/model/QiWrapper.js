@@ -108,7 +108,7 @@ class QiWrapper {
 	
 	static setALValue(event, value) {
 		
-		if(ConfigWrapper.get().imPepper) {
+		if (ConfigWrapper.get().imPepper) {
 			QiWrapper.getInstanceSync().setALValue(event, value)
 		}
 	}
@@ -131,7 +131,7 @@ class QiWrapper {
 	 * @return {Promise} a promise that is resolved when event is raised.
 	 */
 	static raise(event, value) {
-		if(ConfigWrapper.get().imPepper) {
+		if (ConfigWrapper.get().imPepper) {
 			
 			return QiWrapper.getInstanceSync().raise(event, value)
 		}
@@ -151,11 +151,12 @@ class QiWrapper {
 		return new Promise(resolve =>
 			this.#AlMemory.subscriber(event).then(subscriber => {
 				subscriber.signal.connect(state => {
-					resolve(callback(JSON.parse(state)));
+					callback(JSON.parse(state));
 				});
 				QiWrapper.logger.event("Listen at", event);
-				
-			}));
+				resolve()
+			})
+		);
 	}
 	
 	/**

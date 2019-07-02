@@ -1,5 +1,5 @@
 import AskName from "../view/Global/AskName";
-import AskAge from "../view/Scenario/Receptionist/AskInformations/AskAge";
+import AskAge from "../view/Scenario/Receptionist/AskAge";
 import AskDrink from "../view/Global/AskDrink";
 import {PresentPerson} from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";
@@ -7,7 +7,6 @@ import DetailDrinks from "../view/Scenario/ServingDrinks/DetailDrinks";
 import GoTo from '../view/Global/GoTo/'
 import FindAvailableDrinks
 	from "../view/Scenario/ServingDrinks/FindAvailableDrinks";
-import OpenDoor from "../view/Global/OpenDoor";
 import FindWhoWantsDrinks
 	from "../view/Scenario/ServingDrinks/FindWhoWantDrinks";
 import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
@@ -18,8 +17,14 @@ import Wait from "../view/Global/Wait";
 import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
 import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
 import ShowVideo from '../view/Global/ShowVideo'
-import Message from "../view/Global/Message/Index";
+import Generic from "../view/Generic";
 
+/**
+ * Get the Component class from his name (string)
+ *
+ * @param view
+ * @return {*} Component MainMenu is return as default.
+ */
 const getClassFromView = (view) => {
 	return viewClassMap[view] || MainMenu;
 };
@@ -36,15 +41,14 @@ const viewClassMap = {
 	"detailDrinks": DetailDrinks,
 	"presentPerson": PresentPerson,
 	"goTo": GoTo,
+	"generic": Generic,
 	"findAvailableDrinks": FindAvailableDrinks,
-	"openDoor": OpenDoor,
 	"findWhoWantsDrinks": FindWhoWantsDrinks,
 	"serveDrinks": ServeDrinks,
 	"seatGuest": SeatGuest,
 	"askToFollow": AskToFollow,
 	"mainMenu": MainMenu,
 	"wait": Wait,
-	"message": Message,
 	"askOpenDoor": AskOpenDoor,
 	"callHuman": CallHuman,
 	"showVideo": ShowVideo
@@ -54,7 +58,7 @@ const viewClassMap = {
 
 /**
  * @description Return all possible views of the application.
- * @return {Array}
+ * @return {Array<String>}
  */
 const getAllViewsKey = () => {
 	return Object.keys(viewClassMap);

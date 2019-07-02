@@ -41,8 +41,7 @@ class Confirm extends Component {
 		
 		
 		const textToShow = this.props.textToShow || "Are you sure that you want X?";
-		let img = null;
-		// if (this.props.imagePath !== undefined) { // todo implement it for the next robocup
+		// if (this.props.imagePath !== undefined) { // todo implement it for the next robocup (image of confirmed drink)
 		//
 		// 	img = <img src={this.props.imagePath}
 		// 	           alt=""/>
@@ -53,7 +52,6 @@ class Confirm extends Component {
 			<div className={"Confirm"}>
 				<ComponentTitle>{textToShow}</ComponentTitle>
 				
-				{img}
 				
 				<div className={"choices"}>
 					<SpeakableButton

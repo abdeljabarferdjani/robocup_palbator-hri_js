@@ -9,6 +9,7 @@ const exec = utils.promisify(require("child_process").exec);
 const spawn = require("child_process").spawn;
 const stat = utils.promisify(fs.stat);
 const unlink = utils.promisify(fs.unlink);
+const writeFile = utils.promisify(fs.writeFile);
 const parser = ArgumentParser({
 	version: 1.2,
 	addHelp: true,
@@ -32,7 +33,7 @@ const args = parser.parseArgs();
 
 const {user, ip, app: appName, buildFolder} = args;
 
-const cwd = process.cwd();
+const COMMANDS_TEMP_FILE_NAME = "commands";
 
 /**
  * @description Upload file using scp
@@ -59,10 +60,8 @@ function upload(user, ip, inputFile, remoteFile) {
 function parseIO(spawn) {
 	return new Promise((resolve, reject) => {
 		const errors = [];
-		
-		
 		spawn.on('close', (code, x) => {
-			console.log(`child process exited with code ${code} ${x}\n`);
+			// console.log(`child process exited with code ${code} ${x}\n`);
 			if (errors.length > 0) {
 				reject(errors)
 			} else {
@@ -88,7 +87,7 @@ function remoteCommand(user, ip, wd = "~", command) {
 			command = `cd ${wd} && ${command}`
 		}
 		// const ssh = spawn(`echo "${command}" | ssh ${user}@${ip}`);
-		const ssh = spawn(`ssh`, [`${user}@${ip}`, `\`${command}\``]);
+		const ssh = spawn(`ssh`, [`${user}@${ip}`, `\`${command}\``, {stdio: 'inherit'}]);
 		// console.debug(`echo "${command}" | ssh ${user}@${ip}`);
 		
 		parseIO(ssh).catch(error => {
@@ -103,7 +102,6 @@ function remoteCommand(user, ip, wd = "~", command) {
 
 function main() {
 	if (ip) {
-		
 		
 		console.log(`\nStart to compress ${buildFolder} folder`);
 		console.time("Compressing");
@@ -133,29 +131,27 @@ function main() {
 			console.log('\n');
 			console.time(`Extract on ${ip}`);
 			
+			// Extract and clean on Pepper
+			
 			let commands = `tar xvf ${path}/${tarEd} -C ${path}` + '\n' +
 				`rm -r ${path}/html\n` +
 				`rm  ${path}/${tarEd}\n` +
 				`mv ${path}/${buildFolder} ${path}/html`;
-			await fs.writeFileSync("commands", commands);
 			
+			await writeFile(COMMANDS_TEMP_FILE_NAME, commands);
 			await remoteCommand(user, ip, "", commands);
-
-			await unlink('commands');
+			console.timeEnd(`Extract on ${ip}`);
+			
+			// Clean local files
+			await unlink(COMMANDS_TEMP_FILE_NAME);
 			await unlink(tarEd);
 			
-			console.timeEnd(`Extract on ${ip}`);
 			
 			console.log("Everything is ok");
 		});
 		
 		
-	}
-	
-	
-	// })
-	
-	else {
+	} else {
 		console.error("No ip provided please use flag --ip or see --help")
 	}
 	

@@ -21,7 +21,7 @@ div.ShowVideo {
 }
 
 div.ShowVideo > * {
-    width: 50%;
+    /*width: 50%;*/
 }
 
 div.ShowVideo button {
@@ -40,9 +40,11 @@ div.ShowVideo button {
 div.ShowVideo > div > * {
     margin: 1rem;
 }
+
 div.video video {
-    width: 95%;
+    width: 70%;
 }
+
 /* div.video.large {*/
 /*    width: 65%;*/
 /*}*/

@@ -1,9 +1,10 @@
 
-div.logo {
+div.logos {
     display: flex;
     align-items: center;
     flex-direction: row;
-    width: 100%;
+    width: 32rem;
+    height: 106px !important;
 }
 
 div.Logo {
@@ -16,10 +17,10 @@ div.Logo {
 
 div.Logo > img {
     margin-right: 1rem;
-    height: 2.2rem;
+    height: 2rem;
     width: auto;
 }
 
-div.logo {
+div.logos {
     margin: 0;
 }

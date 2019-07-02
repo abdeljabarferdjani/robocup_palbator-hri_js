@@ -102,7 +102,7 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 			case timeAction.resetStepsProgression.type:
 				clonedState.haveToReset = action.state;
 				break;
-				
+			
 			case timeAction.currentStep.type:
 				
 				
