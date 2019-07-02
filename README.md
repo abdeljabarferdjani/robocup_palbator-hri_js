@@ -1,11 +1,11 @@
 # robocup_pepper-HRI_JS
 
 ## Dependencies
-You need node atleast version 10 to build and deploy
+You need at least the version 10 of **node** to build and deploy
 
-You can install it with `sudo install.sh`
+You can install **node** with `sudo ./install.sh`
 
-To check node version use `node -v`
+To check **node** version use `node -v`
 
 ## Build
 
