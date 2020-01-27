@@ -38,6 +38,14 @@ export const comAction = {
 				"name": "Receptionist"
 			},
 			{
+				"id": "present_school",
+				"name": "Present School"
+			},
+			{
+				"id": "creation_test",
+				"name": "Creation Test"
+			},
+			{
 				"id": "take_out_the_garbage",
 				"name": "Take out the garbage"
 			},

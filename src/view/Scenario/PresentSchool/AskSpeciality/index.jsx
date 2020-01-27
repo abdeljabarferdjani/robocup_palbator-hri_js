@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
-import {comAction} from "../../../redux/actions/CommunicationAction";
+import SpeakableButton from "../../../Global/reusableComponent/Button/SpeakableButton";
+import {comAction} from "../../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
-import './AskName.css'
-import {UserComponentPropTypes} from "../../../dev/types";
-import ComponentTitle from "../reusableComponent/ComponentTitle";
+import './AskSpeciality.css'
+import {UserComponentPropTypes} from "../../../../dev/types";
+import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-class AskName extends Component {
+class AskSpeciality extends Component {
 	
 	static propTypes = {
 		...UserComponentPropTypes
@@ -49,4 +49,4 @@ class AskName extends Component {
 }
 
 
-export default connect(mapDispatchToProps)(AskName);
+export default connect(mapDispatchToProps)(AskSpeciality);

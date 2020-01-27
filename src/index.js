@@ -4,17 +4,25 @@ import 'core-js/es/map'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import QiWrapper from "./model/QiWrapper";
+// import QiWrapper from "./model/QiWrapper";
 import ConfigWrapper from "./controller/ConfigWrapper";
+
+/////
+import SocketWrapper from './model/SocketWrapper';
+
 
 async function initApp() {
 	
-	const qi = await QiWrapper.createInstance();
+
+	// Instantiate
+const socket = new SocketWrapper();
+
+	// const qi = await QiWrapper.createInstance();
 	await ConfigWrapper.setConfigFromALMemory();
 	
-	const ALMemoryBridge = require("./controller/ALMemoryBridge").default;
+	const SocketBridge = require("./controller/SocketBridge").default;
 	
-	ALMemoryBridge.initBridge(qi);
+	SocketBridge.initBridge();
 	const App = require("./App").default;
 	const Provider = require("react-redux").Provider;
 	const getStore = require("./redux/Store").default;
@@ -22,7 +30,7 @@ async function initApp() {
 	
 	ReactDOM.render(<Provider store={getStore()}>
 		<App/>
-		<Debug/>
+		{/* <Debug/> */}
 	</Provider>, document.getElementById('root'));
 	
 	
@@ -30,8 +38,8 @@ async function initApp() {
 
 initApp().then(() => {
 	console.log("App Loaded")
-	const {apis: {tabletLM}} = ConfigWrapper.get();
-	QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {'time': Date.now()})
+	// const {apis: {tabletLM}} = ConfigWrapper.get();
+	// QiWrapper.raise(tabletLM["tabletOperational"]["ALMemory"], {'time': Date.now()})
 
 	
 	

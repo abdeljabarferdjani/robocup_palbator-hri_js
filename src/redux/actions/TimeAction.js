@@ -32,6 +32,10 @@ export const timeAction = {
 	replaceAllSteps: {
 		type: "REPLACE_ALL_STEPS",
 		steps: ["Steps"]
+	},
+
+	putOneStep: {
+		type: "PUT_ONE_STEP"
 	}
 	
 };

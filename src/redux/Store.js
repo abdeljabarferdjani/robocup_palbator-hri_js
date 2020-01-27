@@ -1,10 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {createLogger} from 'redux-logger'
-import {viewReducer} from "./reducers/ViewReducer";
-import {comReducer} from "./reducers/CommunicationReducer";
-import {toolbarReducer} from "./reducers/ToolbarReducer";
-import {timeReducer} from "./reducers/TimeReducer";
-import {scenarioReducer} from './reducers/ScenarioReducer'
+import {viewReducer} from "./reducers-pal/ViewReducer";
+import {comReducer} from "./reducers-pal/CommunicationReducer";
+import {toolbarReducer} from "./reducers-pal/ToolbarReducer";
+import {timeReducer} from "./reducers-pal/TimeReducer";
+import {scenarioReducer} from './reducers-pal/ScenarioReducer'
 import logConfig from '../config/log'
 import {composeWithDevTools} from "redux-devtools-extension";
 

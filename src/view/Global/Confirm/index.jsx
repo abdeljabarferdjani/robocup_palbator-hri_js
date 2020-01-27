@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch({
 				type: comAction.dataJs.type,
 				dataType: comAction.dataJs.dataType.confirm,
-				data: false
+				data: 'false'
 			});
 			
 			
@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch({
 				type: comAction.dataJs.type,
 				dataType: comAction.dataJs.dataType.confirm,
-				data: true
+				data: 'true'
 			});
 			
 		}

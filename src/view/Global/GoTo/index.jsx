@@ -4,6 +4,8 @@ import "./Goto.css"
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import Generic from "../../Generic";
+import ComponentTitle from "../reusableComponent/ComponentTitle";
+import Location from "../reusableComponent/Location";
 
 
 class Goto extends Component {
@@ -19,21 +21,21 @@ class Goto extends Component {
 	render() {
 		
 		const textToShow = this.props.textToShow || "I'm going to the ";
-		return (
-			<div className="Goto">
-				<Generic image={this.props.location}
-				         title={this.props.textToShow}
-				/>
-			</div>
-		
-		)
 		// return (
-		// 	<div className={"Goto"}>
-		// 		<ComponentTitle>{textToShow}</ComponentTitle>
-		// 		<div><Location obj={this.props.location}/></div>
-		//
+		// 	<div className="Goto">
+		// 		<Generic image={this.props.location}
+		// 		         title={this.props.textToShow}
+		// 		/>
 		// 	</div>
-		// );
+		
+		// )
+		return (
+			<div className={"Goto"}>
+				<ComponentTitle>{textToShow}</ComponentTitle>
+				<div><Location obj={this.props.location}/></div>
+		
+			</div>
+		);
 	}
 }
 
