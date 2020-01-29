@@ -113,25 +113,6 @@ export default class SocketBridge extends React.Component{
 		
 	};
 	
-	static handleChangeCurrentView = () => data => {
-		
-		// arrayStep.push(data.step)
-		// console.log(arrayStep)
-		if (data.view !== undefined || data.data !== undefined) {
-			dispatch({
-				type: viewAction.changeView.type,
-				view: data.view,
-				data: data.data
-			})
-
-			// dispatch({
-			// 	type: timeAction.putOneStep.type,
-			// 	steps: arrayStep
-			// })
-		}
-		
-		
-	};
 	
 	static handleChangeCurrentScenario = () => (data) => {
 		
@@ -154,7 +135,6 @@ export default class SocketBridge extends React.Component{
 		console.log(data)
 		console.log(timeAction)
 		if ([timeAction.timerState.state.on, timeAction.timerState.state.off].includes(data.state)) {
-			console.log('on rentre dans timer state')
 			dispatch({
 				type: timeAction.timerState.type,
 				state: data.state
@@ -184,13 +164,43 @@ export default class SocketBridge extends React.Component{
 		
 	};
 	
+	static handleChangeCurrentView = () => data => {
+		
+
+		if(arrayStep !== []) arrayStep.pop()
+		arrayStep.push(data.step)
+		console.log(arrayStep)
+		if (data.view !== undefined || data.data !== undefined) {
+			dispatch({
+				type: timeAction.putOneStep.type,
+				steps: arrayStep
+			})
+			
+			dispatch({
+				type: viewAction.changeView.type,
+				view: data.view,
+				data: data.data
+			})
+		}
+		
+	};
+
 	static handleChangeCurrentStep = () => (data) => {
 		// ALMemoryBridge.logger.log("handleStepCompleted", data)
-		console.log('on rentre dans CURRENT STEP')
+		if(arrayStep !== []) arrayStep.pop()
+		arrayStep.push(data.step)
+		console.log(arrayStep)
+		dispatch({
+			type: timeAction.putOneStep.type,
+			steps: arrayStep
+		})
+
 		dispatch({
 			type: timeAction.currentStep.type,
-			index: data.index
+			index: data.index,
+			step:data.step
 		})
+
 		
 	};
 

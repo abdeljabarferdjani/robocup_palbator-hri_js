@@ -8,6 +8,8 @@ import ConfigWrapper from "../../controller/ConfigWrapper";
 const logger = new Logger(debug.reducer.time, "TimeReducer");
 const {apis: {generalManagerHRI}} = ConfigWrapper.get();
 
+let i=0;
+
 const init = (state, steps) => {
 	
 	
@@ -31,7 +33,6 @@ const init = (state, steps) => {
 	});
 	
 	state.allSteps = [...state.todoSteps];
-	console.log(state.allSteps)
 
 	console.warn("State after init", state);
 	
@@ -86,12 +87,12 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				if (action.globalElapsedTime !== undefined && action.timeFromLastEvent !== undefined) {
 					logger.log(timeAction.passSecond.type, action.globalElapsedTime);
 					
+					
 					clonedState = {
 						...clonedState,
 						globalElapsedTime: action.globalElapsedTime,
 						stepElapsedTime: clonedState.stepElapsedTime + action.timeFromLastEvent
 					};
-					
 					
 				} else {
 					logger.warn(timeAction.passSecond.type, "Care no action.globalElapsedTime");
@@ -110,16 +111,21 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				if (action.index !== undefined) {
 					// console.log("HEY 1");
 					
-	
+					console.log('current step cloned state : ',clonedState)
+					
 					const researchedStep = state.allSteps[action.index];
 					
+					console.log(researchedStep)
+					console.log()
 					stepIndex = clonedState.todoSteps.findIndex(step => step.id === researchedStep.id);
 					
+					console.log(stepIndex)
 					// console.log("HEY 2", stepIndex);
 					
 					clonedState.stepElapsedTime = 0;
 					
 					todoSteps = [...state.todoSteps];
+					console.log(stepIndex)
 					const step = todoSteps.splice(stepIndex, 1)[0];
 					
 					// console.log("HEY 2.5", step);
@@ -136,6 +142,7 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 						todoSteps: todoSteps
 					};
 					
+					console.log('current step cloned state : ',clonedState)
 					// console.warn("HEY 4", clonedState)
 					
 					
@@ -153,12 +160,9 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				todoSteps = [...clonedState.todoSteps];
 				currentStep = clonedState.currentStep;
 				
-				console.log(clonedState)
 				
-				console.log(action.indexes)
 				action.indexes.forEach(index => {
 					const researchedStep = clonedState.allSteps[index];
-					console.log(index)
 					console.log(researchedStep)
 					// const researchedStep = "findg1_wait";
 					if (clonedState.currentStep.id === researchedStep.id) {
@@ -166,8 +170,6 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					}
 					
 					const indexInTodo = todoSteps.findIndex(step => step.id === researchedStep.id);
-					console.log(indexInTodo)
-					// console.log(todoSteps)
 					if (indexInTodo > -1) {
 						todoSteps.splice(indexInTodo, 1);
 					}
@@ -180,7 +182,7 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					todoSteps: todoSteps,
 					doneSteps: doneSteps,
 				};
-				console.log(clonedState)
+				console.log('step completed cloned state : ',clonedState)
 				
 				break;
 			
@@ -257,8 +259,8 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					//////////////////
 					
 					// logger.debug("replace B", clonedState);
-					console.log(clonedState)
-					clonedState = init(getDefaultState(), action.steps);
+
+					// clonedState = init(getDefaultState(), action.steps);
 					console.log(clonedState)
 					// logger.debug("replace A", clonedState);
 					// console.warn(2, clonedState, action.steps)
@@ -266,44 +268,28 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				}
 				break;
 
-				// case timeAction.putOneStep.type:
+				case timeAction.putOneStep.type:
 				
-				// console.log('PUT ONE STEP')
-				// console.log(action.steps)
-				// if (action.steps.length !== undefined) {
-					
 
-					/////// DANS LE CAS OU ON NE VEUT AFFICHER QUE LES TITRES DES STEPS; 
-					// dans clonedState, on passera steps plutot que action.steps
-					// let steps = [];
-					// console.warn(1, clonedState, steps);
-					
-					// action.steps.forEach(step => {
-					// 	// Add only title steps (in blue in excel)
-					// 	if (step.action === "") {
-					// 		steps.push(step);
-					// 		console.log("DOAZ?D?ZAOXAZ", step);
-					// 	}
+				if (action.steps.length !== undefined) {
 					
 					
-					// });
-					
-					// steps = steps.sort((step1, step2) => {
-					// 	return step1['order'] < step2['order'] ? -1 : 1
-					// });
+					if(clonedState.currentStep === null && i === 0) {
+						clonedState = init(getDefaultState(), action.steps);
+						i=1;
+					}
+					else{
+						action.steps.forEach(step => {
+							if(step.order !== 0) clonedState.todoSteps.push(step)
+							clonedState.allSteps.push(step)
+						});
+					}
+					console.log('PUTONE STEP le clonedState vaut : ',clonedState)
 
-					//////////////////
 					
-					// logger.debug("replace B", clonedState);
-				// 	console.log(clonedState)
-				// 	clonedState = init(getDefaultState(), action.steps);
-				// 	console.log(clonedState)
-				// 	// logger.debug("replace A", clonedState);
-				// 	// console.warn(2, clonedState, action.steps)
-					
-				// }
+				}
 				
-				// break;
+				break;
 			
 			
 			default:

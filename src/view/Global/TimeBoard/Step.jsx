@@ -60,9 +60,9 @@ class Step extends Component {
 		if (nextProps.time.haveToReset === true) {
 			prevState.resetFunc();
 		}
-		
+
+		console.log(prevState.progressBarRef.current)
 		if (nextProps.time.currentStep && nextProps.time.currentStep.order === prevState.order) {
-			
 			if (prevState.progressBarRef.current)
 			{
 				Step.logger.log("Time", nextProps.time);

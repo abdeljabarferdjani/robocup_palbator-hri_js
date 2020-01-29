@@ -33,6 +33,7 @@ class TimeBoard extends Component {
 		
 		TimeBoard.logger.log("constructor", this.props);
 		
+
 		const steps = TimeBoard.createStepFromProps(props);
 		
 		
@@ -134,12 +135,12 @@ class TimeBoard extends Component {
 			});
 		}
 		
-		props.time.todoSteps.forEach(step => {
-			steps.push({
-				...step,
-				status: Step.Status.todo,
-			})
-		});
+		// props.time.todoSteps.forEach(step => {
+		// 	steps.push({
+		// 		...step,
+		// 		status: Step.Status.todo,
+		// 	})
+		// });
 		
 		props.time.skippedSteps.forEach(step => {
 			
