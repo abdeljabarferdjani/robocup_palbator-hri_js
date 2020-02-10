@@ -1,9 +1,13 @@
 # robocup_palbator-HRI_JS
 
-## Dependencies
+Node version 10 or above is required
+
+## Install Dependencies
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
 npm install
 
-## Build and launch
+## Launch
 npm start
 
 
