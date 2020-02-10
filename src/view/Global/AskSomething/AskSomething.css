@@ -1,0 +1,40 @@
+div.drinks > div {
+    width: 18%;
+    height: 31%;
+    font-size: calc(1vw + 0.75rem);
+    margin-right: 1rem;
+
+}
+
+div.drinks > div > * {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button.actionBtn {
+    background-color: gray(50%);
+}
+
+div.drinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 60vh;
+}
+
+div.drinks button {
+
+}
+
+div#AskDrink {
+    position: relative;
+    height: 100%;
+}
+
+
+

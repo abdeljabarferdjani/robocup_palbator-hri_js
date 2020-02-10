@@ -2,6 +2,7 @@ import AskName from "../view/Global/AskName";
 import AskSpeciality from "../view/Scenario/PresentSchool/AskSpeciality";
 import AskAge from "../view/Scenario/Receptionist/AskAge";
 import AskDrink from "../view/Global/AskDrink";
+import AskSomething from "../view/Global/AskSomething";
 import {PresentPerson} from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";
 import DetailDrinks from "../view/Scenario/ServingDrinks/DetailDrinks";
@@ -40,6 +41,7 @@ const viewClassMap = {
 	"askSpeciality": AskSpeciality,
 	"askDrink": AskDrink,
 	"askAge": AskAge,
+	"askSomething": AskSomething,
 	"confirm": Confirm,
 	"detailDrinks": DetailDrinks,
 	"presentPerson": PresentPerson,
