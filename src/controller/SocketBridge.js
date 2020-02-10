@@ -132,8 +132,6 @@ export default class SocketBridge extends React.Component{
 	};
 	
 	static handleToggleTimer = () => (data) => {
-		console.log(data)
-		console.log(timeAction)
 		if ([timeAction.timerState.state.on, timeAction.timerState.state.off].includes(data.state)) {
 			dispatch({
 				type: timeAction.timerState.type,
@@ -156,7 +154,6 @@ export default class SocketBridge extends React.Component{
 		// ALMemoryBridge.logger.log("handleStepCompleted", data)
 		if(indexesStepCompleted !== []) indexesStepCompleted.pop()
 		indexesStepCompleted.push(data.idSteps)
-		console.log(indexesStepCompleted)
 		dispatch({
 			type: timeAction.stepCompleted.type,
 			indexes: indexesStepCompleted
