@@ -115,17 +115,14 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					
 					const researchedStep = state.allSteps[action.index];
 					
-					console.log(researchedStep)
-					console.log()
+
 					stepIndex = clonedState.todoSteps.findIndex(step => step.id === researchedStep.id);
 					
-					console.log(stepIndex)
 					// console.log("HEY 2", stepIndex);
 					
 					clonedState.stepElapsedTime = 0;
 					
 					todoSteps = [...state.todoSteps];
-					console.log(stepIndex)
 					const step = todoSteps.splice(stepIndex, 1)[0];
 					
 					// console.log("HEY 2.5", step);
@@ -142,8 +139,6 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 						todoSteps: todoSteps
 					};
 					
-					console.log('current step cloned state : ',clonedState)
-					// console.warn("HEY 4", clonedState)
 					
 					
 				} else {
@@ -269,24 +264,31 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 				break;
 
 				case timeAction.putOneStep.type:
-				
 
+				let stepAlreadyExisting=0
 				if (action.steps.length !== undefined) {
 					
-					
+					clonedState.todoSteps.forEach(step => {
+						let a = JSON.stringify(step)
+						let b = JSON.stringify(action.steps[0])
+						if(a === b){
+							stepAlreadyExisting = 1;
+						}
+					})
+
 					if(clonedState.currentStep === null && i === 0) {
 						clonedState = init(getDefaultState(), action.steps);
 						i=1;
 					}
 					else{
 						action.steps.forEach(step => {
-							if(step.order !== 0) clonedState.todoSteps.push(step)
+							if(stepAlreadyExisting === 0){
+								if(step.order !== 0) clonedState.todoSteps.push(step)
 							clonedState.allSteps.push(step)
+							}
 						});
 					}
-					console.log('PUTONE STEP le clonedState vaut : ',clonedState)
 
-					
 				}
 				
 				break;

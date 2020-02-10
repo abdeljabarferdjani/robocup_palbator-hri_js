@@ -163,10 +163,8 @@ export default class SocketBridge extends React.Component{
 	
 	static handleChangeCurrentView = () => data => {
 		
-
 		if(arrayStep !== []) arrayStep.pop()
 		arrayStep.push(data.step)
-		console.log(arrayStep)
 		if (data.view !== undefined || data.data !== undefined) {
 			dispatch({
 				type: timeAction.putOneStep.type,
@@ -186,7 +184,6 @@ export default class SocketBridge extends React.Component{
 		// ALMemoryBridge.logger.log("handleStepCompleted", data)
 		if(arrayStep !== []) arrayStep.pop()
 		arrayStep.push(data.step)
-		console.log(arrayStep)
 		dispatch({
 			type: timeAction.putOneStep.type,
 			steps: arrayStep
