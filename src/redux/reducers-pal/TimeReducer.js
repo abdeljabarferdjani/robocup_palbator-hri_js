@@ -228,43 +228,15 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 			
 			case timeAction.replaceAllSteps.type:
 				
-				logger.debug("You are un replaceAllSteps reducer", action);
-				if (action.steps.length !== undefined) {
-					
-
-					/////// DANS LE CAS OU ON NE VEUT AFFICHER QUE LES TITRES DES STEPS; 
-					// dans clonedState, on passera steps plutot que action.steps
-					// let steps = [];
-					// console.warn(1, clonedState, steps);
-					
-					// action.steps.forEach(step => {
-					// 	// Add only title steps (in blue in excel)
-					// 	if (step.action === "") {
-					// 		steps.push(step);
-					// 		console.log("DOAZ?D?ZAOXAZ", step);
-					// 	}
-					
-					
-					// });
-					
-					// steps = steps.sort((step1, step2) => {
-					// 	return step1['order'] < step2['order'] ? -1 : 1
-					// });
-
-					//////////////////
-					
-					// logger.debug("replace B", clonedState);
-
-					// clonedState = init(getDefaultState(), action.steps);
+					clonedState = init(getDefaultState(), []);
 					console.log(clonedState)
-					// logger.debug("replace A", clonedState);
-					// console.warn(2, clonedState, action.steps)
-					
-				}
+					i=0
+
 				break;
 
 				case timeAction.putOneStep.type:
 
+				console.log('ON RENTRE DANS PUTONESTEP')
 				let stepAlreadyExisting=0
 				if (action.steps.length !== undefined) {
 					

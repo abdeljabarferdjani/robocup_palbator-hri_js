@@ -39,22 +39,6 @@ export const scenarioReducer = (state = INITIAL_STATE, action) => {
 					scenario_name: action.scenarioName
 				});
 
-				// steps_sorted.forEach((step, index) => {
-				// 	if(step.speech !== undefined) text_to_show = step.speech.title
-				// 	if(step.argument !== undefined) text_to_show = step.argument.title
-
-				// 	console.log(text_to_show)
-				// 	if(step.action !== ''){
-						// socket._type.emit('currentViewHRIM',{
-						// 	// data: step.action,
-						// 	data: 'seatGuest',
-						// 	time: step.eta,
-						// 	title: text_to_show,
-						// 	order: step.order,
-						// 	id: index
-						// });
-				// 	}
-				// })
 			}
 
 		}

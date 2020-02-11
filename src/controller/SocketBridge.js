@@ -124,10 +124,6 @@ export default class SocketBridge extends React.Component{
 			steps: data.stepsList
 		});
 
-		dispatch({
-			type: timeAction.replaceAllSteps.type,
-			steps: data.stepsList
-		})
 
 	};
 	
@@ -184,6 +180,7 @@ export default class SocketBridge extends React.Component{
 		// ALMemoryBridge.logger.log("handleStepCompleted", data)
 		if(arrayStep !== []) arrayStep.pop()
 		arrayStep.push(data.step)
+		console.log(data)
 		dispatch({
 			type: timeAction.putOneStep.type,
 			steps: arrayStep
@@ -198,16 +195,14 @@ export default class SocketBridge extends React.Component{
 		
 	};
 
-	static handleChangeEndScenario = () => (data) => {
+	static handleChangeEndScenario = () => () => {
 		dispatch({
 			type: scenarioAction.currentScenario.type,
-			scenarioName: data.scenario,
-			steps: data.stepsList
+			scenarioName: 'None'
 		});
 
 		dispatch({
-			type: timeAction.replaceAllSteps.type,
-			steps: data.stepsList
+			type: timeAction.replaceAllSteps.type
 		})
 		
 		dispatch({
