@@ -100,13 +100,13 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					break;
 				
 				case comAction.askToChangeScenario.type:
-					// QiWrapper.raise(generalManagerHRI.askToChangeScenario.ALMemory, {
-					// 	scenario: action.scenario
-					// });
-
     			socket._type.emit('askToChangeScenarioGM',{
 							scenario: action.scenario
 					});
+					break;
+
+				case comAction.askToResetHRI.type:
+    			socket._type.emit('askToResetHRIGM')
 					break;
 				
 				

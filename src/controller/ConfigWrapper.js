@@ -206,6 +206,9 @@ export default class ConfigWrapper
             "reduxKey": "askToChangeScenario",
             "scenario": "_scenarioName"
         },
+        "askToResetHRI": {
+            "reduxKey": "askToResetHRI"
+        },
         "actionComplete": {
             "ALMemory": "R2019/Global/ActionComplete",
             "reduxKey": "actionComplete"

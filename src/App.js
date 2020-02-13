@@ -8,11 +8,24 @@ import logConfig from './config/log'
 import Logger from "./dev/Logger";
 import {connect} from "react-redux";
 import Logo from "./view/Global/Logo";
-
+import {SpeakableButton} from "../src/view/Global/reusableComponent/Button/SpeakableButton";
+import {comAction} from "../src/redux/actions/CommunicationAction";
 
 const mapStateToProps = (state) => {
 	return {
-		scenario: state.scenario
+		scenario: state.scenario,
+	}
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		
+		askToChangeScenario: () => {
+			dispatch({
+				type: comAction.askToResetHRI.type
+			})
+		}
+		
 	}
 };
 
@@ -21,6 +34,11 @@ class App extends Component {
 	
 	static propTypes = {};
 	
+	exitFullScreen () {
+		console.log(' on rentre dans la fonction exit')
+		document.exitFullscreen().catch(err => Promise.resolve(err));
+	};
+
 	static logger = new Logger(logConfig.App, "App");
 	
 	nbClickForDebug = 0;
@@ -99,7 +117,19 @@ class App extends Component {
 						<ViewManager/>
 					</div>
 				
-				
+				</div>
+
+				<div id="footer">
+					<div id="rightPart">
+							<SpeakableButton 
+							onClick={() => this.exitFullScreen()}
+							>Exit full screen mode</SpeakableButton>
+					</div>
+					<div id="rightPart">
+							<SpeakableButton 
+							onClick={() => this.props.askToChangeScenario()}
+							>Stop</SpeakableButton>
+					</div>
 				</div>
 			
 			
@@ -109,4 +139,4 @@ class App extends Component {
 }
 
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

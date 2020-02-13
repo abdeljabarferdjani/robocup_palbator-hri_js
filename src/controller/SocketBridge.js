@@ -139,7 +139,6 @@ export default class SocketBridge extends React.Component{
 	};
 	
 	static handleSetStepSkipped = () => (data) => {
-		// ALMemoryBridge.logger.log("handleSetStepSkipped", data)
 		dispatch({
 			type: timeAction.stepSkipped.type,
 			indexes: data.indexes
@@ -147,7 +146,6 @@ export default class SocketBridge extends React.Component{
 	};
 	
 	static handleStepCompleted = indexesStepCompleted => data => {
-		// ALMemoryBridge.logger.log("handleStepCompleted", data)
 		if(indexesStepCompleted !== []) indexesStepCompleted.pop()
 		indexesStepCompleted.push(data.idSteps)
 		dispatch({

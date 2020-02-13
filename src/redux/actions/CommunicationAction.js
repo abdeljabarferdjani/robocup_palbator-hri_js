@@ -55,6 +55,10 @@ export const comAction = {
 			}
 		]
 	},
+
+	askToResetHRI: {
+		type: generalManagerHRI.askToResetHRI.reduxKey,
+	},
 	
 	
 };
