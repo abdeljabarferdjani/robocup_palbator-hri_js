@@ -4,16 +4,16 @@ import AutoValidationButton
 	from "../reusableComponent/Button/AutoValidationButton";
 import {SpeakableButton} from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import {UserComponentPropTypes} from "../../../dev/types";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
+import { viewAction } from '../../../redux/actions/ViewAction';
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleNoClick: (dispatch) => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		handleYesClick: (dispatch) => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,

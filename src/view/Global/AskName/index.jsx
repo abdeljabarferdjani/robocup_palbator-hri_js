@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import './AskName.css'
 import {UserComponentPropTypes} from "../../../dev/types";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
+import { viewAction } from '../../../redux/actions/ViewAction';
 
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		sendName: (dispatch, name) => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,

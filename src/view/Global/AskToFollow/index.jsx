@@ -4,9 +4,9 @@ import Location from "../reusableComponent/Location";
 import PropTypes from "prop-types";
 import './AskToFollow.css'
 import {comAction} from "../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../redux/actions/TimeAction";
 
 import {connect} from "react-redux";
+import { viewAction } from '../../../redux/actions/ViewAction';
 
 class AskToFollow extends Component {
 	
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,

@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import './AskAge.css'
 import {comAction} from "../../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../../redux/actions/TimeAction";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
+import { viewAction } from '../../../../redux/actions/ViewAction';
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		sendName: (dispatch, name) => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,

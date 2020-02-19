@@ -168,7 +168,8 @@ export default class SocketBridge extends React.Component{
 			dispatch({
 				type: viewAction.changeView.type,
 				view: data.view,
-				data: data.data
+				data: data.data,
+				index:data.index
 			})
 		}
 		

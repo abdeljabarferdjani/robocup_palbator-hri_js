@@ -17,6 +17,10 @@ export const viewAction = {
 			visible: "VISIBLE",
 			hidden: "HIDE"
 		}
+	},
+
+	getIndexCurrentAction: {
+		type: "INDEX_CURRENT_ACTION"
 	}
 	
 };

@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import './AskDrink.css'
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 import Drink from "../reusableComponent/Drink/Drink";
 import PropTypes from 'prop-types'
+import { viewAction } from '../../../redux/actions/ViewAction';
 
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		sendName: (dispatch, name) => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,
@@ -27,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 
 
 class AskName extends Component {
+
 	
 	static propTypes = {
 		imagePath: PropTypes.string.isRequired,
@@ -34,6 +35,7 @@ class AskName extends Component {
 	};
 	
 	render() {
+		console.log('ASK DRINK')
 		
 		const textToShow = this.props.textToShow || "Hello X, what is your prefered drinks ?";
 		

@@ -235,17 +235,6 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					i=0
 
 				break;
-			
-			case timeAction.getIndexCurrentAction.type:
-			
-				let arraylenght = clonedState.todoSteps.length;
-				let indexCurrentAction = clonedState.todoSteps[arraylenght-1].order
-				socket._type.emit('indexOfDataReceived',{
-					dataType: action.dataType,
-					data: indexCurrentAction
-				});
-
-			break;
 
 				case timeAction.putOneStep.type:
 

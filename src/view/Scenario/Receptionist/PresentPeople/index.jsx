@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Guest from "./Guest";
 import './PresentPeople.css'
 import {comAction} from "../../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../../redux/actions/TimeAction";
+import { viewAction } from '../../../../redux/actions/ViewAction';
 
 function mapStateToProps(state) {
 	return {};
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,

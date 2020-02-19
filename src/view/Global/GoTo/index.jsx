@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import "./Goto.css"
 import {comAction} from "../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import Generic from "../../Generic";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 import Location from "../reusableComponent/Location";
+import { viewAction } from '../../../redux/actions/ViewAction';
 
 
 class Goto extends Component {
@@ -48,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,

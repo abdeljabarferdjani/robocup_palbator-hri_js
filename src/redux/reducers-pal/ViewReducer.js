@@ -1,7 +1,7 @@
 import {viewAction} from "../actions/ViewAction";
 import Logger from "../../dev/Logger";
 import logConfig from '../../config/log'
-
+import SocketWrapper from '../../model/SocketWrapper';
 
 const INITIAL_STATE = {
 	currentView: null,
@@ -17,20 +17,33 @@ const INITIAL_STATE = {
 
 
 const logger = new Logger(logConfig.reducer.view, "ViewReducer");
-
+let currentIndex = 0;
 const viewReducer = (state = INITIAL_STATE, action) => {
+
+	const socket = new SocketWrapper();
+
 	switch (action.type) {
 		
 		
+		
 		case viewAction.changeView.type:
-			console.log('VIEW REDUCER, le current view vaut ', action)
+			currentIndex=action.index
 			
 			state = {
 				...state,
 				currentView: action.view,
 				currentData: action.data
 			};
-			break;
+		break;
+
+		case viewAction.getIndexCurrentAction.type:
+			
+			socket._type.emit('indexOfDataReceived',{
+				dataType: action.dataType,
+				data: currentIndex
+			});
+
+		break;
 		
 		case viewAction.setComponentVisibility.type :
 			

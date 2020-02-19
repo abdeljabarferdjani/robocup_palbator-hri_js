@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import {comAction} from "../../../../redux/actions/CommunicationAction";
-import {timeAction} from "../../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
+import { viewAction } from '../../../../redux/actions/ViewAction';
 
 class SeatGuest extends Component {
 	static propTypes = {};
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
 			dispatch({
-				type: timeAction.getIndexCurrentAction.type
+				type: viewAction.getIndexCurrentAction.type
 			});
 			dispatch({
 				type: comAction.dataJs.type,
