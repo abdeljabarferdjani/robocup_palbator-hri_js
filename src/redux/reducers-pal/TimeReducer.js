@@ -3,6 +3,7 @@ import debug from '../../config/log';
 import Logger from "../../dev/Logger";
 import Timer from "../../model/Timer";
 import ConfigWrapper from "../../controller/ConfigWrapper";
+import SocketWrapper from '../../model/SocketWrapper';
 
 
 const logger = new Logger(debug.reducer.time, "TimeReducer");
@@ -73,6 +74,7 @@ Object.keys(timeAction).forEach(key => {
 const timeReducer = (state = INITIAL_STATE, action) => {
 	
 	let clonedState = {...state}, stepIndex, todoSteps;
+	const socket = new SocketWrapper();
 	
 	// Dont allow other reducer's action to interact with this reducer
 	
@@ -233,6 +235,17 @@ const timeReducer = (state = INITIAL_STATE, action) => {
 					i=0
 
 				break;
+			
+			case timeAction.getIndexCurrentAction.type:
+			
+				let arraylenght = clonedState.todoSteps.length;
+				let indexCurrentAction = clonedState.todoSteps[arraylenght-1].order
+				socket._type.emit('indexOfDataReceived',{
+					dataType: action.dataType,
+					data: indexCurrentAction
+				});
+
+			break;
 
 				case timeAction.putOneStep.type:
 

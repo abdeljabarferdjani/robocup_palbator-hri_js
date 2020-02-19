@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Wait from "../../../Global/Wait";
 import {SpeakableButton} from "../../../Global/reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import PropTypes from 'prop-types'
@@ -10,6 +11,9 @@ import './CallHuman.css'
 const mapDispatchToProps = (dispatch) => {
 	return {
 		humanIsHere: () => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				data: {}

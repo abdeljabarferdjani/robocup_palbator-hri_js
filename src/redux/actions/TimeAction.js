@@ -36,6 +36,10 @@ export const timeAction = {
 
 	putOneStep: {
 		type: "PUT_ONE_STEP"
+	},
+	
+	getIndexCurrentAction: {
+		type: "INDEX_CURRENT_ACTION"
 	}
 	
 };

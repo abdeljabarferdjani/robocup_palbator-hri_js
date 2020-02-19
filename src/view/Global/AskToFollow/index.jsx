@@ -4,6 +4,7 @@ import Location from "../reusableComponent/Location";
 import PropTypes from "prop-types";
 import './AskToFollow.css'
 import {comAction} from "../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../redux/actions/TimeAction";
 
 import {connect} from "react-redux";
 
@@ -37,6 +38,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				data: {status: 200}

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SpeakableButton from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import './AskDrink.css'
 import ComponentTitle from "../reusableComponent/ComponentTitle";
@@ -11,6 +12,9 @@ import PropTypes from 'prop-types'
 const mapDispatchToProps = (dispatch) => {
 	return {
 		sendName: (dispatch, name) => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				dataType: comAction.dataJs.dataType.drink,

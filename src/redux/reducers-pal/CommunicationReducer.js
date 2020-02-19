@@ -41,14 +41,6 @@ const comReducer = (state = INITIAL_STATE, action) => {
 					break;
 				
 				case comAction.dataJs.type:
-					// const {ALMemory} = tabletLM.dataJs;
-					
-					
-					// QiWrapper.raise(ALMemory, {
-					// 	dataType: action.dataType,
-					// 	data: action.data,
-					// 	actionId: action.actionId
-					// });
 					
 					console.log(action)
 					socket._type.emit('dataReceived',{

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import {comAction} from "../../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 
 class SeatGuest extends Component {
@@ -26,6 +27,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				data: {status: 200}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import "./Goto.css"
 import {comAction} from "../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../redux/actions/TimeAction";
 import {connect} from "react-redux";
 import Generic from "../../Generic";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
@@ -46,6 +47,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				data: {status: 200}

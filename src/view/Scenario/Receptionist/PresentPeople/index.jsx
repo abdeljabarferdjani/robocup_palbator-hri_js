@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Guest from "./Guest";
 import './PresentPeople.css'
 import {comAction} from "../../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../../redux/actions/TimeAction";
 
 function mapStateToProps(state) {
 	return {};
@@ -60,6 +61,9 @@ export class PresentPerson extends Component {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				data: {status: 200}

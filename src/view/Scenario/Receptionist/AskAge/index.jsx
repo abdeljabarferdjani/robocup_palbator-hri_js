@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import './AskAge.css'
 import {comAction} from "../../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../../redux/actions/TimeAction";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		sendName: (dispatch, name) => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				dataType: comAction.dataJs.dataType.age,

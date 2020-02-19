@@ -4,6 +4,7 @@ import {Doughnut} from 'react-chartjs-2'
 import './Wait.css'
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 import {comAction} from "../../../redux/actions/CommunicationAction";
+import {timeAction} from "../../../redux/actions/TimeAction";
 
 import {connect} from "react-redux";
 
@@ -101,6 +102,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		viewOk: () => {
+			dispatch({
+				type: timeAction.getIndexCurrentAction.type
+			});
 			dispatch({
 				type: comAction.dataJs.type,
 				data: {status: 200}
