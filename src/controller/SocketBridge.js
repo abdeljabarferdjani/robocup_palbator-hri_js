@@ -70,7 +70,9 @@ export default class SocketBridge extends React.Component{
 
 			const socket = new SocketWrapper();
 
-      socket._type.emit('socketBridge');
+			socket._type.emit('socketBridge',{
+				data: 'init socket bridge'
+			});
 				
 
 			Promise.all([
