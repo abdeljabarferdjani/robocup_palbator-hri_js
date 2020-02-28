@@ -120,8 +120,8 @@ export default class SocketBridge extends React.Component{
 
 		dispatch({
 			type: scenarioAction.currentScenario.type,
-			scenarioName: data.scenario,
-			steps: data.stepsList
+			scenarioName: data.scenario
+			// steps: data.stepsList
 		});
 
 

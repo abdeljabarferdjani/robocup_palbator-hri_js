@@ -29,17 +29,17 @@ export const scenarioReducer = (state = INITIAL_STATE, action) => {
 				}
 			};
 	
-			if(action.steps !== undefined){
+			// if(action.steps !== undefined){
 				
-				let steps_sorted = action.steps.sort((step1, step2) => {
-					return step1['order'] < step2['order'] ? -1 : 1
-				});
-				socket._type.emit('currentViewHRIM',{
-					data: steps_sorted,
-					scenario_name: action.scenarioName
-				});
+			// 	let steps_sorted = action.steps.sort((step1, step2) => {
+			// 		return step1['order'] < step2['order'] ? -1 : 1
+			// 	});
+			// 	socket._type.emit('currentViewHRIM',{
+			// 		data: steps_sorted,
+			// 		scenario_name: action.scenarioName
+			// 	});
 
-			}
+			// }
 
 		}
 
