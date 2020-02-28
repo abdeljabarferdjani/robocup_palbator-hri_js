@@ -34,9 +34,13 @@ class App extends Component {
 	
 	static propTypes = {};
 	
-	exitFullScreen () {
-		console.log(' on rentre dans la fonction exit')
-		document.exitFullscreen().catch(err => Promise.resolve(err));
+	switchScreenMode () {
+		if (document.fullscreen === false) {
+			document.documentElement.requestFullscreen();
+		}
+		else{
+			document.exitFullscreen();
+		}
 	};
 
 	static logger = new Logger(logConfig.App, "App");
@@ -122,8 +126,8 @@ class App extends Component {
 				<div id="footer">
 					<div id="rightPart">
 							<SpeakableButton 
-							onClick={() => this.exitFullScreen()}
-							>Exit full screen mode</SpeakableButton>
+							onClick={() => this.switchScreenMode()}
+							>Switch screen mode</SpeakableButton>
 					</div>
 					<div id="rightPart">
 							<SpeakableButton 

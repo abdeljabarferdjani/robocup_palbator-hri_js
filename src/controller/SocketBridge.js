@@ -70,7 +70,9 @@ export default class SocketBridge extends React.Component{
 
 			const socket = new SocketWrapper();
 
-      socket._type.emit('socketBridge');
+			socket._type.emit('socketBridge',{
+				data: 'init socket bridge'
+			});
 				
 
 			Promise.all([
@@ -81,7 +83,7 @@ export default class SocketBridge extends React.Component{
 				// socket._type.on('stepSkipped', this.handleSetStepSkipped()),
 				socket._type.on('timerState', this.handleToggleTimer()),
 				socket._type.on('currentScenario', this.handleChangeCurrentScenario()),
-				socket._type.on('currentView', this.handleChangeCurrentView()),
+				socket._type.on('currentView', this.handleChangeCurrentView(socket)),
 				socket._type.on('endScenario', this.handleChangeEndScenario()),
 				// socket._type.on('resetSteps', this.handleResetSteps()),
 
@@ -155,7 +157,7 @@ export default class SocketBridge extends React.Component{
 		
 	};
 	
-	static handleChangeCurrentView = () => data => {
+	static handleChangeCurrentView = (socket) => data => {
 		
 		if(arrayStep !== []) arrayStep.pop()
 		arrayStep.push(data.step)
@@ -172,7 +174,12 @@ export default class SocketBridge extends React.Component{
 				index:data.index
 			})
 		}
-		
+
+		socket._type.emit('viewLaunched',{
+			data: 'VIEW LAUNCHED ON TOUCH MANAGER',
+			index:data.index
+	})
+
 	};
 
 	static handleChangeCurrentStep = () => (data) => {
