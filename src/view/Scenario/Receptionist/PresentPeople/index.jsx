@@ -12,10 +12,10 @@ function mapStateToProps(state) {
 
 const peopleProps = PropTypes.shape({
 	name: PropTypes.string.isRequired,
-	drink: PropTypes.number.isRequired
+	drink: PropTypes.object.isRequired
 });
 
-export class PresentPerson extends Component {
+class PresentPerson extends Component {
 	
 	static propTypes = {
 		people: PropTypes.shape({
@@ -27,11 +27,13 @@ export class PresentPerson extends Component {
 	
 	constructor(props) {
 		super(props);
-		console.log("Present People ", props)
+		console.log("Present People ", props);
+		//this.viewOk=this.viewOk.bind(this)
 	}
 	
 	componentDidMount() {
-		this.props.viewOk()
+		this.props.viewOk();
+		//this.viewOk();
 	}
 	
 	render() {
@@ -43,9 +45,11 @@ export class PresentPerson extends Component {
 			console.log("People TO array : ", this.props.people.to);
 			this.props.people.to.forEach(guy => {
 				console.log("39", guy);
-				peoples.push(<Guest name={guy}/>)
+				peoples.push(<Guest key={guy.name} name={guy.name} drinkObj={guy.drink}/>)
 			});
 			toDiv = <div>{peoples}</div>
+
+			console.log("PEOPLES ",peoples)
 		}
 		
 		return (
@@ -56,6 +60,18 @@ export class PresentPerson extends Component {
 			</div>
 		);
 	}
+/*
+	viewOk() {
+		this.props.store.dispatch({
+			type: viewAction.getIndexCurrentAction.type
+		});
+		this.props.store.dispatch({
+			type: comAction.dataJs.type,
+			data: {status: 200}
+		})
+	}
+*/
+
 }
 
 const mapDispatchToProps = (dispatch) => {

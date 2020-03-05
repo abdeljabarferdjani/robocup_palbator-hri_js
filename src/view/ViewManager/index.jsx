@@ -61,6 +61,8 @@ class ViewManager extends Component {
 	render() {
 		
 		let comp;
+		console.log("---------->")
+		console.log(this.state.currentData)
 		// Default view
 		if (this.state.currentView === null) {
 			comp = <MainMenu>Please click on the scenario</MainMenu>
@@ -76,7 +78,8 @@ class ViewManager extends Component {
 		
 		let className = "ViewManager";
 		className += (this.props.className) ? this.props.className : "";
-		
+		console.log("---------------> Current comp from viewManager")
+		console.log(comp)
 		return (
 			<div className={className}>
 				{comp}

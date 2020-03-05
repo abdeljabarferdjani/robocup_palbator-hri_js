@@ -3,7 +3,8 @@ import AskSpeciality from "../view/Scenario/PresentSchool/AskSpeciality";
 import AskAge from "../view/Scenario/Receptionist/AskAge";
 import AskDrink from "../view/Global/AskDrink";
 import AskSomething from "../view/Global/AskSomething";
-import {PresentPerson} from "../view/Scenario/Receptionist/PresentPeople";
+//import {PresentPerson} from "../view/Scenario/Receptionist/PresentPeople";
+import PresentPerson from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";
 import DetailDrinks from "../view/Scenario/ServingDrinks/DetailDrinks";
 import GoTo from '../view/Global/GoTo/'
