@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
+import PropTypes from "prop-types";
+import "./SeatGuest.css"
+import "../../../Global/reusableComponent/People/People.css";
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
 import {comAction} from "../../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
+import People from "../../../Global/reusableComponent/People/People";
 import { viewAction } from '../../../../redux/actions/ViewAction';
+
 
 class SeatGuest extends Component {
 	static propTypes = {};
@@ -13,8 +18,9 @@ class SeatGuest extends Component {
 	
 	render() {
 		return (
-			<div>
+			<div className={"SeatGuest"}>
 				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
+				<div><People obj={this.props.people} /></div>
 			</div>
 		);
 	}

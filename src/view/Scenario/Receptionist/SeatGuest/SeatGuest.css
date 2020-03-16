@@ -1,0 +1,18 @@
+div.SeatGuest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 76vh;
+}
+
+div.SeatGuest.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.SeatGuest img {
+    max-height: 50vh;
+    /*width: 100%;*/
+}

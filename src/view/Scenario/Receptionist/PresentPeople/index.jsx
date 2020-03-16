@@ -12,7 +12,8 @@ function mapStateToProps(state) {
 
 const peopleProps = PropTypes.shape({
 	name: PropTypes.string.isRequired,
-	drink: PropTypes.object.isRequired
+	drink: PropTypes.object.isRequired,
+	guestPhotoPath: PropTypes.string
 });
 
 class PresentPerson extends Component {
@@ -45,7 +46,7 @@ class PresentPerson extends Component {
 			console.log("People TO array : ", this.props.people.to);
 			this.props.people.to.forEach(guy => {
 				console.log("39", guy);
-				peoples.push(<Guest key={guy.name} name={guy.name} drinkObj={guy.drink}/>)
+				peoples.push(<Guest key={guy.name} name={guy.name} drinkObj={guy.drink} guestPhotoPath={guy.guestPhotoPath}/>)
 			});
 			toDiv = <div>{peoples}</div>
 
@@ -55,7 +56,8 @@ class PresentPerson extends Component {
 		return (
 			<div className={"PresentPerson"}>
 				<Guest drinkObj={this.props.people.who.drink}
-				       name={this.props.people.who.name}/>
+				       name={this.props.people.who.name}
+					   guestPhotoPath={this.props.people.who.guestPhotoPath}/>
 				{toDiv}
 			</div>
 		);
