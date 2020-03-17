@@ -13,6 +13,8 @@ import FindAvailableDrinks
 import FindWhoWantsDrinks
 	from "../view/Scenario/ServingDrinks/FindWhoWantDrinks";
 import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
+import PointTo from "../view/Scenario/Receptionist/PointTo";
+import Find from "../view/Scenario/Receptionist/Find";
 import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
 import MainMenu from '../view/Global/MainMenu/'
@@ -58,7 +60,9 @@ const viewClassMap = {
 	"askOpenDoor": AskOpenDoor,
 	"displayInfo": DisplayInfo,
 	"callHuman": CallHuman,
-	"showVideo": ShowVideo
+	"showVideo": ShowVideo,
+	"pointTo": PointTo,
+	"find": Find,
 };
 
 /**

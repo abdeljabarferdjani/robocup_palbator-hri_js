@@ -6,7 +6,7 @@ function People(props) {
 	
 	return (
 		<img className={"People"}
-		     src={props.obj["pathOnTablet"]}
+		     src={props.obj["guestPhotoPath"]}
 		     alt={props.obj["name"]}/>
 	);
 }
