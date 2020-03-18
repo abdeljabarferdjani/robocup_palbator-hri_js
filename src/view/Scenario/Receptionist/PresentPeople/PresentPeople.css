@@ -4,5 +4,15 @@ div.PresentPeople {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 70vh;
+    /*height: 70vh;*/
+    height: 100%;
 }
+
+/* div.PresentPeople.PresentTo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+} */

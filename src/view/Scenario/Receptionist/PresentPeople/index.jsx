@@ -48,16 +48,16 @@ class PresentPerson extends Component {
 				console.log("39", guy);
 				peoples.push(<Guest key={guy.name} name={guy.name} drinkObj={guy.drink} guestPhotoPath={guy.guestPhotoPath}/>)
 			});
-			toDiv = <div>{peoples}</div>
-
+			// toDiv = <div className={"PresentTo"}>{peoples}</div>
+			toDiv = peoples
 			console.log("PEOPLES ",peoples)
 		}
 		
 		return (
-			<div className={"PresentPerson"}>
+			<div className={"PresentPeople"}>
 				<Guest drinkObj={this.props.people.who.drink}
-				       name={this.props.people.who.name}
-					   guestPhotoPath={this.props.people.who.guestPhotoPath}/>
+					name={this.props.people.who.name}
+					guestPhotoPath={this.props.people.who.guestPhotoPath}/>
 				{toDiv}
 			</div>
 		);
