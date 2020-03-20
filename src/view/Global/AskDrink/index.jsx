@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class AskName extends Component {
+class AskDrink extends Component {
 
 	
 	static propTypes = {
@@ -72,4 +72,4 @@ class AskName extends Component {
 }
 
 
-export default connect(mapDispatchToProps)(AskName);
+export default connect(mapDispatchToProps)(AskDrink);
