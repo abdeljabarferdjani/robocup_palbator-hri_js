@@ -24,7 +24,12 @@ import DisplayInfo from "../view/Scenario/PresentSchool/DisplayInfo";
 import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
 import ShowVideo from '../view/Global/ShowVideo'
 import Generic from "../view/Generic";
-
+import AskRoomToClean from "../view/Scenario/CleanUp/AskRoomToClean"
+import OpenDoor from "../view/Scenario/CleanUp/OpenDoor"
+import FoundObject from "../view/Scenario/CleanUp/FoundObject"
+import CatchObject from "../view/Scenario/CleanUp/CatchObject"
+import StoreObject from "../view/Scenario/CleanUp/StoreObject"
+import ReleaseObject from "../view/Scenario/CleanUp/ReleaseObject"
 /**
  * Get the Component class from his name (string)
  *
@@ -63,6 +68,12 @@ const viewClassMap = {
 	"showVideo": ShowVideo,
 	"pointTo": PointTo,
 	"find": Find,
+	'askRoomToClean': AskRoomToClean,
+	'openDoor': OpenDoor,
+	'foundObject': FoundObject,
+	'catchObject': CatchObject,
+	'storeObject': StoreObject,
+	'releaseObject': ReleaseObject
 };
 
 /**

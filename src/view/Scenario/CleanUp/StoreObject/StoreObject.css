@@ -1,0 +1,18 @@
+div.StoreObject {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 76vh;
+}
+
+div.StoreObject.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.StoreObject img {
+    max-height: 50vh;
+    /*width: 100%;*/
+}

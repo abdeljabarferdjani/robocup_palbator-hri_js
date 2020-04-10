@@ -1,0 +1,18 @@
+div.FoundObject {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 76vh;
+}
+
+div.FoundObject.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.FoundObject img {
+    max-height: 50vh;
+    /*width: 100%;*/
+}

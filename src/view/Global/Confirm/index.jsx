@@ -64,10 +64,9 @@ class Confirm extends Component {
 					<SpeakableButton
 						onClick={() => this.props.handleNoClick(this.props.dispatch)}
 						color={"no"}>No</SpeakableButton>
-					<AutoValidationButton
+					<SpeakableButton
 						onClick={() => this.props.handleYesClick(this.props.dispatch)}
-						color={"ok"}
-						timeout={10}>Yes</AutoValidationButton>
+						color={"ok"}>Yes</SpeakableButton>
 				</div>
 			</div>
 		);
@@ -75,3 +74,5 @@ class Confirm extends Component {
 }
 
 export default connect(mapDispatchToProps)(Confirm);
+
+
