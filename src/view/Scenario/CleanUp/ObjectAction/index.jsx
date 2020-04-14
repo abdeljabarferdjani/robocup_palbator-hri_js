@@ -2,20 +2,19 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import ObjectToFind from "../../../Global/reusableComponent/ObjectToFind/ObjectToFind";
-import './FoundObject.css';
+import './ObjectAction.css';
 import {comAction} from "../../../../redux/actions/CommunicationAction";
 import { viewAction } from '../../../../redux/actions/ViewAction';
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
-import Location from "../../../Global/reusableComponent/Location";
 
 function mapStateToProps(state) {
 	return {};
 }
 
-class FoundObject extends Component {
+class ObjectAction extends Component {
 	
 	static propTypes = {
-		location: PropTypes.object.isRequired,
+		objectToFind: PropTypes.object.isRequired,
 		textToShow: PropTypes.string.isRequired,
 	};
 
@@ -28,9 +27,10 @@ class FoundObject extends Component {
 	render() {
 		
 		return (
-			<div className={"FoundObject"}>
+			<div className={"ObjectAction"}>
 				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
-				<Location obj={this.props.location}/>
+				<ObjectToFind name={this.props.objectToFind.name}
+						pathOnTablet={this.props.objectToFind.pathOnTablet}/>
 			</div>
 		);
 	}
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoundObject);
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectAction);

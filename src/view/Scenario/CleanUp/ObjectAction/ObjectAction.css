@@ -1,0 +1,18 @@
+div.ObjectAction {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 76vh;
+}
+
+div.ObjectAction.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.ObjectAction img {
+    max-height: 50vh;
+    /*width: 100%;*/
+}

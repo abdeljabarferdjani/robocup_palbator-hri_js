@@ -17,19 +17,21 @@ import PointTo from "../view/Scenario/Receptionist/PointTo";
 import Find from "../view/Scenario/Receptionist/Find";
 import AskToFollow from "../view/Global/AskToFollow";
 import ServeDrinks from "../view/Scenario/ServingDrinks/ServeDrinks";
-import MainMenu from '../view/Global/MainMenu/'
+import MainMenu from '../view/Global/MainMenu/';
 import Wait from "../view/Global/Wait";
 import AskOpenDoor from "../view/Scenario/Receptionist/AskOpenDoor";
 import DisplayInfo from "../view/Scenario/PresentSchool/DisplayInfo";
-import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman'
-import ShowVideo from '../view/Global/ShowVideo'
+import CallHuman from '../view/Scenario/TakeOutTheGarbage/CallHuman';
+import ShowVideo from '../view/Global/ShowVideo';
 import Generic from "../view/Generic";
-import AskRoomToClean from "../view/Scenario/CleanUp/AskRoomToClean"
-import OpenDoor from "../view/Scenario/CleanUp/OpenDoor"
-import FoundObject from "../view/Scenario/CleanUp/FoundObject"
-import CatchObject from "../view/Scenario/CleanUp/CatchObject"
-import StoreObject from "../view/Scenario/CleanUp/StoreObject"
-import ReleaseObject from "../view/Scenario/CleanUp/ReleaseObject"
+import AskRoomToClean from "../view/Scenario/CleanUp/AskRoomToClean";
+import OpenDoor from "../view/Scenario/CleanUp/OpenDoor";
+import FoundObject from "../view/Scenario/CleanUp/FoundObject";
+import CatchObject from "../view/Scenario/CleanUp/CatchObject";
+import StoreObject from "../view/Scenario/CleanUp/StoreObject";
+import ReleaseObject from "../view/Scenario/CleanUp/ReleaseObject";
+import ObjectAction from "../view/Scenario/CleanUp/ObjectAction";
+
 /**
  * Get the Component class from his name (string)
  *
@@ -70,10 +72,11 @@ const viewClassMap = {
 	"find": Find,
 	'askRoomToClean': AskRoomToClean,
 	'openDoor': OpenDoor,
-	'foundObject': FoundObject,
+	'findObject': FoundObject,
 	'catchObject': CatchObject,
 	'storeObject': StoreObject,
-	'releaseObject': ReleaseObject
+	'releaseObject': ReleaseObject,
+	'objectAction': ObjectAction
 };
 
 /**
