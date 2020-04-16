@@ -1,4 +1,3 @@
-.ObjectToFind {
-    width: 5rem;
-    height: auto;
+div.ObjectToFind img {
+    width: 100%;
 }

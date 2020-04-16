@@ -70,7 +70,7 @@ const viewClassMap = {
 	"showVideo": ShowVideo,
 	"pointTo": PointTo,
 	"find": Find,
-	'askRoomToClean': AskRoomToClean,
+	'askRoom': AskRoomToClean,
 	'openDoor': OpenDoor,
 	'findObject': FoundObject,
 	'catchObject': CatchObject,

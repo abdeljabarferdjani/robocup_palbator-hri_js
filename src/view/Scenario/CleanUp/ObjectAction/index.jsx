@@ -29,8 +29,10 @@ class ObjectAction extends Component {
 		return (
 			<div className={"ObjectAction"}>
 				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
-				<ObjectToFind name={this.props.objectToFind.name}
+				<div>
+					<ObjectToFind name={this.props.objectToFind.name}
 						pathOnTablet={this.props.objectToFind.pathOnTablet}/>
+				</div>
 			</div>
 		);
 	}
