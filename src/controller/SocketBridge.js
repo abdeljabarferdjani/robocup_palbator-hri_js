@@ -119,7 +119,8 @@ export default class SocketBridge extends React.Component{
 	static handleChangeCurrentScenario = () => (data) => {
 		
 		// ALMemoryBridge.logger.log("handleChangeCurrentScenario", data)
-
+		// console.log("coucou")
+		// console.log(data)
 		dispatch({
 			type: scenarioAction.currentScenario.type,
 			scenarioName: data.scenario

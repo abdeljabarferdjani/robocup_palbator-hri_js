@@ -15,11 +15,13 @@ export const scenarioReducer = (state = INITIAL_STATE, action) => {
 		if (action.type === scenarioAction.currentScenario.type) {
 			console.log(action.scenarioName)
 			let scenarioName='';
-			if (action.scenarioName === 'receptionist') scenarioName = 'Receptionist'
-			if (action.scenarioName === 'present_school') scenarioName = 'Present School'
-			if (action.scenarioName === 'take_out_the_garbage') scenarioName = 'Take Out The Garbage'
-			if (action.scenarioName === 'inspection') scenarioName = 'Inspection'
-			if (action.scenarioName === 'None') scenarioName = 'None'
+			// if (action.scenarioName === 'receptionist') scenarioName = 'Receptionist'
+			// if (action.scenarioName === 'present_school') scenarioName = 'Present School'
+			// if (action.scenarioName === 'take_out_the_garbage') scenarioName = 'Take Out The Garbage'
+			// if (action.scenarioName === 'inspection') scenarioName = 'Inspection'
+			// if (action.scenarioName === 'None') scenarioName = 'None'
+			// if (action.scenarioName === 'cleanup') scenarioName = 'Clean Up'
+			scenarioName = action.scenarioName
 			state = {
 				
 				...state,
