@@ -31,7 +31,9 @@ import CatchObject from "../view/Scenario/CleanUp/CatchObject";
 import StoreObject from "../view/Scenario/CleanUp/StoreObject";
 import ReleaseObject from "../view/Scenario/CleanUp/ReleaseObject";
 import ObjectAction from "../view/Scenario/CleanUp/ObjectAction";
-
+import LookForGuest from "../view/Scenario/Receptionist/LookForGuest";
+import FoundAnyone from "../view/Scenario/Receptionist/FoundAnyone";
+import FoundGuest from "../view/Scenario/Receptionist/FoundGuest";
 /**
  * Get the Component class from his name (string)
  *
@@ -76,7 +78,10 @@ const viewClassMap = {
 	'catchObject': CatchObject,
 	'storeObject': StoreObject,
 	'releaseObject': ReleaseObject,
-	'objectAction': ObjectAction
+	'objectAction': ObjectAction,
+	'lookForGuest': LookForGuest,
+	'foundAnyone': FoundAnyone,
+	'foundGuest': FoundGuest,
 };
 
 /**
