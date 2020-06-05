@@ -1,0 +1,18 @@
+div.LookForKnownGuest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 76vh;
+}
+
+div.LookForKnownGuest.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.LookForKnownGuest img {
+    max-height: 50vh;
+    /*width: 100%;*/
+}

@@ -2,17 +2,26 @@ import React, {Component} from 'react';
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 import Location from "../reusableComponent/Location";
 import PropTypes from "prop-types";
-import './AskToFollow.css'
+import Guest from "../../Scenario/Receptionist/PresentPeople/Guest";
+import './AskToFollow.css';
 import {comAction} from "../../../redux/actions/CommunicationAction";
 
 import {connect} from "react-redux";
 import { viewAction } from '../../../redux/actions/ViewAction';
 
+const peopleProps = PropTypes.shape({
+	name: PropTypes.string.isRequired,
+	drink: PropTypes.object.isRequired,
+	guestPhotoPath: PropTypes.string,
+	age: PropTypes.string
+});
+
 class AskToFollow extends Component {
 	
 	static propTypes = {
 		textToShow: PropTypes.string,
-		location: PropTypes.object.isRequired
+		location: PropTypes.object.isRequired,
+		who: peopleProps.isRequired
 	};
 	
 	componentDidMount() {
@@ -25,7 +34,13 @@ class AskToFollow extends Component {
 		return (
 			<div className={"AskToFollow"}>
 				<ComponentTitle>{textToShow}</ComponentTitle>
-				<Location obj={this.props.location}/>
+				<div>
+					<Guest drinkObj={this.props.who.drinkObj}
+						name={this.props.who.name}
+						guestPhotoPath={this.props.who.guestPhotoPath}
+						age={this.props.who.age}/>
+					<Location obj={this.props.location}/>
+				</div>
 			</div>
 		);
 	}

@@ -8,10 +8,8 @@ import PresentPerson from "../view/Scenario/Receptionist/PresentPeople";
 import Confirm from "../view/Global/Confirm";
 import DetailDrinks from "../view/Scenario/ServingDrinks/DetailDrinks";
 import GoTo from '../view/Global/GoTo/'
-import FindAvailableDrinks
-	from "../view/Scenario/ServingDrinks/FindAvailableDrinks";
-import FindWhoWantsDrinks
-	from "../view/Scenario/ServingDrinks/FindWhoWantDrinks";
+import FindAvailableDrinks from "../view/Scenario/ServingDrinks/FindAvailableDrinks";
+import FindWhoWantsDrinks from "../view/Scenario/ServingDrinks/FindWhoWantDrinks";
 import SeatGuest from "../view/Scenario/Receptionist/SeatGuest";
 import PointTo from "../view/Scenario/Receptionist/PointTo";
 import Find from "../view/Scenario/Receptionist/Find";
@@ -34,6 +32,7 @@ import ObjectAction from "../view/Scenario/CleanUp/ObjectAction";
 import LookForGuest from "../view/Scenario/Receptionist/LookForGuest";
 import FoundAnyone from "../view/Scenario/Receptionist/FoundAnyone";
 import FoundGuest from "../view/Scenario/Receptionist/FoundGuest";
+import LookForKnownGuest from "../view/Scenario/Receptionist/LookForKnownGuest";
 /**
  * Get the Component class from his name (string)
  *
@@ -82,6 +81,7 @@ const viewClassMap = {
 	'lookForGuest': LookForGuest,
 	'foundAnyone': FoundAnyone,
 	'foundGuest': FoundGuest,
+	'lookForKnownGuest': LookForKnownGuest,
 };
 
 /**

@@ -9,7 +9,8 @@ class Guest extends React.Component {
 	static propTypes = {
 		drinkObj: PropTypes.object,
 		name: PropTypes.string.isRequired,
-		guestPhotoPath: PropTypes.string
+		guestPhotoPath: PropTypes.string,
+		age: PropTypes.string
 	};
 	
 	constructor(props) {
@@ -39,6 +40,7 @@ class Guest extends React.Component {
 			<div className="Guest">
 				<img src={this.props.guestPhotoPath} alt={this.state.name}/>
 				{drink}
+				<p className={"guestAge"}> Age: {this.props.age} </p>
 			</div>
 		)
 	}

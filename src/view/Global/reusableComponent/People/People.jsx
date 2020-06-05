@@ -11,7 +11,7 @@ function People(props) {
 	);
 }
 
-Location.propTypes = {
+People.propTypes = {
 	obj: PropTypes.object.isRequired
 };
 

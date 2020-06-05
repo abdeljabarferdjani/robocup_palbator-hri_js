@@ -1,8 +1,17 @@
-div.AskToFollow {
+.AskToFollow {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    max-width: 100%;
+    justify-content: center;
+}
+
+.AskToFollow > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 1rem;
+    height: 58vh;
 }
 
