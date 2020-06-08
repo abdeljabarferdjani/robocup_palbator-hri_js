@@ -34,6 +34,7 @@ import FoundAnyone from "../view/Scenario/Receptionist/FoundAnyone";
 import FoundGuest from "../view/Scenario/Receptionist/FoundGuest";
 import LookForKnownGuest from "../view/Scenario/Receptionist/LookForKnownGuest";
 import MainPagePalbator from "../view/Global/MainPagePalbator";
+import MainMenuPalbator from "../view/Global/MainMenuPalbator";
 /**
  * Get the Component class from his name (string)
  *
@@ -85,6 +86,7 @@ const viewClassMap = {
 	'foundAnyone': FoundAnyone,
 	'foundGuest': FoundGuest,
 	'lookForKnownGuest': LookForKnownGuest,
+	'mainMenuPalbator': MainMenuPalbator,
 };
 
 /**

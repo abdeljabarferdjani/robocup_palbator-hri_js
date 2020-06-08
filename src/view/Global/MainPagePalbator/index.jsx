@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => {
 			});
 			dispatch({
 				type: comAction.dataJs.type,
-				data: {status: 200}
+				data: "TABLET_ON"
 			})
 		}
 	}
