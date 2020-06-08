@@ -6,6 +6,11 @@ div.Guest {
     align-items: center;
 }
 
+div.Guest > img {
+    max-height: 20vh;
+}
+
+
 p.guestName {
     font-size: 3rem;
 }
