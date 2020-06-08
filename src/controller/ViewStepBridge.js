@@ -33,6 +33,7 @@ import LookForGuest from "../view/Scenario/Receptionist/LookForGuest";
 import FoundAnyone from "../view/Scenario/Receptionist/FoundAnyone";
 import FoundGuest from "../view/Scenario/Receptionist/FoundGuest";
 import LookForKnownGuest from "../view/Scenario/Receptionist/LookForKnownGuest";
+import MainPagePalbator from "../view/Global/MainPagePalbator";
 /**
  * Get the Component class from his name (string)
  *
@@ -40,7 +41,9 @@ import LookForKnownGuest from "../view/Scenario/Receptionist/LookForKnownGuest";
  * @return {*} Component MainMenu is return as default.
  */
 const getClassFromView = (view) => {
-	return viewClassMap[view] || MainMenu;
+	// return viewClassMap[view] || MainMenu;
+	return viewClassMap[view] || MainPagePalbator;
+
 };
 
 /**

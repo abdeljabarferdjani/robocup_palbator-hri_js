@@ -8,6 +8,8 @@ import './index.css'
 import {getClassFromView} from "../../controller/ViewStepBridge";
 import MainMenu from "../Global/MainMenu";
 
+import MainPagePalbator from "../Global/MainPagePalbator";
+
 
 function mapStateToProps(state) {
 	return {
@@ -65,7 +67,9 @@ class ViewManager extends Component {
 		console.log(this.state.currentData)
 		// Default view
 		if (this.state.currentView === null) {
-			comp = <MainMenu>Please click on the scenario</MainMenu>
+			// comp = <MainMenu>Please click on the scenario</MainMenu>
+			comp = <MainPagePalbator></MainPagePalbator>
+
 		} else {
 			// Create the center headerview in function of view in state and send their props
 			comp = React.createElement(getClassFromView(this.state.currentView), {
