@@ -13,6 +13,7 @@ import {scenarioAction} from "../redux/actions/ScenarioAction";
 import {comAction} from "../redux/actions/CommunicationAction";
 // import {connect} from 'react-redux';
 import PropTypes from "prop-types";
+import App from "../App";
 
 const {apis: {tabletLM, common, generalManagerHRI}} = ConfigWrapper.get();
 const indexesStepCompleted = [];
@@ -85,6 +86,7 @@ export default class SocketBridge extends React.Component{
 				socket._type.on('currentScenario', this.handleChangeCurrentScenario()),
 				socket._type.on('currentView', this.handleChangeCurrentView(socket)),
 				socket._type.on('endScenario', this.handleChangeEndScenario()),
+
 				// socket._type.on('resetSteps', this.handleResetSteps()),
 
 				// QiWrapper.listen(toolbarState["ALMemory"], this.handleToolbarChange(toolbarState)),
@@ -115,7 +117,7 @@ export default class SocketBridge extends React.Component{
 		
 	};
 	
-	
+
 	static handleChangeCurrentScenario = () => (data) => {
 		
 		// ALMemoryBridge.logger.log("handleChangeCurrentScenario", data)

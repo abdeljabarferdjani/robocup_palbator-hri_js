@@ -50,7 +50,7 @@ class App extends Component {
 		} else {
 			x.style.display = "none";
 		}
-	}
+	};
 
 	static logger = new Logger(logConfig.App, "App");
 	
@@ -139,11 +139,8 @@ class App extends Component {
 							>Switch screen mode</SpeakableButton>
 					</div>
 					<div id="rightPart">
-							{/* <SpeakableButton 
-							onClick={() => this.props.askToChangeScenario()}
-							>Stop</SpeakableButton> */}.
 							<SpeakableButton 
-							onClick={() => this.HideMicDiv()}
+							onClick={() => this.props.askToChangeScenario()}
 							>Stop</SpeakableButton>
 					</div>
 					<div id="rightPart_Mic">
