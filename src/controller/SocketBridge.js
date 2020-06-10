@@ -11,6 +11,7 @@ import {timeAction} from "../redux/actions/TimeAction";
 import {toolbarAction} from "../redux/actions/ToolbarAction";
 import {scenarioAction} from "../redux/actions/ScenarioAction";
 import {comAction} from "../redux/actions/CommunicationAction";
+import {hideSoundIconAction} from "../redux/actions/AppVisualAction";
 // import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import App from "../App";
@@ -86,6 +87,7 @@ export default class SocketBridge extends React.Component{
 				socket._type.on('currentScenario', this.handleChangeCurrentScenario()),
 				socket._type.on('currentView', this.handleChangeCurrentView(socket)),
 				socket._type.on('endScenario', this.handleChangeEndScenario()),
+				socket._type.on('appVisualChange', this.handleAppVisualChange()),
 
 				// socket._type.on('resetSteps', this.handleResetSteps()),
 
@@ -253,5 +255,13 @@ export default class SocketBridge extends React.Component{
 			type: timeAction.resetStepsProgression.type,
 			state: true
 		})
+	}
+
+	static handleAppVisualChange = () => data => {
+		dispatch({
+			type: hideSoundIconAction.hideSoundIcon.type,
+			state: data.hide
+		})
+
 	}
 }

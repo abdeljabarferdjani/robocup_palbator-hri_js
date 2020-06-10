@@ -14,6 +14,7 @@ import {comAction} from "../src/redux/actions/CommunicationAction";
 const mapStateToProps = (state) => {
 	return {
 		scenario: state.scenario,
+		hideSoundIcon: state.appView.appView.hideSoundIcon
 	}
 };
 
@@ -143,7 +144,7 @@ class App extends Component {
 							onClick={() => this.props.askToChangeScenario()}
 							>Stop</SpeakableButton>
 					</div>
-					<div id="rightPart_Mic">
+					<div id="rightPart_Mic" style={{display: this.props.hideSoundIcon ? 'none':'block' }}>
 						<img className={"Mic"}
 							src="img/misc/mic.png"
 							alt="micro"/>
