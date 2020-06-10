@@ -103,8 +103,18 @@ div.App > div#rightPart {
 }
 
 
-div#rightPart > div.component {
-    /*height: 100%;*/
+div#rightPart_Mic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div#rightPart_Mic > img.Mic {
+    max-height: 20vh;
+}
+
+div#rightPart_Mic > p.Mic_speech {
+    font-size: 2rem;
 }
 
 div#rightPart > div#header {

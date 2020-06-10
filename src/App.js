@@ -43,6 +43,15 @@ class App extends Component {
 		}
 	};
 
+	HideMicDiv () {
+		var x = document.getElementById("rightPart_Mic");
+		if (x.style.display == "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
+
 	static logger = new Logger(logConfig.App, "App");
 	
 	nbClickForDebug = 0;
@@ -130,9 +139,20 @@ class App extends Component {
 							>Switch screen mode</SpeakableButton>
 					</div>
 					<div id="rightPart">
-							<SpeakableButton 
+							{/* <SpeakableButton 
 							onClick={() => this.props.askToChangeScenario()}
+							>Stop</SpeakableButton> */}.
+							<SpeakableButton 
+							onClick={() => this.HideMicDiv()}
 							>Stop</SpeakableButton>
+					</div>
+					<div id="rightPart_Mic">
+						<img className={"Mic"}
+							src="img/misc/mic.png"
+							alt="micro"/>
+						<p className={"Mic_speech"}>
+							Mic is on. Please Speak.
+						</p>
 					</div>
 				</div>
 			
