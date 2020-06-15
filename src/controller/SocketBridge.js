@@ -258,6 +258,10 @@ export default class SocketBridge extends React.Component{
 	}
 
 	static handleAppVisualChange = () => data => {
+		
+		console.log("test Jacques")
+		console.log(data)
+
 		dispatch({
 			type: hideSoundIconAction.hideSoundIcon.type,
 			state: data.hide
