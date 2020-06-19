@@ -55,6 +55,11 @@ class App extends Component {
 		}
 	};
 
+
+	refreshPage() {
+		window.location.reload();
+	};
+
 	static logger = new Logger(logConfig.App, "App");
 	
 	nbClickForDebug = 0;
@@ -153,10 +158,14 @@ class App extends Component {
 							>Switch screen mode</SpeakableButton>
 					</div>
 					<div id="rightPart">
-							<SpeakableButton 
-							onClick={() => this.props.askToChangeScenario()}
-							>Stop</SpeakableButton>
+						<SpeakableButton 
+						onClick={() => this.props.askToChangeScenario()}
+						>Stop</SpeakableButton>
 					</div>
+					<div id="rightPart">
+					<SpeakableButton onClick={() => this.refreshPage()}>Refresh Page</SpeakableButton>
+					</div>
+
 					<div id="rightPart_Mic" style={{display: this.props.hideSoundIcon ? 'none':'block' }}>
 						<img className={"Mic"}
 							src="img/misc/mic.png"
