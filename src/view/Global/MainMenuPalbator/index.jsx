@@ -39,6 +39,8 @@ class MainMenuPalbator extends Component {
 		let scenario_list;
 		if (this.props.scenario_list && this.props.scenario_list.length > 0) {
 			scenario_list = this.props.scenario_list
+			console.log("SCENARIO LIST")
+			console.log(scenario_list)
 		}
 		
 		return (

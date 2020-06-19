@@ -6,6 +6,7 @@ import {toolbarReducer} from "./reducers-pal/ToolbarReducer";
 import {timeReducer} from "./reducers-pal/TimeReducer";
 import {scenarioReducer} from './reducers-pal/ScenarioReducer'
 import {appVisualReducer} from './reducers-pal/AppVisualReducer'
+import {debugPeopleMngReducer} from './reducers-pal/DebugPeopleMngReducer';
 import logConfig from '../config/log'
 import {composeWithDevTools} from "redux-devtools-extension";
 
@@ -30,7 +31,8 @@ const getStore = () => {
 					com: comReducer,
 					time: timeReducer,
 					scenario: scenarioReducer,
-					appView: appVisualReducer
+					appView: appVisualReducer,
+					debugView: debugPeopleMngReducer
 				}),
 				{},
 				composeWithDevTools(applyMiddleware(logger))
@@ -43,8 +45,8 @@ const getStore = () => {
 					com: comReducer,
 					time: timeReducer,
 					scenario: scenarioReducer,
-					appView: appVisualReducer
-					
+					appView: appVisualReducer,
+					debugView: debugPeopleMngReducer
 				}),
 				{},
 				composeWithDevTools()

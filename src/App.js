@@ -14,7 +14,9 @@ import {comAction} from "../src/redux/actions/CommunicationAction";
 const mapStateToProps = (state) => {
 	return {
 		scenario: state.scenario,
-		hideSoundIcon: state.appView.appView.hideSoundIcon
+		hideSoundIcon: state.appView.appView.hideSoundIcon,
+		listPeopleMng: state.debugView.debugView.listPeopleMng
+
 	}
 };
 
@@ -98,6 +100,17 @@ class App extends Component {
 			scenarioName = "No scenario loaded"
 		}
 		
+		let peopleList;
+		if (this.props.listPeopleMng && this.props.listPeopleMng.length > 0) {
+			peopleList = this.props.listPeopleMng;
+			console.log("PEOPLE list")
+			console.log(peopleList)
+		} else {
+			peopleList = [];
+		}
+		
+		
+
 		return (
 			<div className={"App"}>
 				<div className="component leftPart">
@@ -151,6 +164,10 @@ class App extends Component {
 						<p className={"Mic_speech"}>
 							Mic is on. Please Speak.
 						</p>
+					</div>
+					<div id="debugPeopleMng">
+						{peopleList.map(people => <p>{people.name} : {people.score}</p>)}
+						
 					</div>
 				</div>
 			

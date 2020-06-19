@@ -127,6 +127,10 @@ div#rightPart > div#header {
 }
 
 
+div#debugPeopleMng > p {
+    font-size: 2rem;
+}
+
 div#header > div {
     max-height: 106px !important;
     overflow: hidden;

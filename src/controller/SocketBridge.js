@@ -12,6 +12,7 @@ import {toolbarAction} from "../redux/actions/ToolbarAction";
 import {scenarioAction} from "../redux/actions/ScenarioAction";
 import {comAction} from "../redux/actions/CommunicationAction";
 import {hideSoundIconAction} from "../redux/actions/AppVisualAction";
+import {DebugPeopleAction} from "../redux/actions/DebugPeopleMngAction";
 // import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import App from "../App";
@@ -88,6 +89,8 @@ export default class SocketBridge extends React.Component{
 				socket._type.on('currentView', this.handleChangeCurrentView(socket)),
 				socket._type.on('endScenario', this.handleChangeEndScenario()),
 				socket._type.on('appVisualChange', this.handleAppVisualChange()),
+				socket._type.on('debugGetPeopleList', this.handleDebugGetPeopleMngList())
+
 
 				// socket._type.on('resetSteps', this.handleResetSteps()),
 
@@ -267,5 +270,14 @@ export default class SocketBridge extends React.Component{
 			state: data.hide
 		})
 
+	}
+
+	static handleDebugGetPeopleMngList = () => data => {
+		console.log("test reducer Thomas 2")
+		console.log(data)
+		dispatch({
+			type: DebugPeopleAction.listPeopleMng.type,
+			state: data.people_list
+		})
 	}
 }
