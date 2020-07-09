@@ -1,4 +1,4 @@
-div.FoundObject {
+div.FoundNoObject {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,13 +6,9 @@ div.FoundObject {
     height: 76vh;
 }
 
-div.FoundObject.div {
+div.FoundNoObject.div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-div.FoundObject img {
-    max-height: 50vh;
-    /*width: 100%;*/
-}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import ObjectToFind from "../../../Global/reusableComponent/ObjectToFind/ObjectToFind";
-import './FoundObject.css';
+import './FindObject.css';
 import {comAction} from "../../../../redux/actions/CommunicationAction";
 import { viewAction } from '../../../../redux/actions/ViewAction';
 import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 	return {};
 }
 
-class FoundObject extends Component {
+class FindObject extends Component {
 	
 	static propTypes = {
 		location: PropTypes.object.isRequired,
@@ -28,7 +28,7 @@ class FoundObject extends Component {
 	render() {
 		
 		return (
-			<div className={"FoundObject"}>
+			<div className={"FindObject"}>
 				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
 				<Location obj={this.props.location}/>
 			</div>
@@ -62,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoundObject);
+export default connect(mapStateToProps, mapDispatchToProps)(FindObject);

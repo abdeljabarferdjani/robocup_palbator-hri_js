@@ -24,7 +24,7 @@ import ShowVideo from '../view/Global/ShowVideo';
 import Generic from "../view/Generic";
 import AskRoomToClean from "../view/Scenario/CleanUp/AskRoomToClean";
 import OpenDoor from "../view/Scenario/CleanUp/OpenDoor";
-import FoundObject from "../view/Scenario/CleanUp/FoundObject";
+import FindObject from "../view/Scenario/CleanUp/FindObject";
 import CatchObject from "../view/Scenario/CleanUp/CatchObject";
 import StoreObject from "../view/Scenario/CleanUp/StoreObject";
 import ReleaseObject from "../view/Scenario/CleanUp/ReleaseObject";
@@ -35,6 +35,7 @@ import FoundGuest from "../view/Scenario/Receptionist/FoundGuest";
 import LookForKnownGuest from "../view/Scenario/Receptionist/LookForKnownGuest";
 import MainPagePalbator from "../view/Global/MainPagePalbator";
 import MainMenuPalbator from "../view/Global/MainMenuPalbator";
+import FoundNoObject from "../view/Scenario/CleanUp/FoundNoObject";
 /**
  * Get the Component class from his name (string)
  *
@@ -77,7 +78,7 @@ const viewClassMap = {
 	"find": Find,
 	'askRoom': AskRoomToClean,
 	'openDoor': OpenDoor,
-	'findObject': FoundObject,
+	'findObject': FindObject,
 	'catchObject': CatchObject,
 	'storeObject': StoreObject,
 	'releaseObject': ReleaseObject,
@@ -87,6 +88,7 @@ const viewClassMap = {
 	'foundGuest': FoundGuest,
 	'lookForKnownGuest': LookForKnownGuest,
 	'mainMenuPalbator': MainMenuPalbator,
+	'foundNoObject': FoundNoObject,
 };
 
 /**
