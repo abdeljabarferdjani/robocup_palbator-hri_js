@@ -19,7 +19,7 @@ class FoundGuest extends Component {
 			<div className={"FoundGuest"}>
 				<ComponentTitle>{this.props.textToShow}</ComponentTitle>
 				<div><img className={"Guest"}
-                        src={this.props.pathOnTablet}
+                        src={this.props.guestPhotoPath}
                         alt={this.props.who}/>
                 </div>
 			</div>
