@@ -3,7 +3,7 @@ import './ConfirmObjectAction.css';
 import {SpeakableButton} from "../reusableComponent/Button/SpeakableButton";
 import {comAction} from "../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
-import {UserComponentPropTypes} from "../../../dev/types";
+import {UserComponentPropTypes} from "../../../../dev/types";
 import ComponentTitle from "../reusableComponent/ComponentTitle";
 import { viewAction } from '../../../redux/actions/ViewAction';
 import ObjectToFind from "../../../Global/reusableComponent/ObjectToFind/ObjectToFind";
