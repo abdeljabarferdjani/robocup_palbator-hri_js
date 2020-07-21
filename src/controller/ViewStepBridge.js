@@ -36,6 +36,7 @@ import LookForKnownGuest from "../view/Scenario/Receptionist/LookForKnownGuest";
 import MainPagePalbator from "../view/Global/MainPagePalbator";
 import MainMenuPalbator from "../view/Global/MainMenuPalbator";
 import FoundNoObject from "../view/Scenario/CleanUp/FoundNoObject";
+import ConfirmObjectAction from "../view/Scenario/CleanUp/ConfirmObjectAction";
 /**
  * Get the Component class from his name (string)
  *
@@ -89,6 +90,7 @@ const viewClassMap = {
 	'lookForKnownGuest': LookForKnownGuest,
 	'mainMenuPalbator': MainMenuPalbator,
 	'foundNoObject': FoundNoObject,
+	'confirmObjectAction': ConfirmObjectAction,
 };
 
 /**
