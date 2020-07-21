@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './ConfirmObjectAction.css';
-import {SpeakableButton} from "../reusableComponent/Button/SpeakableButton";
-import {comAction} from "../../../redux/actions/CommunicationAction";
+import {SpeakableButton} from "../../../Global/reusableComponent/Button/SpeakableButton";
+import {comAction} from "../../../../redux/actions/CommunicationAction";
 import {connect} from "react-redux";
 import {UserComponentPropTypes} from "../../../../dev/types";
-import ComponentTitle from "../reusableComponent/ComponentTitle";
-import { viewAction } from '../../../redux/actions/ViewAction';
+import ComponentTitle from "../../../Global/reusableComponent/ComponentTitle";
+import { viewAction } from '../../../../redux/actions/ViewAction';
 import ObjectToFind from "../../../Global/reusableComponent/ObjectToFind/ObjectToFind";
 
 
