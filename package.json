@@ -45,6 +45,6 @@
 		"prop-types": "^15.7.2",
 		"redux-devtools-extension": "^2.13.8",
 		"run-script-os": "1.0.7",
-		"ssh2": "0.8.4"
+		"ssh2": "1.4.0"
 	}
 }
